@@ -1,0 +1,398 @@
+// CSS
+
+body { 
+	background: #000; 
+}
+.ui-li-count {
+	color: red;
+}
+.ui-mobile .type-home .ui-content { 
+	margin: 0; 
+	border-top: 3px solid #d4911d; 
+	background: #000 url(../images/bg-blackgray2.png) top left repeat;  
+	min-height: 875px;
+	max-height: 100%;
+}
+.ui-mobile #logo { 
+	padding: 5px 0 20px 0; 
+	margin: 0px auto; 
+	}
+.ui-mobile #logo img {
+	width: 260px;
+	height: 70px;
+	padding: 10px 0px 10px 0px;
+}
+.video {
+	margin: 5px auto;
+}
+#week1{
+	border: 2px solid #fff;
+	text-shadow: 1px 2px 3px #000;
+	background: #333 url(../images/videoposter.png) center;
+}
+.profile-content {
+	font-size: 12px;
+}
+.profile-content h1 {
+	text-align: left;
+}
+.profile-content p {
+	text-align: left;
+}
+
+.profile-content img{
+	margin: 10px auto;
+	float: right;
+}
+.profile-content h2{
+	text-align: left;
+	font-size: 12px;
+}
+.ui-body-x {
+	background: #000 url(../images/bg-blackgray2.png) top left repeat;
+}
+
+h2 { 
+	margin:1.2em 0 .4em 0; 
+}
+p code { 
+	font-size:1.2em; 
+	font-weight:bold; 
+} 
+
+dt { 
+	font-weight: bold; 
+	margin: 2em 0 .5em; 
+}
+dt code, dd code { 
+	font-size:1.3em; 
+	line-height:150%; 
+}
+pre { 
+	white-space: pre; 
+	white-space: pre-wrap; 
+	word-wrap: break-word; 
+}
+
+.ui-header .jqm-home { 
+	top:0.65em; 
+}
+nav { 
+	margin: 0; 
+}
+
+p.border {
+	font-size: .96em;
+	line-height: 1.3;
+	border-top: 1px solid #a65201;
+	border-bottom: 0;
+	background: none;
+	margin: 1.5em 0;
+	padding: 1.5em 15px 0;
+
+}
+p.intro strong {
+	color:  #558e08;
+}
+.footer-docs {
+	border-top: 2px solid #d4911d;
+	padding: 5px 0;
+	background: #333;
+}
+.footer-docs p {
+	float: left;
+	color: #fff;
+	text-shadow: 1px 1px 2px #000;
+	margin-left:15px;
+	font-weight: normal;
+	font-size: .9em;
+}
+
+.type-interior .content-secondary {
+	border-right: 0;
+	border-left: 0;
+	margin: 10px -15px 0;
+	background: #fff;
+	border-top: 1px solid #ccc;
+}
+.type-home .ui-content {
+	margin-top: 5px;
+}
+.type-interior .ui-content {
+	padding-bottom: 0;
+}
+.content-secondary .ui-collapsible {
+	padding: 0 10px 10px;
+
+}
+.content-secondary .ui-collapsible-content {
+	padding: 0;
+	background: none;
+	border-bottom: none;
+}
+.content-secondary .ui-listview {
+	margin: 0;
+}
+/* new API additions */
+
+dt {  
+	margin: 35px 0 15px 0; 
+	background-color:#ddd; 
+	font-weight:normal;
+}
+dt code { 
+	display:inline-block; 
+	font-weight:bold;
+	color:#56A00E; 
+	padding:3px 7px; 
+	margin-right:10px; 
+	background-color:#fff; 
+}
+dd { 
+	margin-bottom:10px; 
+}
+dd .default { font-weight:bold; }
+dd pre { 
+	margin:0 0 0 0; 
+}
+dd code { font-weight: normal; }
+dd pre code { 
+	margin:0; 
+	border:none; 
+	font-weight:normal; 
+	font-size:100%; 
+	background-color:transparent; 
+}
+dd h4 { margin:15px 0 0 0; }
+		
+.localnav {
+	margin:0 0 20px 0;
+	overflow:hidden;
+}
+.localnav li {
+	float:left;
+}
+.localnav .ui-btn-inner { 
+	padding: .6em 10px; 
+	font-size:80%; 
+}
+
+
+/* F bar theme - just for the docs overview headers */
+.ui-bar-f {
+	border-top: 1px solid 	#a65201;
+	border-bottom: 1px solid #a65201;
+	background: 			#a65201;
+	color: 					#fff;
+	font-weight: bold;
+	text-shadow: 0 -1px 1px #a65201;	
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#d4911d), to(#a65201)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(#d4911d, #a65201); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(#d4911d, #a65201); /* FF3.6 */
+	background-image:     -ms-linear-gradient(#d4911d, #a65201); /* IE10 */
+	background-image:      -o-linear-gradient(#d4911d, #a65201); /* Opera 11.10+ */
+	background-image:         linear-gradient(#d4911d, #a65201);		
+}
+.ui-bar-f,
+.ui-bar-f .ui-link-inherit {
+	color: 					#fff;
+}
+.ui-bar-f .ui-link {
+	color: 					#fff;
+	font-weight: bold;
+}
+.ui-btn-up-f {
+	border: 1px solid 		#a65201;
+	background: 			#a65201;
+	font-weight: bold;
+	color: 					#fff;
+	text-shadow: 0 -1px 1px #a65201;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#d4911d), to(#a65201)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(#d4911d, #a65201); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(#d4911d, #a65201); /* FF3.6 */
+	background-image:     -ms-linear-gradient(#d4911d, #a65201); /* IE10 */
+	background-image:      -o-linear-gradient(#d4911d, #a65201); /* Opera 11.10+ */
+	background-image:         linear-gradient(#d4911d, #a65201);
+}
+.ui-btn-up-f a.ui-link-inherit {
+	color: 					#fff;
+}
+.ui-btn-hover-f {
+	border: 1px solid 		#a65201;
+	background: 			#a65201;
+	font-weight: bold;
+	color: 					#fff;
+	text-shadow: 0 -1px 1px #a65201;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#d4911d), to(#a65201)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(#d4911d, #a65201); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(#d4911d, #a65201); /* FF3.6 */
+	background-image:     -ms-linear-gradient(#d4911d, #a65201); /* IE10 */
+	background-image:      -o-linear-gradient(#d4911d, #a65201); /* Opera 11.10+ */
+	background-image:         linear-gradient(#d4911d, #a65201);
+}
+.ui-btn-hover-f a.ui-link-inherit {
+	color: 					#fff;
+}
+.ui-btn-down-f {
+	border: 1px solid 		#a65201;
+	background: 			#a65201;
+	font-weight: bold;
+	color: 					#fff;
+	text-shadow: 0 -1px 1px #a65201;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#a65201)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(#fff, #a65201); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(#fff, #a65201); /* FF3.6 */
+	background-image:     -ms-linear-gradient(#fff, #a65201); /* IE10 */
+	background-image:      -o-linear-gradient(#fff, #a65201); /* Opera 11.10+ */
+	background-image:         linear-gradient(#fff, #a65201);
+}
+.ui-btn-down-f a.ui-link-inherit {
+	color: 					#fff;
+}
+.ui-btn-up-f,
+.ui-btn-hover-f,
+.ui-btn-down-f {
+	font-family: Helvetica, Arial, sans-serif;
+	text-decoration: none;
+}
+
+
+
+
+/* docs site layout */
+
+@media all and (min-width: 650px){
+	
+	.jqm-home {
+		position: absolute;
+		left: 10px;
+		top: 0;
+	}
+	.type-home .ui-content {
+		margin-top: 5px;
+	}
+	.ui-mobile #logo {
+		max-width: 340px;
+	}
+
+	.type-home .ui-content,
+	.type-interior .ui-content {
+		padding: 0;
+		background: #000;
+	}
+	.type-interior .ui-content {
+		background-position: 45%;
+		overflow: hidden;
+	}
+	.content-secondary {
+		text-align: left;
+		float: left;
+		width: 45%;
+		background: none;
+	}
+	.content-secondary,
+	.type-interior .content-secondary {
+		margin: 30px 0 20px 2%;
+		padding: 20px 4% 0 0;
+			background: none;
+					border-top: none;
+	}
+	.type-index .content-secondary {
+		padding: 0;
+	}
+	.content-secondary .ui-collapsible {
+		margin: 0;
+		padding: 0;
+	}
+	.content-secondary .ui-collapsible-content {
+		border: none;
+	}
+	.type-index .content-secondary .ui-listview {
+		margin: 0;
+	}
+
+	.ui-mobile #logo {
+		padding: 0;
+	}
+	.content-primary {
+		width: 45%;
+		float: right;
+		margin-top: 30px;
+		margin-right: 1%;
+		padding-right: 1%;
+	}
+	.content-primary ul:first-child {
+		margin-top: 0;
+	}
+	.content-secondary h2 {
+		position: absolute;
+		left: -9999px;
+	}
+	.type-interior .content-primary {
+		padding: 1.5em 6% 3em 0;
+		margin: 0;
+	}
+	/* fix up the collapsibles - expanded on desktop */
+	.content-secondary .ui-collapsible-heading {
+		display: none;
+	}
+	.content-secondary .ui-collapsible-contain {
+		margin:0;
+	}
+	.content-secondary .ui-collapsible-content {
+		display: block;
+		margin: 0;
+		padding: 0;
+	}
+	.type-interior  .content-secondary .ui-li-divider {
+		padding-top: 1em;
+		padding-bottom: 1em;
+	}
+	.type-interior .content-secondary {
+		margin: 0;
+		padding: 0;
+	}
+	
+}
+@media all and (min-width: 750px){
+	.type-home .ui-content,
+	.type-interior .ui-content {
+		background-position: 39%;
+	}
+	.content-secondary {
+		width: 34%;
+	}
+	.content-primary {
+		width: 56%;
+		padding-right: 1%;
+	}	
+	.type-interior .ui-content {
+		background-position: 34%;
+	}
+}
+
+@media all and (min-width: 1200px){
+	.type-home .ui-content{
+		background-position: 38.5%;
+	}
+	.type-interior .ui-content {
+		background-position: 30%;
+	}
+	.content-secondary {
+		width: 30%;
+		padding-right:6%;
+		margin: 30px 0 20px 5%;
+	}
+	.type-interior .content-secondary {
+		margin: 0;
+		padding: 0;
+	}
+	.content-primary {
+		width: 50%;
+		margin-right: 5%;
+		padding-right: 3%;
+	}
+	.type-interior .content-primary {
+		width: 60%;
+	}
+}

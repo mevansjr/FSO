@@ -1,0 +1,286 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>AVF 1203 :: Demo Project</title>
+        <link rel="stylesheet" href="css/jqtouch.css" title="jQTouch">
+        <link rel="stylesheet" href="css/styles.css" title="jQTouch">
+        <script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+            <script type="text/javascript" charset="utf-8">
+                // onSuccess Callback
+                //   This method accepts a `Position` object, which contains
+                //   the current GPS coordinates
+                //
+                var onSuccess = function(position) {
+                    var getdiv = document.getElementById("spot");
+                    var newli  = document.createElement("li");
+                    var newli2 = document.createElement("li");
+                    var newli3 = document.createElement("li");
+                    var newli4 = document.createElement("li");
+                    var geolat = document.createTextNode('Latitude: '+ position.coords.latitude + '\n');
+                    var geolon = document.createTextNode('Longitude: '+ position.coords.longitude + '\n');
+                    var geoalt = document.createTextNode('Altitude: '+ position.coords.altitude + '\n');
+                    var geotim = document.createTextNode('Timestamp: '+ new Date(position.timestamp) + '\n');
+                    
+                    newli.appendChild(geolat);
+                    getdiv.appendChild(newli);
+                    
+                    newli2.appendChild(geolon);
+                    getdiv.appendChild(newli2);
+                    
+                    newli3.appendChild(geoalt);
+                    getdiv.appendChild(newli3);
+                    
+                    newli4.appendChild(geotim);
+                    getdiv.appendChild(newli4);
+                };
+                
+                // onError Callback receives a PositionError object
+                //
+                function onError(error) {
+                    alert('code: '    + error.code    + '\n' +
+                          'message: ' + error.message + '\n');
+                }
+                
+                navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        </script>
+        <script type="text/javascript">
+                
+                // Wait for PhoneGap to load
+                //
+                document.addEventListener("deviceready", onDeviceReady, false);
+                
+                // PhoneGap is ready
+                //
+                function onDeviceReady() {
+                    // Empty
+                }
+                
+                // Show a custom alert
+                //
+                function showAlert() {
+                    navigator.notification.alert("Blah! This is an Alert.");
+                }
+                
+                // Beep three times
+                //
+                function playBeep() {
+                    navigator.notification.beep(3);
+                }
+                
+                // Vibrate for 2 seconds
+                //
+                function vibrate() {
+                    navigator.notification.vibrate(2000);
+                }
+                
+        </script>
+        <script>
+                function captureSuccess(mediaFiles) {
+                    navigator.notification.alert('Success taking picture:');
+                }
+                function captureError(mediaFiles) {
+                    navigator.notification.alert('Error taking picture: ' + error.code);
+                }
+                $(document).bind("deviceready",function () {
+                                 $("#takePhotoButton").bind("tap", function() {
+                                                            navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
+                                                            });
+                                 });
+        </script>
+        <script type="text/javascript">
+                // Wait for PhoneGap to load
+                //
+                document.addEventListener("deviceready", onDeviceReady, false);
+                
+                // PhoneGap is ready
+                //
+                function onDeviceReady() {
+                    // specify contact search criteria
+                    var options = new ContactFindOptions();
+                    options.filter=""; // empty search string returns all contacts
+                    options.multiple=true; // return multiple results
+                    filter = ["displayName"]; // return contact.displayName field
+                    
+                    // find contacts
+                    navigator.contacts.find(filter, onSuccess, onError, options);
+                }
+                
+                // onSuccess: Get a snapshot of the current contacts
+                //
+                function onSuccess(contacts) {
+                    for (var i=0; i<contacts.length; i++) {
+                            var getListdiv = document.getElementById("list");
+                            var newDiv = document.createElement("li");
+                            var newPara = document.createElement("p");
+                            var itemTxt = document.createTextNode(contacts[i].displayName);
+                            newPara.appendChild(itemTxt);
+                            newDiv.appendChild(newPara);
+                            getListdiv.appendChild(newDiv);
+                    }
+                };
+                
+                // onError: Failed to get the contacts
+                //
+                function onError(contactError) {
+                    navigator.notification.alert('onError!');
+                }
+                
+        </script>
+    </head>
+    <body>
+        <div id="jqt">
+            <div id="home">
+                <div class="toolbar">
+                    <h1>Demo Project</h1>
+                </div>
+                <div class="info">
+                    <p><strong>Welcome</strong> to my launch page!</p>
+                </div>
+                <section id="cta">
+                    <img src="images/cta.jpg" />
+                </section>
+                <div class="individual">
+                    <ul class="rounded">
+                        <li><img src="images/profile.png" /><h3>Mark Evans</h3><p>AVF 1203</p></li>
+                    </ul>
+                </div>
+                <section id="apps">
+                    <h1>CRUD APP</h1>
+                    <ul class="individual">
+                        <li><a href="CRUD/index.html" rel="external">APP<small class="counter">OLD</small></a></li> 
+                        <li><a href="#">APP<small class="counter">NEW</small></a></li>                      
+                    </ul>
+                </section>
+                <section id="features">
+                    <h1>iOS/Android Native Features</h1>
+                    <ul class="individual" id="ios-android">
+                        <li><a href="#geo">Geolocation</a></li>
+                        <li><a href="#not">Notification</a></li>
+                    </ul>
+                    <ul class="individual" id="iosandroid">
+                        <li><a href="#con">Contacts</a></li>
+                        <li><a href="#cam">Camera</a></li>
+                    </ul>
+                </section>
+                <section id="dis-vid">
+                    <h1>Videos / Discussions</h1>
+                    <ul class="rounded">
+                        <li class="arrow"><a href="#week1">Week 1 : PhoneGap'd App</a></li>
+                        <li class="arrow"><a href="#">Week 2</a></li>
+                        <li class="arrow"><a href="#">Week 3</a></li>
+                        <li class="arrow"><a href="#">Week 4</a></li>
+                    </ul>
+                </section>                
+            </div>
+            
+            <div id="geo">
+                <div class="toolbar">
+                    <h1>Geolocation</h1>
+                    <a href="#" class="back">Back</a>
+                </div>
+                <section id="geo-img">
+                    <img src="images/geo.jpg" />
+                </section>
+                <section id="geolocation-section">
+                    <h1>Geolocation</h1>
+                    <ul class="rounded" id="spot"></ul>
+                </section>
+            </div>
+            
+            <div id="cam">
+                <div class="toolbar">
+                    <h1>Camera</h1>
+                    <a href="#" class="back">Back</a>
+                </div>
+                <section id="cam-img">
+                    <img src="images/cam.jpg" />
+                </section>
+                <section id="cam-section">
+                    <div class="individual">
+                        <h1>Camera</h1>
+                        <ul class="rounded">  
+                            <li class="arrow"><a id="takePhotoButton">Take Photo</a></li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            
+            <div id="con">
+                <div class="toolbar">
+                    <h1>Contacts</h1>
+                    <a href="#" class="back">Back</a>
+                </div>
+                <section id="con-img">
+                    <img src="images/con.jpg" />
+                </section>
+                <h1>All Contacts</h1>
+                <ul class="rounded" id="list"></ul>
+            </div>
+            
+            <div id="not">
+                <div class="toolbar">
+                    <h1>Notification</h1>
+                    <a href="#" class="back">Back</a>
+                </div>
+                <section id="not-img">
+                    <img src="images/not.jpg" />
+                </section>
+                <section id="notification-section">
+                    <div class="individual">
+                        <h1>Notification</h1>
+                        <ul class="rounded">  
+                            <li class="arrow"><a href="#" onclick="showAlert(); return false;">Show Alert</a></li>
+                            <li class="arrow"><a href="#" onclick="vibrate(); return false;">Vibrate</a></li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            
+            <div id="week1">
+                <div class="toolbar">
+                    <h1>Week 1</h1>
+                    <a href="#" class="back">Back</a>
+                </div>
+                <section id="video">
+                    <div class="individual">
+                        <h1>Video</h1>
+                        <ul class="rounded">
+		        			<li>
+                                <center>
+                                    <video id="vid1" preload="none" controls>
+                                    	<source src="https://dl-web.dropbox.com/get/Public/AVF%20-%20Video%201%20mobile.mp4?w=116e2b97" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+                                    	<source src="http://www.mobilespeck.com/video/week1.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+                                    	<source src="http://www.mobilespeck.com/video/week1.webm" type='video/webm; codecs="vp8, vorbis"'>
+                                    </video>
+                                </center>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section id="discussion">
+                    <div class="individual">
+                        <h1>Discussion</h1>
+                        <ul class="rounded">
+                            <li>
+                                <h2> What types of native features (on Android and iOS devices) would you be able to implement with the use of HTML/CSS/JS only? (just a hint - iOS can be the tricky one)</h2>
+                                <p>The camera, audio, geolocation, contacts, video, and accelerometer can be implemented via Phonegap. </p>
+                                <h2>For your CRUD app revision, which of these do you think you will implement?</h2>
+                                <p>I plan on replacing my javascript alerts with native notifications. I also would like to utilize the audio feature.</p>
+                                <h2>Briefly describe some past 'lessons learned' regarding workflow as it relates to research, design, development, etc.</h2>
+                                <p>When working on a project is essential to have a positive mindset and to try to be in a good mood. I noticed if I'm stressed or trying to meet a deadline, my quality of work tends to suffer.</p>
+                                <h2>Please describe any design intentions you may have for the AVF Demo app and the revised/new version of your CRUD app.</h2>
+                                <p>I would like to try to make a different app completely. I'm a little tired of the same app I've been polishing from the original VFW class. If I do not have time I will implement some native Phonegap features into my current app.</p>
+                                <h2>If not covered above, please also describe any functionality intentions you may have for both the AVF Demo app and the revised/new version of your CRUD app.</h2>
+                                <p>I want to make sure the structure of my HTML code to accessible via a screen-reader, while being WC3 compliant.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            
+        </div>
+    </body>
+</html>
