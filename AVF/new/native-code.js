@@ -117,9 +117,3 @@
                     getListdiv.appendChild(newDiv);
             }
         };
-        
-        // onError: Failed to get the contacts
-        //
-        function onError(contactError) {
-            navigator.notification.alert('onError!');
-        }
