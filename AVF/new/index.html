@@ -5,58 +5,6 @@
         <link rel="stylesheet" href="css/jqtouch.css" title="jQTouch">
         <link rel="stylesheet" href="css/styles.css" title="jQTouch">
         <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
-        <script type="text/javascript">
-        	
-        </script>
-        <script type="text/javascript" src="http://www.google.com/jsapi?key=ABCDEFG"></script>
-        <script type="text/javascript">
-        	//Geolocation Native Code --------------
-        	
-        	        // onSuccess Callback
-        	        //   This method accepts a `Position` object, which contains
-        	        //   the current GPS coordinates
-        	        //
-        	        var onSuccess = function(position) {
-        	            var getdiv = document.getElementById("spot");
-        	            var newli  = document.createElement("li");
-        	            var newli2 = document.createElement("li");
-        	            var newli3 = document.createElement("li");
-        	            var newli4 = document.createElement("li");
-        	            var geolat = document.createTextNode('Latitude: '+ position.coords.latitude + '\n');
-        	            var geolon = document.createTextNode('Longitude: '+ position.coords.longitude + '\n');
-        	            var geoalt = document.createTextNode('Altitude: '+ position.coords.altitude + '\n');
-        	            var geotim = document.createTextNode('Timestamp: '+ new Date(position.timestamp) + '\n');
-        	            
-        	            newli.appendChild(geolat);
-        	            getdiv.appendChild(newli);
-        	            
-        	            newli2.appendChild(geolon);
-        	            getdiv.appendChild(newli2);
-        	            
-        	            newli3.appendChild(geoalt);
-        	            getdiv.appendChild(newli3);
-        	            
-        	            newli4.appendChild(geotim);
-        	            getdiv.appendChild(newli4);
-        	        };
-        	        
-        	        // onError Callback receives a PositionError object
-        	        //
-        	        function onError(error) {
-        	            alert('code: '    + error.code    + '\n' +
-        	                  'message: ' + error.message + '\n');
-        	        }
-        	        
-        	        navigator.geolocation.getCurrentPosition(onSuccess, onError);
-          google.load("maps", "2.0");
-           
-          // Call this function when the page has been loaded
-          function initialize() {
-            var map = new google.maps.Map2(document.getElementById("map"));
-            map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-          }
-          google.setOnLoadCallback(initialize);
-        </script>
     </head>
     <body>
         <div id="jqt">
@@ -114,7 +62,6 @@
                 </section>
                 <section id="geolocation-section">
                     <h1>Geolocation</h1>
-                    <ul class="rounded"><p id="map"></p></ul>
                     <ul class="rounded" id="spot"></ul>
                 </section>
             </div>
