@@ -3,74 +3,46 @@
 // Native Code - iOS / Android - Phonegap
 
 //Geolocation Native Code --------------
-                var map;
-                
-                $(document).ready(function(){
-                                  $(window).unbind();
-                                  $(window).bind('pageshow resize orientationchange', function(e){
-                                                 max_height();
-                                                 });
-                                  google.load("maps", "3.5", {"callback": map, other_params: "sensor=true&language=en"});
-                                  });
-                
-                function max_height(){
-                    var h = $('div[data-role="header"]').outerHeight(true);
-                    var f = $('div[data-role="footer"]').outerHeight(true);
-                    var w = $(window).height();
-                    var c = $('div[data-role="content"]');
-                    var c_h = c.height();
-                    var c_oh = c.outerHeight(true);
-                    var c_new = w - h - f - c_oh + c_h;
-                    var total = h + f + c_oh;
-                    if(c_h<c.get(0).scrollHeight){
-                        c.height(c.get(0).scrollHeight);
-                    }else{
-                        c.height(c_new);
-                    }
-                }
-                
-                function map(){
-                    var latlng = new google.maps.LatLng(39.37, 23.76);
-                    var myOptions = {
-                        zoom: 6,
-                        center: latlng,
-                        streetViewControl: true,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                    };
-                    map = new google.maps.Map(document.getElementById("map"), myOptions);
-                    
-                    navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
-                }
-                
-                function geo_error(error) {
-                    alert('code: '    + error.code    + '\n' +
-                          'message: ' + error.message + '\n');
-                }
-                
-                function geo_success(position) {
-                    map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-                    map.setZoom(15);
-                    
-                    var info =
-                    ('Latitude: '         + position.coords.latitude          + '<br>' +
-                     'Longitude: '         + position.coords.longitude         + '<br>' +
-                     'Altitude: '          + position.coords.altitude          + '<br>' +
-                     'Timestamp: '         + new Date(position.timestamp));
-                    
-                    var point = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                    var marker = new google.maps.Marker({
-                                                        position: point,
-                                                        map: map
-                                                        });
-                    var infowindow = new google.maps.InfoWindow({
-                                                                content: info
-                                                                });
-                    google.maps.event.addListener(marker, 'click', function() {
-                                                  infowindow.open(map,marker);
-                                                  });
-                    
-                };
-
+//
+//         onSuccess Callback
+//           This method accepts a `Position` object, which contains
+//           the current GPS coordinates
+//        
+//        var onSuccess = function(position) {
+//            var getdiv = document.getElementById("spot");
+//            var newli  = document.createElement("li");
+//            var newli2 = document.createElement("li");
+//            var newli3 = document.createElement("li");
+//            var newli4 = document.createElement("li");
+//            var geolat = document.createTextNode('Latitude: '+ position.coords.latitude + '\n');
+//            console.log(position.coords.latitude);
+//            var geolon = document.createTextNode('Longitude: '+ position.coords.longitude + '\n');
+//            console.log(position.coords.longitude);
+//            var geoalt = document.createTextNode('Altitude: '+ position.coords.altitude + '\n');
+//            var geotim = document.createTextNode('Timestamp: '+ new Date(position.timestamp) + '\n');
+//            
+//            newli.appendChild(geolat);
+//            getdiv.appendChild(newli);
+//            
+//            newli2.appendChild(geolon);
+//            getdiv.appendChild(newli2);
+//            
+//            newli3.appendChild(geoalt);
+//            getdiv.appendChild(newli3);
+//            
+//            newli4.appendChild(geotim);
+//            getdiv.appendChild(newli4);
+//        };
+//        
+//         onError Callback receives a PositionError object
+//        
+//        function onError(error) {
+//            alert('code: '    + error.code    + '\n' +
+//                  'message: ' + error.message + '\n');
+//        }
+//        
+//       navigator.geolocation.getCurrentPosition(onSuccess, onError, { maximumAge: 8000, timeout: 10000, enableHighAccuracy: true });
+        
 //Notification Native Code ------------
         
         // Wait for PhoneGap to load
