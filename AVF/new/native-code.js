@@ -41,7 +41,7 @@
                   'message: ' + error.message + '\n');
         }
         
-       navigator.geolocation.getCurrentPosition(onSuccess, onError);
+       navigator.geolocation.getCurrentPosition(onSuccess, onError, { maximumAge: 8000, timeout: 10000, enableHighAccuracy: true });
         
 //Notification Native Code ------------
         
