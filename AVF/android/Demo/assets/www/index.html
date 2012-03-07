@@ -46,7 +46,7 @@
                     <h1>Videos / Discussions</h1>
                     <ul class="rounded">
                         <li class="arrow"><a href="#week1">Week 1 : PhoneGap'd App</a></li>
-                        <li class="arrow"><a href="#">Week 2</a></li>
+                        <li class="arrow"><a href="#week2">Week 2 : Accessibility</a></li>
                         <li class="arrow"><a href="#">Week 3</a></li>
                         <li class="arrow"><a href="#">Week 4</a></li>
                     </ul>
@@ -124,18 +124,21 @@
                     <h1>Week 1</h1>
                     <a href="#" class="back">Back</a>
                 </div>
+                <section id="video">
+                    <div class="individual">
                         <h1>Video</h1>
                         <ul class="rounded">
-		        			<li>
-                                <center>
+                			<li>
                                     <video id="vid1" preload="none" controls>
-                                    	<source src="https://dl-web.dropbox.com/get/Public/AVF%20-%20Video%201%20mobile.mp4?w=116e2b97" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+                                    	<source src="video/week1.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
                                     	<source src="http://www.mobilespeck.com/video/week1.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
                                     	<source src="http://www.mobilespeck.com/video/week1.webm" type='video/webm; codecs="vp8, vorbis"'>
+                                    	<source src="http://www.mobilespeck.com/video/week1.ogv" type='video/ogg; codecs="theora, vorbis"'>
                                     </video>
-                                </center>
                             </li>
                         </ul>
+                    </div>
+                </section>
                 <section id="discussion">
                     <div class="individual">
                         <h1>Discussion</h1>
@@ -156,6 +159,43 @@
                     </div>
                 </section>
             </div>
+            <div id="week2">
+            	<div class="toolbar">
+                	<h1>Week 2</h1>
+                    <a href="#" class="back">Back</a>
+                </div>
+                <h1>Video</h1>
+                <ul class="rounded">
+            		<li>
+                    	<video id="vid2" preload="none" controls>
+                    		<source src="video/week2.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+                        	<source src="http://www.mobilespeck.com/video/week2.m4v" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+                            <source src="http://www.mobilespeck.com/video/week2.webm" type='video/webm; codecs="vp8, vorbis"'>
+                            <source src="http://www.mobilespeck.com/video/week2.ogv" type='video/ogg; codecs="theora, vorbis"'>
+                        </video>
+                    </li>
+                </ul>
+                	<section id="discussion">
+                            <div class="individual">
+                                <h1>Discussion</h1>
+                                <ul class="rounded">
+                                    <li>
+                                        <h2> What are some of the ways that you could change your HTML on your Demo app to be more accessible? (Remember, you can use the Section tag with jQuery, for instance)</h2>
+                                        <p>Using header tags, section tags, and links allow for your HTML to be accessible via a screen-reader or through the use of your keyboard. Blind people generally cannot use a mouse because they cannot see where to click. They use their keyboard almost exclusively. </p>
+                                        <h2>Visit a video service on the web (like YouTube) and search for "Screen Reader Demo" and "Mobile Screen Reader" - what are some of the common frustrations (or common support mechanisms) that you see among the examples that are given - how could you fix them (or use them)?</h2>
+                                        <p>Links, tags, and various elements that are not identified or labeled properly can cause problems for visually impaired users. It is important make sure UI controls are not overly used and too overwhelming. I'd would assume less content is better for a screen reader.</p>
+                                        <h2>Devices: Please list two devices (and some of their features) that are made specifically to support Accessibility</h2>
+                                        <p>1. <strong>Apple iPhone</strong>: These apple products provide various accessibility like VoiceOver that is built into the devices operating system. VoiceOver lets you interact directly with objects on the screen. You can understand their location and context when you touch the upper-left corner of the screen, you’ll hear what’s in the upper left corner of a web page. As you drag your finger around the screen, you’ll learn what’s nearby.
+                                        <br /><br />2. <strong>JAWS software and Large Print Keyboard</strong>: JAWS is a software designed for accessibility that provides a braille display, JAWS also provides braille output in addition to, or instead of, speech. Users can also purchase a keyboard that provides low vision users with an easy-to-read keyboard.</p>
+                                        <h2>Mobile Apps: Please list two apps (either Android or iOS, or both) that are made specifically to support Accessibility.</h2>
+                                        <p>1. <strong>Learning Ally Audio</strong>: This app serves people with visual impairments or learning disabilities who experience difficulty reading print material.
+                                        <br /><br />2. <strong>Magnifi</strong>: This app uses the iPhone's camera as a magnifying lens or set of reading glasses for the visually impaired.</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </div>
             
         </div>
     </body>
