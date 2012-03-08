@@ -34,7 +34,7 @@
                 <section id="features">
                     <h1>iOS/Android Native Features</h1>
                     <ul class="individual" id="ios-android">
-                        <li><a href="#geo">Geolocation</a></li>
+                        <li><a href="geo.html" rel="external">Geolocation</a></li>
                         <li><a href="#not">Notification</a></li>
                     </ul>
                     <ul class="individual" id="iosandroid">
@@ -53,14 +53,16 @@
                 </section>                
             </div>
             
-            <div id="geo">
+            <div id="geo" data-role="page">
                 <div class="toolbar">
                     <h1>Geolocation</h1>
                     <a href="#" class="back">Back</a>
                 </div>
-                <div data-role="content" style="padding:0;">
-                	<div id="map" style="width:100%;height:100%;"></div>
-                </div>
+                <div data-role="content">	
+                				<div class="ui-bar-c ui-corner-all ui-shadow" style="padding:1em;">
+                					<div id="map_canvas_2" style="height:300px;"></div>
+                				</div>
+                			</div>
             </div>
             
             <div id="cam">
