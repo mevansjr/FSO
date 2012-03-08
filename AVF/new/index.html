@@ -6,7 +6,6 @@
         <link rel="stylesheet" href="css/styles.css" title="jQTouch">
         <link href="css/video-js.css" rel="stylesheet">
     </head>
-    
     <body>
         <div id="jqt">
             <div id="home">
@@ -167,10 +166,10 @@
                 <ul class="rounded">
         			<li>
                     	<video id="vid2" preload="none" controls>
-                    		<source src="video/week2.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-                        	<source src="http://www.mobilespeck.com/video/week2.m4v" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-                            <source src="http://www.mobilespeck.com/video/week2.webm" type='video/webm; codecs="vp8, vorbis"'>
-                            <source src="http://www.mobilespeck.com/video/week2.ogv" type='video/ogg; codecs="theora, vorbis"'>
+                    		<source src="http://dl.dropbox.com/u/11686909/week2.m4v" type='video/m4v; codecs="avc1.42E01E, mp4a.40.2"'>
+                    		<source src="http://dl.dropbox.com/u/11686909/week2.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+                            <source src="http://dl.dropbox.com/u/11686909/week2.webm" type='video/webm; codecs="vp8, vorbis"'>
+                            <source src="http://dl.dropbox.com/u/11686909/week2.ogv" type='video/ogg; codecs="theora, vorbis"'>
                         </video>
                     </li>
                 </ul>
@@ -196,6 +195,17 @@
                     </div>
                 </div>
         </div>
+        <!-- Code for Android phone - HTML 5 Video -->
+        <script type="text/javascript">
+        	var video = document.getElementById('vid1');
+        	video.addEventListener('click',function(){
+        	  video.play();
+        	},false);
+        	var vid = document.getElementById('vid2');
+        	vid.addEventListener('click',function(){
+        	  vid.play();
+        	},false);
+        </script>
     	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
     	<script src="js/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
     	<script type="text/javascript" src="js/main.js"></script>
