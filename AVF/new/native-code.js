@@ -13,12 +13,10 @@
             var newli  = document.createElement("li");
             var newli2 = document.createElement("li");
             var newli3 = document.createElement("li");
-            var newli4 = document.createElement("li");
             var geolat = document.createTextNode('Latitude: '+ position.coords.latitude + '\n');
             console.log(position.coords.latitude);
             var geolon = document.createTextNode('Longitude: '+ position.coords.longitude + '\n');
             console.log(position.coords.longitude);
-            var geoalt = document.createTextNode('Altitude: '+ position.coords.altitude + '\n');
             var geotim = document.createTextNode('Timestamp: '+ new Date(position.timestamp) + '\n');
             
             newli.appendChild(geolat);
@@ -27,14 +25,11 @@
             newli2.appendChild(geolon);
             getdiv.appendChild(newli2);
             
-            newli3.appendChild(geoalt);
+            newli3.appendChild(geotim);
             getdiv.appendChild(newli3);
-            
-            newli4.appendChild(geotim);
-            getdiv.appendChild(newli4);
         };
         
-         onError Callback receives a PositionError object
+         //onError Callback receives a PositionError object
         
         function onError(error) {
             alert('code: '    + error.code    + '\n' +
