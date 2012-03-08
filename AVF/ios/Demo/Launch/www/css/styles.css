@@ -1,7 +1,9 @@
 #jqt .toolbar {
 	background: #333;
 }
-
+#geolocation-section h1 {
+    padding-top: 5px;
+}
 #jqt .individual img {
 	width: 50px;
 	height: 50px;
@@ -10,6 +12,11 @@
 }
 #vid1 {
 	width: 100%;
+	float: center;
+}
+#vid2 {
+	width: 100%;
+	float: center;
 }
 #cta img {
 	width: 100%;
@@ -18,6 +25,35 @@
 	background: #000;
 	border-bottom: 1px solid #333;
 }
+#con-img img {
+	width: 100%;
+}
+#con-img {
+	background: #000;
+	border-bottom: 1px solid #333;
+}
+#cam-img img {
+	width: 100%;
+}
+#cam-img {
+	background: #000;
+	border-bottom: 1px solid #333;
+}
+#not-img img {
+	width: 100%;
+}
+#not-img {
+	background: #000;
+	border-bottom: 1px solid #333;
+}
+#geo-img img {
+	width: 100%;
+}
+#geo-img {
+	background: #000;
+	border-bottom: 1px solid #333;
+}
+
 ul#ios-android.individual {
 	margin-bottom: 5px;
 }
@@ -72,10 +108,6 @@ ul#iosandroid.individual {
 	font-size: 14px;
 }
 
-#jqt #home, #geo, #week1, #notification {
+#jqt #home, #geo, #not, #con, #cam, #week1, #week2, #notification {
 	background: url(../images/bg-blackgray2.png) repeat left;
-}
-
-#jqt .rounded {
-	//background: orange;
 }
