@@ -1,65 +1,49 @@
 // Mark Evans
 // AVF 1203
 // Native Code - iOS / Android - Phonegap
-$('#geo').live('pagecreate', function() {
-					demo.add('gps_map', function() {
-						$('#map_canvas_2').gmap({'center': mobileDemo.center, 'zoom': mobileDemo.zoom, 'disableDefaultUI':true, 'callback': function(map) {
-							var self = this;
-							self.watchPosition(function(position, status) {
-								if ( status === 'OK' ) {
-									var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-									if ( !self.get('markers').client ) {
-										self.addMarker({ 'id': 'client', 'position': latlng, 'bounds': true });
-									} else {
-										self.get('markers').client.setPosition(latlng);
-										map.panTo(latlng);
-									}
-								}
-							});
-						}});
-					}).load('gps_map');
-				});
+
 //Geolocation Native Code --------------
 //
 //         onSuccess Callback
 //           This method accepts a `Position` object, which contains
 //           the current GPS coordinates
-//        
-//        var onSuccess = function(position) {
-//            var getdiv = document.getElementById("spot");
-//            var newli  = document.createElement("li");
-//            var newli2 = document.createElement("li");
-//            var newli3 = document.createElement("li");
-//            var newli4 = document.createElement("li");
-//            var geolat = document.createTextNode('Latitude: '+ position.coords.latitude + '\n');
-//            console.log(position.coords.latitude);
-//            var geolon = document.createTextNode('Longitude: '+ position.coords.longitude + '\n');
-//            console.log(position.coords.longitude);
-//            var geoalt = document.createTextNode('Altitude: '+ position.coords.altitude + '\n');
-//            var geotim = document.createTextNode('Timestamp: '+ new Date(position.timestamp) + '\n');
-//            
-//            newli.appendChild(geolat);
-//            getdiv.appendChild(newli);
-//            
-//            newli2.appendChild(geolon);
-//            getdiv.appendChild(newli2);
-//            
-//            newli3.appendChild(geoalt);
-//            getdiv.appendChild(newli3);
-//            
-//            newli4.appendChild(geotim);
-//            getdiv.appendChild(newli4);
-//        };
-//        
-//         onError Callback receives a PositionError object
-//        
-//        function onError(error) {
-//            alert('code: '    + error.code    + '\n' +
-//                  'message: ' + error.message + '\n');
-//        }
-//        
-//       navigator.geolocation.getCurrentPosition(onSuccess, onError, { maximumAge: 8000, timeout: 10000, enableHighAccuracy: true });
-//        
+        
+        var onSuccess = function(position) {
+            var getdiv = document.getElementById("spot");
+            var newli  = document.createElement("li");
+            var newli2 = document.createElement("li");
+            var newli3 = document.createElement("li");
+            var newli4 = document.createElement("li");
+            var geolat = document.createTextNode('Latitude: '+ position.coords.latitude + '\n');
+            console.log(position.coords.latitude);
+            var geolon = document.createTextNode('Longitude: '+ position.coords.longitude + '\n');
+            console.log(position.coords.longitude);
+            var geoalt = document.createTextNode('Altitude: '+ position.coords.altitude + '\n');
+            var geotim = document.createTextNode('Timestamp: '+ new Date(position.timestamp) + '\n');
+            
+            newli.appendChild(geolat);
+            getdiv.appendChild(newli);
+            
+            newli2.appendChild(geolon);
+            getdiv.appendChild(newli2);
+            
+            newli3.appendChild(geoalt);
+            getdiv.appendChild(newli3);
+            
+            newli4.appendChild(geotim);
+            getdiv.appendChild(newli4);
+        };
+        
+         onError Callback receives a PositionError object
+        
+        function onError(error) {
+            alert('code: '    + error.code    + '\n' +
+                  'message: ' + error.message + '\n');
+        }
+        
+       navigator.geolocation.getCurrentPosition(onSuccess, onError, { maximumAge: 8000, timeout: 10000, enableHighAccuracy: true });
+//  
+      
 //Notification Native Code ------------
         
         // Wait for PhoneGap to load
