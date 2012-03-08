@@ -8,7 +8,76 @@
         <script src="js/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" charset="utf-8" src="phonegap-1.4.1.js"></script>
-        <script type="text/javascript" src="js/native-android-code.js"></script>
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+        <script type="text/javascript" charset="utf-8">
+                // onSuccess Callback
+                //   This method accepts a `Position` object, which contains
+                //   the current GPS coordinates
+                //
+                var onSuccess = function(position) {
+                    var getdiv = document.getElementById("spot");
+                    var newli  = document.createElement("li");
+                    var newli2 = document.createElement("li");
+                    var newli3 = document.createElement("li");
+                    var newli4 = document.createElement("li");
+                    var geolat = document.createTextNode('Latitude: '+ position.coords.latitude + '\n');
+                    var geolon = document.createTextNode('Longitude: '+ position.coords.longitude + '\n');
+                    var geoalt = document.createTextNode('Altitude: '+ position.coords.altitude + '\n');
+                    var geotim = document.createTextNode('Timestamp: '+ new Date(position.timestamp) + '\n');
+                    
+                    newli.appendChild(geolat);
+                    getdiv.appendChild(newli);
+                    
+                    newli2.appendChild(geolon);
+                    getdiv.appendChild(newli2);
+                    
+                    newli3.appendChild(geoalt);
+                    getdiv.appendChild(newli3);
+                    
+                    newli4.appendChild(geotim);
+                    getdiv.appendChild(newli4);
+                };
+                
+                // onError Callback receives a PositionError object
+                //
+                function onError(error) {
+                    alert('code: '    + error.code    + '\n' +
+                          'message: ' + error.message + '\n');
+                }
+                
+                navigator.geolocation.getCurrentPosition(onSuccess, onError, { maximumAge: 8000, timeout: 10000, enableHighAccuracy: true });
+        </script>
+        <script type="text/javascript">
+                
+                // Wait for PhoneGap to load
+                //
+                document.addEventListener("deviceready", onDeviceReady, false);
+                
+                // PhoneGap is ready
+                //
+                function onDeviceReady() {
+                    // Empty
+                }
+                
+                // Show a custom alert
+                //
+                function showAlert() {
+                    navigator.notification.alert("Blah! This is an Alert.");
+                }
+                
+                // Beep three times
+                //
+                function playBeep() {
+                    navigator.notification.beep(3);
+                }
+                
+                // Vibrate for 2 seconds
+                //
+                function vibrate() {
+                    navigator.notification.vibrate(2000);
+                }
+                
+        </script>
     </head>
     <body>
         <div id="jqt">
@@ -37,7 +106,8 @@
                 <section id="features">
                     <h1>Android Native Features</h1>
                     <ul class="individual" id="ios-android">
-                        <li><a href="#con">Contacts</a></li>
+                        <!-- <li><a href="#con">Contacts</a></li> -->
+                        <li><a href="geo.html" rel="external">Geolocation</a></li>
                         <li><a href="#not">Notification</a></li>
                     </ul>
                     <br />
@@ -54,18 +124,18 @@
             </div>
             
             <div id="geo">
-                            <div class="toolbar">
-                                <h1>Geolocation</h1>
-                                <a href="#" class="back">Back</a>
-                            </div>
-                            <section id="geo-img">
-                                <img src="images/geo.jpg" />
-                            </section>
-                            <section id="geolocation-section">
-                                <h1>Geolocation</h1>
-                                <ul class="rounded" id="spot"></ul>
-                            </section>
-             </div>
+                <div class="toolbar">
+                    <h1>Geolocation</h1>
+                    <a href="#" class="back">Back</a>
+                </div>
+                <section id="geo-img">
+                    <img src="images/geo.jpg" />
+                </section>
+                <section id="geolocation-section">
+                    <h1>Geolocation</h1>
+                    <ul class="rounded" id="spot"></ul>
+                </section>
+            </div>
             
             <div id="cam">
                 <div class="toolbar">
@@ -122,21 +192,16 @@
                     <h1>Week 1</h1>
                     <a href="#" class="back">Back</a>
                 </div>
-                <section id="video">
-                    <div class="individual">
                         <h1>Video</h1>
                         <ul class="rounded">
-                			<li>
+		        			<li>
+                                <center>
                                     <video id="vid1" preload="none" controls>
-                                    	<source src="video/week1.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-                                    	<source src="http://www.mobilespeck.com/video/week1.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-                                    	<source src="http://www.mobilespeck.com/video/week1.webm" type='video/webm; codecs="vp8, vorbis"'>
-                                    	<source src="http://www.mobilespeck.com/video/week1.ogv" type='video/ogg; codecs="theora, vorbis"'>
+                                        <source src="http://www.mobilespeck.com/video/week1.webm" />
                                     </video>
+                                </center>
                             </li>
                         </ul>
-                    </div>
-                </section>
                 <section id="discussion">
                     <div class="individual">
                         <h1>Discussion</h1>
@@ -157,44 +222,46 @@
                     </div>
                 </section>
             </div>
+            
             <div id="week2">
-            	<div class="toolbar">
-                	<h1>Week 2</h1>
+                <div class="toolbar">
+                    <h1>Week 2</h1>
                     <a href="#" class="back">Back</a>
                 </div>
-                <h1>Video</h1>
-                <ul class="rounded">
-            		<li>
-                    	<video id="vid2" preload="none" controls>
-                    		<source src="video/week2.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-                        	<source src="http://www.mobilespeck.com/video/week2.m4v" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-                            <source src="http://www.mobilespeck.com/video/week2.webm" type='video/webm; codecs="vp8, vorbis"'>
-                            <source src="http://www.mobilespeck.com/video/week2.ogv" type='video/ogg; codecs="theora, vorbis"'>
-                        </video>
-                    </li>
-                </ul>
-                	<section id="discussion">
-                            <div class="individual">
-                                <h1>Discussion</h1>
-                                <ul class="rounded">
-                                    <li>
-                                        <h2> What are some of the ways that you could change your HTML on your Demo app to be more accessible? (Remember, you can use the Section tag with jQuery, for instance)</h2>
-                                        <p>Using header tags, section tags, and links allow for your HTML to be accessible via a screen-reader or through the use of your keyboard. Blind people generally cannot use a mouse because they cannot see where to click. They use their keyboard almost exclusively. </p>
-                                        <h2>Visit a video service on the web (like YouTube) and search for "Screen Reader Demo" and "Mobile Screen Reader" - what are some of the common frustrations (or common support mechanisms) that you see among the examples that are given - how could you fix them (or use them)?</h2>
-                                        <p>Links, tags, and various elements that are not identified or labeled properly can cause problems for visually impaired users. It is important make sure UI controls are not overly used and too overwhelming. I'd would assume less content is better for a screen reader.</p>
-                                        <h2>Devices: Please list two devices (and some of their features) that are made specifically to support Accessibility</h2>
-                                        <p>1. <strong>Apple iPhone</strong>: These apple products provide various accessibility like VoiceOver that is built into the devices operating system. VoiceOver lets you interact directly with objects on the screen. You can understand their location and context when you touch the upper-left corner of the screen, youâ€™ll hear whatâ€™s in the upper left corner of a web page. As you drag your finger around the screen, youâ€™ll learn whatâ€™s nearby.
-                                        <br /><br />2. <strong>JAWS software and Large Print Keyboard</strong>: JAWS is a software designed for accessibility that provides a braille display, JAWS also provides braille output in addition to, or instead of, speech. Users can also purchase a keyboard that provides low vision users with an easy-to-read keyboard.</p>
-                                        <h2>Mobile Apps: Please list two apps (either Android or iOS, or both) that are made specifically to support Accessibility.</h2>
-                                        <p>1. <strong>Learning Ally Audio</strong>: This app serves people with visual impairments or learning disabilities who experience difficulty reading print material.
-                                        <br /><br />2. <strong>Magnifi</strong>: This app uses the iPhone's camera as a magnifying lens or set of reading glasses for the visually impaired.</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </section>
+                <section id="video2">
+                    <div class="individual">
+                        <h1>Video</h1>
+                        <ul class="rounded">
+		        			<li>
+                                <center>
+                                    <video id="vid2" preload="none" controls>
+                                        <source src="http://www.mobilespeck.com/video/week2.webm" />
+                                    </video>
+                                </center>
+                            </li>
+                        </ul>
                     </div>
-                </div>
-            
+                </section>
+                <section id="discussion">
+                    <div class="individual">
+                        <h1>Discussion</h1>
+                        <ul class="rounded">
+                            <li>
+                               <h2> What are some of the ways that you could change your HTML on your Demo app to be more accessible? (Remember, you can use the Section tag with jQuery, for instance)</h2>
+                               <p>Using header tags, section tags, and links allow for your HTML to be accessible via a screen-reader or through the use of your keyboard. Blind people generally cannot use a mouse because they cannot see where to click. They use their keyboard almost exclusively. </p>
+                               <h2>Visit a video service on the web (like YouTube) and search for "Screen Reader Demo" and "Mobile Screen Reader" - what are some of the common frustrations (or common support mechanisms) that you see among the examples that are given - how could you fix them (or use them)?</h2>
+                               <p>Links, tags, and various elements that are not identified or labeled properly can cause problems for visually impaired users. It is important make sure UI controls are not overly used and too overwhelming. I'd would assume less content is better for a screen reader.</p>
+                               <h2>Devices: Please list two devices (and some of their features) that are made specifically to support Accessibility</h2>
+                               <p>1. <strong>Apple iPhone</strong>: These apple products provide various accessibility like VoiceOver that is built into the devices operating system. VoiceOver lets you interact directly with objects on the screen. You can understand their location and context when you touch the upper-left corner of the screen, youÕll hear whatÕs in the upper left corner of a web page. As you drag your finger around the screen, youÕll learn whatÕs nearby.
+                               <br /><br />2. <strong>JAWS software and Large Print Keyboard</strong>: JAWS is a software designed for accessibility that provides a braille display, JAWS also provides braille output in addition to, or instead of, speech. Users can also purchase a keyboard that provides low vision users with an easy-to-read keyboard.</p>
+                               <h2>Mobile Apps: Please list two apps (either Android or iOS, or both) that are made specifically to support Accessibility.</h2>
+                               <p>1. <strong>Learning Ally Audio</strong>: This app serves people with visual impairments or learning disabilities who experience difficulty reading print material.
+                               <br /><br />2. <strong>Magnifi</strong>: This app uses the iPhone's camera as a magnifying lens or set of reading glasses for the visually impaired.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
         </div>
     </body>
 </html>
