@@ -108,6 +108,6 @@ ul#iosandroid.individual {
 	font-size: 14px;
 }
 
-#jqt .background {
+#jqt #home, #geo, #not, #con, #cam, #week1, #week2, #week3, #notification {
 	background: url(../images/bg-blackgray2.png) repeat left;
 }
