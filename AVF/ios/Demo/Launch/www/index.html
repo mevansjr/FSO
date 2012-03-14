@@ -1,10 +1,236 @@
-<!DOCTYPE html>
+<html>
     <head>
         <meta charset="UTF-8" />
         <title>AVF 1203 :: Demo Project</title>
         <link rel="stylesheet" href="css/jqtouch.css" title="jQTouch">
         <link rel="stylesheet" href="css/styles.css" title="jQTouch">
-        <link href="css/video-js.css" rel="stylesheet">
+        <script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+        <script type="text/javascript">
+                
+                var map;
+                
+                $(document).ready(function(){
+                                  $(window).unbind();
+                                  $(window).bind('pageshow resize orientationchange', function(e){
+                                                 max_height();
+                                                 });
+                                  google.load("maps", "3.5", {"callback": map, other_params: "sensor=true&language=en"});
+                                  });
+                
+                function max_height(){
+                    var h = $('div[data-role="header"]').outerHeight(true);
+                    var f = $('div[data-role="footer"]').outerHeight(true);
+                    var w = $(window).height();
+                    var c = $('div[data-role="content"]');
+                    var c_h = c.height();
+                    var c_oh = c.outerHeight(true);
+                    var c_new = w - h - f - c_oh + c_h;
+                    var total = h + f + c_oh;
+                    if(c_h<c.get(0).scrollHeight){
+                        c.height(c.get(0).scrollHeight);
+                    }else{
+                        c.height(c_new);
+                    }
+                }
+                
+                function map(){
+                    var latlng = new google.maps.LatLng(39.37978714285714, -76.73972283285715);
+                    var myOptions = {
+                        zoom: 12,
+                        center: latlng,
+                        streetViewControl: true,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+                    map = new google.maps.Map(document.getElementById("map"), myOptions);
+                    
+                    navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
+                }
+                
+                function geo_error(error) {
+                    alert('code: '    + error.code    + '\n' +
+                          'message: ' + error.message + '\n');
+                }
+                
+                function geo_success(position) {
+                    map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+                    map.setZoom(15);
+                    var image = "<img src='images/profile.png' />";
+                    var info =
+                    (image);
+                    
+                    var point = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    var marker = new google.maps.Marker({
+                                                        position: point,
+                                                        map: map
+                                                        });
+                    var infowindow = new google.maps.InfoWindow({
+                                                                content: info
+                                                                });
+                    google.maps.event.addListener(marker, 'click', function() {
+                                                  infowindow.open(map,marker);
+                                                  });
+                    
+                };
+        </script>
+        <script type="text/javascript">
+                
+                // Wait for PhoneGap to load
+                //
+                document.addEventListener("deviceready", onDeviceReady, false);
+                
+                // PhoneGap is ready
+                //
+                function onDeviceReady() {
+                    // Empty
+                }
+                
+                // Show a custom alert
+                //
+                function showAlert() {
+                    navigator.notification.alert("Blah! This is an Alert.");
+                }
+                
+                // Beep three times
+                //
+                function playBeep() {
+                    navigator.notification.beep(3);
+                }
+                
+                // Vibrate for 2 seconds
+                //
+                function vibrate() {
+                    navigator.notification.vibrate(2000);
+                }
+                
+        </script>
+        <script>
+            var pictureSource;   // picture source
+            var destinationType; // sets the format of returned value 
+            
+            // Wait for PhoneGap to connect with the device
+            //
+            document.addEventListener("deviceready",onDeviceReady,false);
+            
+            // PhoneGap is ready to be used!
+            //
+            function onDeviceReady() {
+                pictureSource=navigator.camera.PictureSourceType;
+                destinationType=navigator.camera.DestinationType;
+            }
+            
+            
+            
+            // Called when a photo is successfully retrieved
+            //
+            function onPhotoURISuccess(imageURI) {
+                // Uncomment to view the image file URI 
+                // console.log(imageURI);
+                
+                // Get image handle
+                //
+                var largeImage = document.getElementById('myImage');
+                
+                // Unhide image elements
+                //
+                largeImage.style.display = 'block';
+                
+                // Show the captured photo
+                // The inline CSS rules are used to resize the image
+                //
+                largeImage.src = imageURI;
+            }
+            
+            
+            // A button will call this function
+            //
+            function getPhoto(source) {
+                // Retrieve image file location from specified source
+                navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
+                                            destinationType: destinationType.FILE_URI,
+                                            sourceType: source });
+            }
+            
+            // Called if something bad happens.
+            // 
+            function onFail(message) {
+                alert('Failed because: ' + message);
+            }
+            
+            function captureSuccess(mediaFiles) {
+                navigator.notification.alert('Success taking picture');
+            }
+            function captureError(mediaFiles) {
+                navigator.notification.alert('Error taking picture: ' + error.code);
+            }
+            function takePic() {
+                navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
+            }
+        </script>
+        <script type="text/javascript">
+                // Wait for PhoneGap to load
+                //
+                document.addEventListener("deviceready", onDeviceReady, false);
+                
+                // PhoneGap is ready
+                //
+            function addContact(){
+                var sample_contact = { 'firstName': 'John', 'lastName' : 'Smith', 'phoneNumber': '555-5555' };
+                
+                var firstName = prompt("Enter a first name", sample_contact.firstName);
+                if (firstName) {
+                    var lastName = prompt("Enter a last name", sample_contact.lastName);
+                    if (lastName) {
+                        var phoneNumber = prompt("Enter a phone number", sample_contact.phoneNumber);
+                        if (phoneNumber) {
+                            sample_contact = { 'firstName': firstName, 'lastName' : lastName, 'phoneNumber' : phoneNumber };
+                            navigator.contacts.newContact(sample_contact, addContact_Return);
+                        }
+                    }
+                }
+            }
+            
+            function addContact_Return(contact)
+            {
+                if (contact) {
+                    navigator.notification.alert(contact.firstName + " " + contact.lastName, "Contact Returned", "Dismiss");
+                }
+            }
+                function onDeviceReady() {
+                    // specify contact search criteria
+                    var options = new ContactFindOptions();
+                    options.filter=""; // empty search string returns all contacts
+                    options.multiple=true; // return multiple results
+                    filter = ["displayName"]; // return contact.displayName field
+                    
+                    // find contacts
+                    navigator.contacts.find(filter, onSuccess, onError, options);
+                }
+                
+                // onSuccess: Get a snapshot of the current contacts
+                //
+                function onSuccess(contacts) {
+                    for (var i=0; i<contacts.length; i++) {
+                            var getListdiv = document.getElementById("list");
+                            var newDiv = document.createElement("li");
+                            var newPara = document.createElement("p");
+                            var itemTxt = document.createTextNode(contacts[i].displayName);
+                            newPara.appendChild(itemTxt);
+                            newDiv.appendChild(newPara);
+                            getListdiv.appendChild(newDiv);
+                    }
+                };
+                
+                // onError: Failed to get the contacts
+                //
+                function onError(contactError) {
+                    navigator.notification.alert('onError!');
+                }
+                
+        </script>
     </head>
     <body>
         <div id="jqt">
@@ -16,29 +242,29 @@
                     <p><strong>Welcome</strong> to my launch page!</p>
                 </div>
                 <section id="cta">
-                    <img src="images/cta.jpg" alt="" />
+                    <img src="images/cta.jpg" />
                 </section>
                 <div class="individual">
                     <ul class="rounded">
-                        <li><img src="images/profile.jpg" alt="" /><h3>Mark Evans</h3><p>AVF 1203</p></li>
+                        <li><img src="images/profile.png" /><h3>Mark Evans</h3><p>AVF 1203</p></li>
                     </ul>
                 </div>
                 <section id="apps">
                     <h1>CRUD APP</h1>
                     <ul class="individual">
                         <li><a href="CRUD/index.html" rel="external">APP<small class="counter">OLD</small></a></li> 
-                        <li><a href="#">APP<small class="counter">NEW</small></a></li>                      
+                        <li><a href="CRUD/revised.html" rel="external">APP<small class="counter">NEW</small></a></li>                      
                     </ul>
                 </section>
                 <section id="features">
-                    <h1>iOS/Android Native Features</h1>
+                    <h1>iOS Native Features</h1>
                     <ul class="individual" id="ios-android">
                         <li><a href="#geo">Geolocation</a></li>
-                        <li><a href="#not">Notification<small class="counter">N/A</small></a></li>
+                        <li><a href="#not">Notification</a></li>
                     </ul>
                     <ul class="individual" id="iosandroid">
-                        <li><a href="#con">Contacts<small class="counter">N/A</small></a></li>
-                        <li><a href="#cam">Camera<small class="counter">N/A</small></a></li>
+                        <li><a href="#con">Contacts</a></li>
+                        <li><a href="#cam">Camera</a></li>
                     </ul>
                 </section>
                 <section id="dis-vid">
@@ -46,26 +272,20 @@
                     <ul class="rounded">
                         <li class="arrow"><a href="#week1">Week 1 : PhoneGap'd App</a></li>
                         <li class="arrow"><a href="#week2">Week 2 : Accessibility</a></li>
-                        <li class="arrow"><a href="#">Week 3</a></li>
+                        <li class="arrow"><a href="#week3">Week 3 : Market Research</a></li>
                         <li class="arrow"><a href="#">Week 4</a></li>
                     </ul>
                 </section>                
             </div>
             
-            <div id="geo" data-role="page">
+            <div id="geo">
                 <div class="toolbar">
                     <h1>Geolocation</h1>
                     <a href="#" class="back">Back</a>
                 </div>
-                <section id="geo-img">
-                    <img src="images/geo.jpg" alt="" />
-                </section>
-                <section id="geo-section">
-                    <div class="individual">
-                        <h1>Geolocation</h1>
-                        <ul class="rounded" id="spot"></ul>
-                    </div>
-                </section>
+                <div data-role="content" style="padding:0;">
+                    <div id="map" style="width:100%;height:100%;"></div>
+                </div>
             </div>
             
             <div id="cam">
@@ -74,13 +294,15 @@
                     <a href="#" class="back">Back</a>
                 </div>
                 <section id="cam-img">
-                    <img src="images/cam.jpg" alt="" />
+                    <img src="images/cam.jpg" />
                 </section>
                 <section id="cam-section">
                     <div class="individual">
                         <h1>Camera</h1>
-                        <ul class="rounded">  
-                            <li class="arrow"><a id="takePhotoButton">Take Photo</a></li>
+                        <ul class="rounded"><li><img src"" id="myImage" style="height:auto;width:175px;margin:0px auto;" /></li></ul>
+                        <ul class="individual">  
+                            <li><a href="#" onclick="takePic();">Take Photo</a></li>
+                            <li><a href="#" onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">Saved Photos</a></li>
                         </ul>
                     </div>
                 </section>
@@ -92,9 +314,9 @@
                     <a href="#" class="back">Back</a>
                 </div>
                 <section id="con-img">
-                    <img src="images/con.jpg" alt="" />
+                    <img src="images/con.jpg" />
                 </section>
-                <h1>All Contacts</h1>
+                <h1>View Contacts</h1>
                 <ul class="rounded" id="list"></ul>
             </div>
             
@@ -104,7 +326,7 @@
                     <a href="#" class="back">Back</a>
                 </div>
                 <section id="not-img">
-                    <img src="images/not.jpg" alt="" />
+                    <img src="images/not.jpg" />
                 </section>
                 <section id="notification-section">
                     <div class="individual">
@@ -127,11 +349,11 @@
                         <h1>Video</h1>
                         <ul class="rounded">
 		        			<li>
-                            	<video id="vid1" preload="none" controls>
-                                	<source src="http://www.mobilespeck.com/video/week1.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-                                    <source src="http://www.mobilespeck.com/video/week1.webm" type='video/webm; codecs="vp8, vorbis"'>
-                                    <source src="http://www.mobilespeck.com/video/week1.ogv" type='video/ogg; codecs="theora, vorbis"'>
-                                </video>
+                                <center>
+                                    <video id="vid1" preload="none" controls>
+                                        <source src="video/week1.mp4" />
+                                    </video>
+                                </center>
                             </li>
                         </ul>
                     </div>
@@ -156,59 +378,83 @@
                     </div>
                 </section>
             </div>
+            
             <div id="week2">
-            	<div class="toolbar">
-                	<h1>Week 2</h1>
-	                <a href="#" class="back">Back</a>
+                <div class="toolbar">
+                    <h1>Week 2</h1>
+                    <a href="#" class="back">Back</a>
+                </div>
+                <section id="video2">
+                    <div class="individual">
+                        <h1>Video</h1>
+                        <ul class="rounded">
+		        			<li>
+                                <center>
+                                    <video id="vid2" preload="none" controls>
+                                        <source src="video/week2.m4v" />
+                                    </video>
+                                </center>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section id="discussion">
+                    <div class="individual">
+                        <h1>Discussion</h1>
+                        <ul class="rounded">
+                            <li>
+                                <h2> What are some of the ways that you could change your HTML on your Demo app to be more accessible? (Remember, you can use the Section tag with jQuery, for instance)</h2>
+                                <p>Using header tags, section tags, and links allow for your HTML to be accessible via a screen-reader or through the use of your keyboard. Blind people generally cannot use a mouse because they cannot see where to click. They use their keyboard almost exclusively. </p>
+                                <h2>Visit a video service on the web (like YouTube) and search for "Screen Reader Demo" and "Mobile Screen Reader" - what are some of the common frustrations (or common support mechanisms) that you see among the examples that are given - how could you fix them (or use them)?</h2>
+                                <p>Links, tags, and various elements that are not identified or labeled properly can cause problems for visually impaired users. It is important make sure UI controls are not overly used and too overwhelming. I'd would assume less content is better for a screen reader.</p>
+                                <h2>Devices: Please list two devices (and some of their features) that are made specifically to support Accessibility</h2>
+                                <p>1. <strong>Apple iPhone</strong>: These apple products provide various accessibility like VoiceOver that is built into the devices operating system. VoiceOver lets you interact directly with objects on the screen. You can understand their location and context when you touch the upper-left corner of the screen, you’ll hear what’s in the upper left corner of a web page. As you drag your finger around the screen, you’ll learn what’s nearby.
+                                <br /><br />2. <strong>JAWS software and Large Print Keyboard</strong>: JAWS is a software designed for accessibility that provides a braille display, JAWS also provides braille output in addition to, or instead of, speech. Users can also purchase a keyboard that provides low vision users with an easy-to-read keyboard.</p>
+                                <h2>Mobile Apps: Please list two apps (either Android or iOS, or both) that are made specifically to support Accessibility.</h2>
+                                <p>1. <strong>Learning Ally Audio</strong>: This app serves people with visual impairments or learning disabilities who experience difficulty reading print material.
+                                <br /><br />2. <strong>Magnifi</strong>: This app uses the iPhone's camera as a magnifying lens or set of reading glasses for the visually impaired.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            <div id="week3">
+                <div class="toolbar">
+                    <h1>Week 3</h1>
+                    <a href="#" class="back">Back</a>
                 </div>
                 <h1>Video</h1>
                 <ul class="rounded">
-        			<li>
-                    	<video id="vid2" preload="none" controls>
-                    		<source src="http://dl.dropbox.com/u/11686909/week2.m4v" type='video/m4v; codecs="avc1.42E01E, mp4a.40.2"'>
-                    		<source src="http://dl.dropbox.com/u/11686909/week2.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-                            <source src="http://dl.dropbox.com/u/11686909/week2.webm" type='video/webm; codecs="vp8, vorbis"'>
-                            <source src="http://dl.dropbox.com/u/11686909/week2.ogv" type='video/ogg; codecs="theora, vorbis"'>
-                        </video>
+                    <li>
+                        <video id="vid2" preload="none" controls>
+                            <source src="video/week3.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+                                            </video>
                     </li>
                 </ul>
-                	<section id="discussion2">
-                            <div class="individual">
-                                <h1>Discussion</h1>
-                                <ul class="rounded">
-                                   <li>
-                                        <h2> What are some of the ways that you could change your HTML on your Demo app to be more accessible? (Remember, you can use the Section tag with jQuery, for instance)</h2>
-                                        <p>Using header tags, section tags, and links allow for your HTML to be accessible via a screen-reader or through the use of your keyboard. Blind people generally cannot use a mouse because they cannot see where to click. They use their keyboard almost exclusively. </p>
-                                        <h2>Visit a video service on the web (like YouTube) and search for "Screen Reader Demo" and "Mobile Screen Reader" - what are some of the common frustrations (or common support mechanisms) that you see among the examples that are given - how could you fix them (or use them)?</h2>
-                                        <p>Links, tags, and various elements that are not identified or labeled properly can cause problems for visually impaired users. It is important make sure UI controls are not overly used and too overwhelming. I'd would assume less content is better for a screen reader.</p>
-                                        <h2>Devices: Please list two devices (and some of their features) that are made specifically to support Accessibility</h2>
-                                        <p>1. <strong>Apple iPhone</strong>: These apple products provide various accessibility like VoiceOver that is built into the devices operating system. VoiceOver lets you interact directly with objects on the screen. You can understand their location and context when you touch the upper-left corner of the screen, you’ll hear what’s in the upper left corner of a web page. As you drag your finger around the screen, you’ll learn what’s nearby.
-                                        <br /><br />2. <strong>JAWS software and Large Print Keyboard</strong>: JAWS is a software designed for accessibility that provides a braille display, JAWS also provides braille output in addition to, or instead of, speech. Users can also purchase a keyboard that provides low vision users with an easy-to-read keyboard.</p>
-                                        <h2>Mobile Apps: Please list two apps (either Android or iOS, or both) that are made specifically to support Accessibility.</h2>
-                                        <p>1. <strong>Learning Ally Audio</strong>: This app serves people with visual impairments or learning disabilities who experience difficulty reading print material.
-                                        <br /><br />2. <strong>Magnifi</strong>: This app uses the iPhone's camera as a magnifying lens or set of reading glasses for the visually impaired.</p>
-                                   </li>
-                               </ul>
-                          </div>
-                     </section>
-                </div>
+                <section id="discussion3">
+                    <div class="individual">
+                        <h1>Discussion</h1>
+                        <ul class="rounded">
+                            <li>
+                                <h2>What are the 'top selling' app categories in the U.S.?</h2>
+                                <p>Answer</p>
+                                <h2>What are the 'top selling' app categories in the Japan?</h2>
+                                <p>Answer</p>
+                                <h2>What are the 'top selling' app categories in the Great Britain?</h2>
+                                <p>Answer</p>
+                                <h2>Based on your three answers above, what might you infer about each of the markets listed?</h2>
+                                <p>Answer</p>
+                                <h2>What percentage of Android users have the latest/greatest OS in the U.S? in Japan? in Great Britain? How might these differences impact development?</h2>
+                                <p>Answer</p>
+                                <h2>What is the average cost and bandwidth limits per user (in general) in each of the three markets? How may this impact development?</h2>
+                                <p>Answer</p>
+                                <h2>What would be your suggested strategy in project topic and global market choice? Feel free to have a first and second choice.</h2>
+                                <p>Answer</p>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
         </div>
-        <!-- Code for Android phone - HTML 5 Video -->
-        <script type="text/javascript">
-        	var video = document.getElementById('vid1');
-        	video.addEventListener('click',function(){
-        	  video.play();
-        	},false);
-        	var vid = document.getElementById('vid2');
-        	vid.addEventListener('click',function(){
-        	  vid.play();
-        	},false);
-        </script>
-    	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
-    	<script src="js/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
-    	<script type="text/javascript" src="js/main.js"></script>
-    	<script type="text/javascript" src="native-code.js"></script>
-    	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-    	<script src="js/video.js"></script>     
     </body>
 </html>

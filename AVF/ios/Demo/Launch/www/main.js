@@ -4,17 +4,67 @@
 // ASD 1202
 
 // PHONEGAP CAMERA CODE---------------------------
+var pictureSource;   // picture source
+var destinationType; // sets the format of returned value 
+
+// Wait for PhoneGap to connect with the device
+//
+document.addEventListener("deviceready",onDeviceReady,false);
+
+// PhoneGap is ready to be used!
+//
+function onDeviceReady() {
+    pictureSource=navigator.camera.PictureSourceType;
+    destinationType=navigator.camera.DestinationType;
+}
+
+
+
+// Called when a photo is successfully retrieved
+//
+function onPhotoURISuccess(imageURI) {
+    // Uncomment to view the image file URI 
+    // console.log(imageURI);
+    
+    // Get image handle
+    //
+    var largeImage = document.getElementById('myImage');
+    
+    // Unhide image elements
+    //
+    largeImage.style.display = 'block';
+    
+    // Show the captured photo
+    // The inline CSS rules are used to resize the image
+    //
+    largeImage.src = imageURI;
+}
+
+
+// A button will call this function
+//
+function getPhoto(source) {
+    // Retrieve image file location from specified source
+    navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
+                                destinationType: destinationType.FILE_URI,
+                                sourceType: source });
+}
+
+// Called if something bad happens.
+// 
+function onFail(message) {
+    alert('Failed because: ' + message);
+}
+
 function captureSuccess(mediaFiles) {
-    navigator.notification.alert('Player photo saved!');
+    navigator.notification.alert('Success taking picture');
 }
 function captureError(mediaFiles) {
-    navigator.notification.alert('Error: ' + error.code);
+    navigator.notification.alert('Error taking picture: ' + error.code);
 }
-$(document).bind("deviceready",function () {
-    $("#takePhotoButton").bind("tap", function() {
-        navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
-    });
-});
+function takePic() {
+    navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
+}
 // GET ITEMS FUNCTION-----------------------------
 function getItems(){
 	for(var i=0, len = localStorage.length; i < len; i++){
@@ -41,24 +91,26 @@ function getItems(){
 			 	);*/
                 var navbar = "<div data-role=navbar class=custom>"+
                                 "<ul>"+
-                                    "<li><a href=index.html rel=external id=iconpic><center><img src=images/custom-home.png /></center></a></li>"+
-                                    "<li><a href=index.html#about rel=external id=iconpic><center><img src=images/custom-about.png /></center></a></li>"+
-                                    "<li><a href=index.html#mostpg rel=external id=iconpic><center><img src=images/custom-add.png /></center></a></li>"+
-                                    "<li><a href=index.html#addplayer rel=external id=iconpic><center><img src=images/custom-addplayer.png /></center></a></li>"+
+                                    "<li><a href=#main rel=external id=iconpic><center><img src=images/custom-home.png /></center></a></li>"+
+                                    "<li><a href=#about rel=external id=iconpic><center><img src=images/custom-about.png /></center></a></li>"+
+                                    "<li><a href=#mostpg rel=external id=iconpic><center><img src=images/custom-add.png /></center></a></li>"+
+                                    "<li><a href=#addplayer rel=external id=iconpic><center><img src=images/custom-addplayer.png /></center></a></li>"+
                                 "</ul>"+
                             "</div>";
 			 	$('#body').append(
 			 		$('<div>').attr("data-role","page").attr("data-theme", "a").attr("data-add-back-btn", "true").attr("id", value[0]).append(
 			 		$('<div>').attr("data-role","header").attr("id", "head-fix").attr("data-theme", "a").html("<h1 id=header-fix>Scouting Inc</h1>")).append(
-			 		$('<div>').attr("data-role", "content").attr("id", "playercontent").append(
-			 			$('<img>').attr("src", "images/default.png")).append(
+			 		$('<div>').attr("data-role", "content").attr("id", "playercontent").attr("class", "adjust").append(
+			 			$('<img>').attr("id", "myImage").attr("src", "../CRUD/images/default.png").attr("style", "border:3px solid #fff")).append(
                         $('<p>').html("<h3>"+value[0]+"</h3>"))
 			 				.append($('<p>').html(value[1]))
 			 		 		.append($('<p>').html("<strong>Speed: </strong>" + value[3] + " seconds"))
 					 		.append($('<p>').html("<strong>Sport: </strong>" + value[2]))
 	 				 		.append($('<p>').html("<strong>Rating: </strong>" + value[4]))
 			 		 		//.append($('<p>').text(" "))
-					 		.append($("<a>").attr( "href", "#").attr("onclick", "editItem(" + key + ");").attr("data-role", "button").attr("data-icon", "gear").text("Edit Info").attr("data-theme", "c").attr("data-inline", "true")
+					 		.append($('<a>').attr( "href", "#").attr("onclick", "editItem(" + key + ");").attr("data-role", "button").attr("data-icon", "gear").text("Edit Info").attr("data-theme", "c").attr("data-inline", "false"))
+                            .append($('<a>').attr( "href", "#").attr("onclick", "takePic();").attr("data-role", "button").attr("data-icon", "star").text("Take Pic").attr("data-theme", "c").attr("data-inline", "false"))
+                            .append($('<a>').attr( "href", "#").attr("onclick", "getPhoto(pictureSource.SAVEDPHOTOALBUM);").attr("data-role", "button").attr("data-icon", "grid").text("Find Pic").attr("data-theme", "b").attr("data-inline", "false")
 			 		)
 			 	).append(
                     $('<div>').attr("data-role","footer").attr("data-position", "fixed").attr("data-theme", "a").html(navbar))                                                                                                                                       
@@ -189,6 +241,6 @@ $('#submit').bind('click', function(){
         $('#sport').css('border', '1px solid #ccc');
 		//alert("Player Information has been stored.");
 		saveItems(); 
-        $.mobile.changePage("index.html#mostpg");
+        $.mobile.changePage("#mostpg");
 	}
 });
