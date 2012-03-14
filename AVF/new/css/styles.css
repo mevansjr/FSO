@@ -23,37 +23,16 @@
 	float: center;
 }
 #cta img {
-	width: 100%;
+	width: 50%;
 }
 #cta {
 	background: #000;
 	border-bottom: 1px solid #333;
 }
 #con-img img {
-	width: 100%;
+	width: 50%;
 }
 #con-img {
-	background: #000;
-	border-bottom: 1px solid #333;
-}
-#cam-img img {
-	width: 100%;
-}
-#cam-img {
-	background: #000;
-	border-bottom: 1px solid #333;
-}
-#not-img img {
-	width: 100%;
-}
-#not-img {
-	background: #000;
-	border-bottom: 1px solid #333;
-}
-#geo-img img {
-	width: 100%;
-}
-#geo-img {
 	background: #000;
 	border-bottom: 1px solid #333;
 }
