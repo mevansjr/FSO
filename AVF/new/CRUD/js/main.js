@@ -3,6 +3,18 @@
 // Mobile Development Program
 // ASD 1202
 
+// PHONEGAP CAMERA CODE---------------------------
+function captureSuccess(mediaFiles) {
+    navigator.notification.alert('Player photo saved!');
+}
+function captureError(mediaFiles) {
+    navigator.notification.alert('Error: ' + error.code);
+}
+$(document).bind("deviceready",function () {
+    $("#takePhotoButton").bind("tap", function() {
+        navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
+    });
+});
 // GET ITEMS FUNCTION-----------------------------
 function getItems(){
 	for(var i=0, len = localStorage.length; i < len; i++){

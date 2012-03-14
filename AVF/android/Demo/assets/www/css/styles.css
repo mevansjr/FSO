@@ -12,9 +12,15 @@
 }
 #vid1 {
 	width: 100%;
+	float: center;
 }
 #vid2 {
 	width: 100%;
+	float: center;
+}
+#vid3 {
+	width: 100%;
+	float: center;
 }
 #cta img {
 	width: 100%;
@@ -106,10 +112,6 @@ ul#iosandroid.individual {
 	font-size: 14px;
 }
 
-#jqt #home, #geo, #not, #con, #cam, #week1, #week2, #notification {
+#jqt #home, #geo, #not, #con, #cam, #week1, #week2, #week3, #notification {
 	background: url(../images/bg-blackgray2.png) repeat left;
-}
-
-#jqt .rounded {
-	//background: orange;
 }
