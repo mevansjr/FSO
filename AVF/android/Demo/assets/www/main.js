@@ -17,6 +17,10 @@ var getLocation = function() {
     navigator.geolocation.getCurrentPosition(suc, locFail);
 };
 
+function showAlert() {
+	navigator.notification.alert("Blah! This is an Alert.");
+}
+
 var beep = function() {
     navigator.notification.beep(2);
 };

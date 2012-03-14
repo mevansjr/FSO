@@ -39,18 +39,36 @@ function max_height(){
         c.height(c_new);
     }
 }
- 
+
 function map(){
-    var latlng = new google.maps.LatLng(39.37, 23.76);
+    var latlng = new google.maps.LatLng("39.3797871428", "-76.7397228328");
     var myOptions = {
-      zoom: 6,
+      zoom: 18,
       center: latlng,
       streetViewControl: true,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
+    
     map = new google.maps.Map(document.getElementById("map"), myOptions);
  
     navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
+	
+	var marker = new google.maps.Marker({
+        position: latlng,
+        map: map
+    });
+    var image = "<img src='images/profile.png' width='75' height='75' />";
+    var detail =
+    (image+"<br>"+
+     "<strong>Geolocation</strong>"+"<br>"+
+     "Latitude: 39.3797871428"+"<br>"+
+     "Longitude: -76.7397228328");
+    var infowindow = new google.maps.InfoWindow({
+        content: detail
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
 }
  
 function geo_error(error) {
