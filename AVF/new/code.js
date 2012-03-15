@@ -169,3 +169,17 @@ function addContact_Return(contact)
     function onError(contactError) {
         navigator.notification.alert('onError!');
     }
+    
+//Code for Android phone - HTML 5 Video
+var video = document.getElementById('vid1');
+video.addEventListener('click',function(){
+  video.play();
+},false);
+var vid = document.getElementById('vid2');
+vid.addEventListener('click',function(){
+  vid.play();
+},false);
+var video3 = document.getElementById('vid3');
+video3.addEventListener('click',function(){
+  video3.play();
+},false);
