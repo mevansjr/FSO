@@ -1,0 +1,15 @@
+The Editor!
+=================
+
+Introduction
+------------
+This is an easy-to-use Markdown-enabled **text editor** with live preview.
+You can write code with syntax highlighting:
+
+    <h2 style="color: red;" class="new">Hi!</h2>
+
+###Blockquotes:
+
+> He really _did_ say something clever.
+
+Try it yourself!

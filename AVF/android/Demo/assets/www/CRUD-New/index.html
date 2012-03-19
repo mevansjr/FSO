@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scouting Inc.</title>
+    <link rel="stylesheet" href="../CRUD-New/js/jquery.mobile-1.0.1.min.css" />
+    <link rel="stylesheet" href="../CRUD-New/css/main.css" />
+    <link rel="stylesheet" href="../mobile/stylesheets/iphone.css">
+    <!-- JavaScript is normally at the end of the body, except for Modernizr which enables HTML5 elements & feature detects -->
+	<script src="js/modernizr.custom.min.js"></script>
+</head>
+<body id="body">
+	<div data-role="page" id="main" data-theme="f">
+        <div data-role="header" data-theme="a" id="header-new">
+            <div style="float:right; margin:8px 8px 8px -30px;"><a href="#about" data-role="button" data-icon="info" data-iconpos="notext">Button</a></div>
+            <div style="float:left; margin:8px -30px 8px 8px;"><a href="index.html" data-role="button" data-icon="home" data-iconpos="notext">Button</a></div>
+			<h1 id="fix-h1">Scouting Inc</h1>
+		</div>
+		<div data-role="content" data-theme="a">
+			<div id="cta1">
+				<a href="#addplayer"><img src="../CRUD-New/images/cta-revised.png" alt="add player"/></a>
+			</div>
+			<br />
+   			<ul data-role="listview" data-theme="c" data-divider-theme="a" data-inset="false">
+      			<li data-role="list-divider"> </li>
+				<li>
+					<a href="#mostpg"><img src="../CRUD-New/images/most.png" class="ui-li-icon" data-transition="slide" />Most Recent List</a>
+				</li>
+				<li>
+					<a href="#addplayer"><img src="../CRUD-New/images/add.png" class="ui-li-icon" data-transition="slide" />Add Player</a>
+				</li>
+				<li>
+					<a href="../index.html" rel="external"><img src="../CRUD-New/images/launchpg.png" class="ui-li-icon" data-transition="slide" />Launch Page</a>
+				</li>
+			</ul>
+		</div>
+        <div id="tabbar">
+			<div id="bottom">
+                <a href="#" onclick="takePic();">Camera</a>
+				<a href="map.html" rel="external">Map</a>
+				<a href="#mostpg">List</a>
+				<a href="#addplayer">Add</a>
+			</div>
+        </div>
+    </div>
+    
+    <div data-role="page" id="mostpg" data-theme="f">
+        <div data-role="header" data-theme="a" id="header-new">
+			<div style="float:right; margin-top:0px;"><a href="#" data-role="button" id="clear" data-icon="delete" data-iconpos="notext">Button</a></div>
+            <div style="float:left; margin:8px -30px 8px 8px;"><a href="index.html" data-role="button" data-icon="home" data-iconpos="notext">Button</a></div>
+			<h1 id="fix-h1">Scouting Inc</h1>
+		</div>
+        
+		<div data-role="content" class="ui-body-a">	
+			<ul id="dynamic" data-role="listview" data-filter="true" data-theme="c" data-dividertheme="a">
+                <li data-role="list-divider">Scouted Players</li>
+                <!-- Javascript -->
+  			</ul>
+   		</div>
+		
+		<div id="tabbar">
+			<div id="bottom">
+                <a href="#" onclick="takePic();">Camera</a>
+				<a href="map.html" rel="external">Map</a>
+				<a href="#mostpg" class="active">List</a>
+				<a href="#addplayer">Add</a>
+			</div>
+		</div>
+    </div>
+    
+    <div data-role="page" id="about" data-theme="f">
+        <div data-role="header" data-theme="a" id="header-new" >
+            <div style="float:left; margin:8px -30px 8px 8px;"><a href="index.html" data-role="button" data-icon="home" data-iconpos="notext">Button</a></div>
+			<h1 id="fix-h1">Scouting Inc</h1>
+		</div>
+			<div data-role="content" data-theme="x">
+				<div id="cta2">
+					<a href="#addplayer"><img src="../CRUD-New/images/cta2.png" alt="add player"/></a>
+				</div>
+				<br />
+   				<ul data-role="listview" data-theme="c" data-divider-theme="a" data-inset="false">
+      				<li data-role="list-divider"> </li>
+      			</ul>
+			</div>
+			<div data-role="content" data-theme="f">
+				<center><p id="aboutinfo">This App is designed for Scouts to evaluate Sport Players. The Scout can create and store a Player in a database. The Player can be rated on a numeric level, along with some other criteria. After a Player has been created, you can go back to the Player and edit some information or delete the Player!</p></center>
+  			</div>
+            <div id="tabbar">
+   				<div id="bottom">
+   					<a href="#" onclick="takePic();">Camera</a>
+                    <a href="map.html"  rel="external">Map</a>
+   					<a href="#mostpg">List</a>
+   					<a href="#addplayer">Add</a>
+   				</div>
+            </div>
+    </div>
+   
+    <!-- Add player form below -->
+    <div data-role="page" id="addplayer" data-theme="a">
+		<div data-role="header" data-theme="a" id="header-new">
+            <div style="float:left; margin:8px -30px 8px 8px;"><a href="index.html" data-role="button" data-icon="home" data-iconpos="notext">Button</a></div>
+			<h1 id="fix-h1">Scouting Inc</h1>
+		</div>
+        
+        <div data-role="content">
+			<form action="index.html#mostpg" method="post" name="addplayerform" id="addplayerform">
+                <div id="playerinfo">
+                <legend><h3>PLAYER INFORMATION</h3></legend>
+                <div data-role="fieldcontain">
+                    <label for="name">Full Name</label>
+                    <input type="text" name="name" id="name" class="required" />
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="college">College</label>
+                    <input type="text" name="college" id="college" class="required" placeholder="Full Sail University" />
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="sport">Sport</label>
+                    <input type="text" name="sport" id="sport" class="required" placeholder="Football" />
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="speed">40 yard dash time</label>
+                    <p id="rate">How fast the player runs in 40 yards. (Time is calculated in seconds)</p>
+                    <input type="range" min="1.00" max="20.00" step="0.5" name="speed" id="speed" class="required number" value="4.5" data-theme="d" />
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="rating">Rating</label>
+                    <p id="rate">Rating is from a scale of 1 to 100. 100 being the best. Please rate the player's ability appropriately!</p>
+                    <input type="range" min="1" max="100" name="rating" id="rating" data-theme="d"  value="75"/>
+                </div>
+                <div id="addplayerbuttons" data-role="fieldcontain">
+                    <div id="submit-reset-buttons">
+                        <div class="ui-grid-a">
+                            <div class="ui-block-a">
+                                <input type="reset" id="index-clear" value="Reset" data-theme="a" />
+                            </div>
+                            <div class="ui-block-b">
+                                <input type="submit" id="submit" class="addplayerbutton" value="Add" data-theme="c" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="edit-item-button">
+                        <input type="button" id="edit-item" value="Edit Item" data-theme="c" />
+                    </div>
+                </div>
+                </div>
+			</form>
+        </div>
+        <div id="tabbar">
+        	<div id="bottom">
+        		<a href="#" onclick="takePic();">Camera</a>
+                <a href="map.html" rel="external">Map</a>
+        		<a href="#mostpg">List</a>
+        		<a href="#addplayer" class="active">Add</a>
+        	</div>
+        </div>
+    </div>
+    
+    <script src="../CRUD/js/jquery-1.6.4.min.js"></script>
+    <script src="../CRUD/js/jquery.mobile-1.0.1.min.js"></script>
+	<script src="../main.js"></script>
+    <script src="../phonegap.js"></script>
+	<script>getItems();</script>
+	
+</body>
+</html>

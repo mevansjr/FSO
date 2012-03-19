@@ -89,17 +89,17 @@ function getItems(){
 			 		.append($("<a>").attr( "href", "#").attr("onclick", "deleteItem(" + key + ");").attr("data-role", "button").attr("data-icon", "delete").text("Delete").attr("data-theme", "c").attr("data-inline", "true"))
 			 		.append($("<a>").attr( "href", "#").attr("onclick", "editItem(" + key + ");").attr("data-role", "button").attr("data-icon", "gear").text("Edit Info").attr("data-theme", "b").attr("data-inline", "true")
 			 	);*/
-                var navbar = "<div data-role=navbar class=custom>"+
-                                "<ul>"+
-                                    "<li><a href=#main rel=external id=iconpic><center><img src=images/custom-home.png /></center></a></li>"+
-                                    "<li><a href=#about rel=external id=iconpic><center><img src=images/custom-about.png /></center></a></li>"+
-                                    "<li><a href=#mostpg rel=external id=iconpic><center><img src=images/custom-add.png /></center></a></li>"+
-                                    "<li><a href=#addplayer rel=external id=iconpic><center><img src=images/custom-addplayer.png /></center></a></li>"+
-                                "</ul>"+
+                var navbar = "<div id='tabbar'>"+
+                                "<div id='bottom'>"+
+                                    "<a href='#' onclick='takePic();'>Camera</a>"+
+                                    "<a href='map.html' rel='external'>Map</a>"+
+                                    "<a href='#mostpg'>List</a>"+
+                                    "<a href='#addplayer'>Add</a>"+
+                			  "</div>"+
                             "</div>";
 			 	$('#body').append(
-			 		$('<div>').attr("data-role","page").attr("data-theme", "a").attr("data-add-back-btn", "true").attr("id", value[0]).append(
-			 		$('<div>').attr("data-role","header").attr("id", "head-fix").attr("data-theme", "a").html("<h1 id=header-fix>Scouting Inc</h1>")).append(
+			 		$('<div>').attr("data-role","page").attr("data-theme", "a").attr("id", value[0]).append(
+			 		$('<div>').attr("data-role","header").attr("id", "header-new").attr("data-theme", "a").html("<div style='float:left; margin:8px -30px 8px 8px;'><a href='index.html' data-role='button' data-icon='home' data-iconpos='notext'>Button</a></div><h1 id=fix-h1>Scouting Inc</h1>")).append(
 			 		$('<div>').attr("data-role", "content").attr("id", "playercontent").attr("class", "adjust").append(
 			 			$('<img>').attr("id", "myImage").attr("src", "../CRUD/images/default.png").attr("style", "border:3px solid #fff")).append(
                         $('<p>').html("<h3>"+value[0]+"</h3>"))
@@ -108,12 +108,12 @@ function getItems(){
 					 		.append($('<p>').html("<strong>Sport: </strong>" + value[2]))
 	 				 		.append($('<p>').html("<strong>Rating: </strong>" + value[4]))
 			 		 		//.append($('<p>').text(" "))
-					 		.append($('<a>').attr( "href", "#").attr("onclick", "editItem(" + key + ");").attr("data-role", "button").attr("data-icon", "gear").text("Edit Info").attr("data-theme", "c").attr("data-inline", "false"))
-                            .append($('<a>').attr( "href", "#").attr("onclick", "takePic();").attr("data-role", "button").attr("data-icon", "star").text("Take Pic").attr("data-theme", "c").attr("data-inline", "false"))
-                            .append($('<a>').attr( "href", "#").attr("onclick", "getPhoto(pictureSource.SAVEDPHOTOALBUM);").attr("data-role", "button").attr("data-icon", "grid").text("Find Pic").attr("data-theme", "b").attr("data-inline", "false")
+					 		.append($('<a>').attr( "href", "#").attr("onclick", "editItem(" + key + ");").attr("data-role", "button").attr("data-icon", "gear").text("Edit Info").attr("data-theme", "c").attr("data-inline", "true"))
+                            .append($('<a>').attr( "href", "#").attr("onclick", "takePic();").attr("data-role", "button").attr("data-icon", "star").text("Take Pic").attr("data-theme", "c").attr("data-inline", "true"))
+                            .append($('<a>').attr( "href", "#").attr("onclick", "getPhoto(pictureSource.SAVEDPHOTOALBUM);").attr("data-role", "button").attr("data-icon", "grid").text("Find Pic").attr("data-theme", "b").attr("data-inline", "false").attr("class", "adj")
 			 		)
 			 	).append(
-                    $('<div>').attr("data-role","footer").attr("data-position", "fixed").attr("data-theme", "a").html(navbar))                                                                                                                                       
+                    $('<div>').html(navbar))                                                                                                                                       
                 );
 			 	
 			 	$('#dynamic').append(

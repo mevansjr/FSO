@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <title>Map</title>
+ 
+    <link rel="stylesheet" href="../CRUD/js/jquery.mobile-1.0.1.min.css" />
+    <link rel="stylesheet" href="../CRUD/css/main.css" />
+ 
+    <script src="../CRUD/js/jquery-1.6.4.min.js"></script>
+    <script src="../CRUD/js/jquery.mobile-1.0.1.min.js"></script>
+    <script src="../main.js"></script>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="phonegap.js"></script>
+ 
+<script type="text/javascript">
+ 
+var map;
+ 
+$(document).ready(function(){
+    $(window).unbind();
+    $(window).bind('pageshow resize orientationchange', function(e){
+        max_height();
+    });
+    google.load("maps", "3.5", {"callback": map, other_params: "sensor=true&language=en"});
+});
+ 
+function max_height(){
+    var h = $('div[data-role="header"]').outerHeight(true);
+    var f = $('div[data-role="footer"]').outerHeight(true);
+    var w = $(window).height();
+    var c = $('div[data-role="content"]');
+    var c_h = c.height();
+    var c_oh = c.outerHeight(true);
+    var c_new = w - h - f - c_oh + c_h;
+    var total = h + f + c_oh;
+    if(c_h<c.get(0).scrollHeight){
+        c.height(c.get(0).scrollHeight);
+    }else{
+        c.height(c_new);
+    }
+}
+
+function map(){
+    var latlng = new google.maps.LatLng("39.3797871428", "-76.7397228328");
+    var myOptions = {
+      zoom: 10,
+      center: latlng,
+      streetViewControl: true,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    
+    map = new google.maps.Map(document.getElementById("map"), myOptions);
+ 
+    navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
+}
+ 
+function geo_error(error) {
+    alert('code: '    + error.code    + '\n' +
+          'message: ' + error.message + '\n');
+}
+ 
+function geo_success(position) {
+    map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+    map.setZoom(15);
+ 
+    var info =
+    ('Latitude: '         + position.coords.latitude          + '<br>' +
+    'Longitude: '         + position.coords.longitude         + '<br>' +
+    'Timestamp: '         + new Date(position.timestamp));
+    
+    var point = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    var marker = new google.maps.Marker({
+        position: point,
+        map: map
+    });
+    
+    var infowindow = new google.maps.InfoWindow({
+        content: info
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
+ 
+};
+</script>
+ 
+</head>
+<body> 
+ 
+<div data-role="page" id="index" data-theme="a">
+    <div data-role="header" data-theme="a" id="header-new">
+        <div style="float:left; margin:8px -30px 8px 8px;"><a href="index.html" rel="external" data-role="button" data-icon="home" data-iconpos="notext">Button</a></div>
+        <h1 id="fix-h1">Scouting Inc</h1>
+    </div>
+    <div data-role="content" style="padding:0;">
+        <div id="map" style="width:100%;height:100%;"></div>
+    </div>
+ 
+</div>
