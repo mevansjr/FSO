@@ -18,78 +18,74 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+
+    /* (1) Created new Empty Application.  */
     
-    /* 1. Created a new Empty Application Project. */
-    NSLog(@"QUESTION 1. Empty Application was created.");
-    /* 2. Create a variable using the float data type. Cast the float to an int and using NSLog, output both the initial float value as well as the int value. */
+    /* The names of the players */
+    NSMutableArray *playersArray = [NSMutableArray arrayWithObjects:@"Ray Rice", @"Ray Lewis", @"Anquan Boldin", @"Joe Flacco", nil];
     
-    float speed = 4.23;
-    float intSpeed = (int)4.23;
-    NSLog(@"QUESTION 2a. I can run %.2f seconds in 40 yards!", speed);
-    NSLog(@"QUESTION 2b. I can run %.0f seconds in 40 yards!", intSpeed);
+    /* Ray Rice one-liner */
+    NSMutableArray *rayRiceArray = [NSMutableArray arrayWithObjects:@"Yay, time to run.", nil];
     
-    /* 3. Perform an AND, OR comparison. Use float, int and bool types */
+    /* Ray Lewis one-liner */
+    NSMutableArray *rayLewisArray = [NSMutableArray arrayWithObjects:@"Lets get some!", nil];
     
-    float mark = 67.7;
-    int jon = 73;
-    if ((mark > 70) && (jon < 72)) {
-        NSLog(@"QUESTION 3a. Mark is %.1f inches, Jon= %d inches, Mark is taller than Jon!", mark, jon);
-    } else if ((mark < 68) || (jon > 71)) {
-        NSLog(@"QUESTION 3a. Jon is %d inches, Mark= %.1f inches, Jon is taller than Mark!", jon, mark);
-    }
+    /* Anquan Boldin one-liner */
+    NSMutableArray *anquanBoldinArray = [NSMutableArray arrayWithObjects:@"Is it time to go home!?", nil];
     
-    BOOL isNotAtleastFiveFeet = !((mark >= 60) && (jon >= 60));
-    if (isNotAtleastFiveFeet) {
-        NSLog(@"QUESTION 3b. Mark and Jon are NOT five feet tall.");
-    } else {
-        NSLog(@"QUESTION 3b. Mark and Jon are taller than five feet.");
-    }
+    /* Joe Flacco one-liner */
+    NSMutableArray *joeFlaccoArray = [NSMutableArray arrayWithObjects:@"I'm a Quarterback, I shouldn't have to run.", nil];
     
-    /* 4. Use an if, else if and else check using any of the data types of your choice. */
+    /* Player 40 yard dash time */
+    NSMutableArray *playerDashTimeArray = [NSMutableArray arrayWithObjects:@"4.23 seconds.", @"4.67 seconds.", @"4.77 seconds.", @"5.34 seconds.", nil];    
     
-    if (mark >= 61) {
-        NSLog(@"QUESTION 4. Mark is taller than five feet!");
-    } else if (mark == 60) {
-        NSLog(@"QUESTION 4. Mark is exactly five feet tall!");
-    } else {
-        NSLog(@"QUESTION 4. Mark is under five feet tall!");
-    }
+    /* (2) Cast the float to an int  */
     
-    /* 5. Perform a single for loop printing out values to the console */
+    float avgSpeed = 4.75f; /* Average 40 yard dash time. */
+    float minSpeed = 5.25f; /* Minimum 40 yard dash time. */
     
-    NSLog(@"QUESTION 5. START OF FOR LOOP");
-    for (int i = 1; i < 11; i++) {
-        NSLog(@".. %d-feet!..", i);
-    }
-    NSLog(@"I'm done counting. Fee-Fye-Foe-Fum.");
-    NSLog(@"END OF LOOP");
+    /* Cast the float minSpeed to an int as newMinSpeed */
+    int newMinSpeed = (int)minSpeed; 
     
-    /* 6. Perform a nested loop printing out values to the console */
+    /* Output both the float and the float var that was cast to an int */
+    NSLog(@"NFL recommends a speed of %d seconds minimum for WR's, RB's, and TE's, but the average speed of all players in the NFL is %.2f seconds.",  newMinSpeed, avgSpeed);
     
-    NSLog(@"QUESTION 6. START OF NESTED LOOP");
-    int m;
-    int n;
-    for (n = 1; n < 6; n++)
+    
+    
+    /* (3)(4) Use an if, else if and else */
+    int temp = 93;
+    BOOL isCanceled = false;
+
+    if (((temp > 90) && (temp < 102)) && (!(isCanceled))) /* Using BOOL, AND, and OR */
     {
-        NSLog( @"Set >%d. Our Father prayer...", n);
-        for (m = 1; m < 11; m++)
-        {
-            NSLog ( @".. >%d. Hail Mary prayer...", m);
+        NSLog(@"Coach: The temperature outside is %d degrees, It's a hot day for football!", temp);
+    }
+    else if ((temp <= 32) || (isCanceled)) 
+    {
+        NSLog(@"Coach: The temperature outside is %d degrees, It's like playing on ice, the ground is frozen! The event is canceled", temp);
+    }
+    else {
+        NSLog(@"Coach: The temperature outside is %d degrees, It's some great football weather!", temp);
+    }
+    
+    /* (5)Perform a single for loop. (6)Perform a nested loop. (7)Perform a while loop. */    
+    
+    for (int i=0; i<1; i++) {
+        int d = i + 1;
+        int check = d;
+        //int j = 0;
+        NSLog (@"Ray Rice: %@", [rayRiceArray objectAtIndex:i]);
+        NSLog (@"Ray Lewis: %@", [rayLewisArray objectAtIndex:i]);
+        NSLog (@"Anquan Boldin: %@", [anquanBoldinArray objectAtIndex:i]);
+        NSLog (@"Joe Flacco: %@", [joeFlaccoArray objectAtIndex:i]);
+        while (check == 1) {
+            NSLog (@"***PLAYERS 40 YARD DASH TIMES***");
+            for (int j=0; j<4; j++) {
+                NSLog (@"%@'s 40 yard dash time: %@", [playersArray objectAtIndex:j],  [playerDashTimeArray objectAtIndex:j]);
+            }
+            check++;
         }
     }
-    NSLog(@"END OF LOOP");
-    
-    /* 7. Perform a while loop that increments an int variable and outputs to the console. */ 
-    
-    NSLog(@"QUESTION 7. START OF WHILE LOOP");
-    int thisNumber = 5;
-    int x = 0;
-    while (x < 50) {
-        NSLog(@"..Number= %d. Every five, blah..", x);
-        x+= thisNumber;
-    }
-    NSLog(@"I'm done incrementing by %d.", thisNumber);
-    NSLog(@"END OF LOOP");
     
     return YES;
 }
