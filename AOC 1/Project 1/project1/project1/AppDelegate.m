@@ -18,7 +18,7 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-
+    
     /* (1) Created new Empty Application.  */
     
     /* The names of the players */
@@ -39,6 +39,8 @@
     /* Player 40 yard dash time */
     NSMutableArray *playerDashTimeArray = [NSMutableArray arrayWithObjects:@"4.23 seconds.", @"4.67 seconds.", @"4.77 seconds.", @"5.34 seconds.", nil];    
     
+    NSLog(@"It's that time of year for football and each team is ready to prepare for the upcoming season! This narration is a preview of training camp for the Baltimore Ravens.");
+    
     /* (2) Cast the float to an int  */
     
     float avgSpeed = 4.75f; /* Average 40 yard dash time. */
@@ -55,7 +57,7 @@
     /* (3)(4) Use an if, else if and else */
     int temp = 93;
     BOOL isCanceled = false;
-
+    
     if (((temp > 90) && (temp < 102)) && (!(isCanceled))) /* Using BOOL, AND, and OR */
     {
         NSLog(@"Coach: The temperature outside is %d degrees, It's a hot day for football!", temp);
