@@ -24,17 +24,8 @@
     /* The names of the players */
     NSMutableArray *playersArray = [NSMutableArray arrayWithObjects:@"Ray Rice", @"Ray Lewis", @"Anquan Boldin", @"Joe Flacco", nil];
     
-    /* Ray Rice one-liner */
-    NSMutableArray *rayRiceArray = [NSMutableArray arrayWithObjects:@"Yay, time to run.", nil];
-    
-    /* Ray Lewis one-liner */
-    NSMutableArray *rayLewisArray = [NSMutableArray arrayWithObjects:@"Lets get some!", nil];
-    
-    /* Anquan Boldin one-liner */
-    NSMutableArray *anquanBoldinArray = [NSMutableArray arrayWithObjects:@"Is it time to go home!?", nil];
-    
-    /* Joe Flacco one-liner */
-    NSMutableArray *joeFlaccoArray = [NSMutableArray arrayWithObjects:@"I'm a Quarterback, I shouldn't have to run.", nil];
+    /* Player's one-liner */
+    NSMutableArray *playerSaysArray = [NSMutableArray arrayWithObjects:@"Ray Rice: Yay, time to run.", @"Ray Lewis: Lets get some!", @"Anquan Boldin: Is it time to go home!?", @"Joe Flacco: I'm a Quarterback, I shouldn't have to run.", nil];
     
     /* Player 40 yard dash time */
     NSMutableArray *playerDashTimeArray = [NSMutableArray arrayWithObjects:@"4.23 seconds.", @"4.67 seconds.", @"4.77 seconds.", @"5.34 seconds.", nil];    
@@ -72,15 +63,12 @@
     
     /* (5)Perform a single for loop. (6)Perform a nested loop. (7)Perform a while loop. */    
     
-    for (int i=0; i<1; i++) {
+    for (int i=0; i<4; i++) {
         int d = i + 1;
         int check = d;
         //int j = 0;
-        NSLog (@"Ray Rice: %@", [rayRiceArray objectAtIndex:i]);
-        NSLog (@"Ray Lewis: %@", [rayLewisArray objectAtIndex:i]);
-        NSLog (@"Anquan Boldin: %@", [anquanBoldinArray objectAtIndex:i]);
-        NSLog (@"Joe Flacco: %@", [joeFlaccoArray objectAtIndex:i]);
-        while (check == 1) {
+        NSLog (@"%@", [playerSaysArray objectAtIndex:i]);
+        while (check == 4) {
             NSLog (@"***PLAYERS 40 YARD DASH TIMES***");
             for (int j=0; j<4; j++) {
                 NSLog (@"%@'s 40 yard dash time: %@", [playersArray objectAtIndex:j],  [playerDashTimeArray objectAtIndex:j]);
