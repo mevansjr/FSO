@@ -5,9 +5,10 @@
 //  Copyright (c) 2012 MdTA / Full Sail University. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface ViewController : UIViewController
 {
+    UITextField *textField;
+    UILabel *infoLabel;
+    UILabel *textStatusLabel;
 }
 @end
