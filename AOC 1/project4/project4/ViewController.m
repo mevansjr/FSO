@@ -45,6 +45,7 @@
         textStatusLabel.textAlignment = UITextAlignmentCenter;        
         [self.view addSubview:textStatusLabel];
     }
+    
     UIButton *showDateButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     if (showDateButton != nil)
     {
@@ -53,6 +54,29 @@
         [showDateButton addTarget:self action:@selector(showDate) forControlEvents: UIControlEventTouchUpInside];
         [self.view addSubview:showDateButton];
     }
+    
+    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    if (infoButton != nil)
+    {
+        infoButton.frame = CGRectMake(10.0f, 315.0f, 25.0f, 25.0f);
+        [infoButton addTarget:self action:@selector(showInfo) forControlEvents: UIControlEventTouchUpInside];
+        [self.view addSubview:infoButton];
+    }
+    infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 340.0f, 320.0f, 100.0f)];
+    if (infoLabel != nil)
+    {
+        
+        infoLabel.backgroundColor = [UIColor whiteColor];
+        infoLabel.textColor = [UIColor greenColor];
+        infoLabel.textAlignment = UITextAlignmentCenter;
+        infoLabel.numberOfLines = 7;
+        infoLabel.lineBreakMode = UILineBreakModeWordWrap;
+        [self.view addSubview:infoLabel];
+    }
+    //UITextField *userNameField = [UITextField textFieldAtIndex:1];
+    
+    [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewDidUnload
