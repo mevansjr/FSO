@@ -67,7 +67,7 @@
     {
         
         infoLabel.backgroundColor = [UIColor whiteColor];
-        infoLabel.textColor = [UIColor greenColor];
+        infoLabel.textColor = [UIColor blueColor];
         infoLabel.textAlignment = UITextAlignmentCenter;
         infoLabel.numberOfLines = 7;
         infoLabel.lineBreakMode = UILineBreakModeWordWrap;
@@ -93,6 +93,14 @@
         [textStatusLabel setText:(NSString *)labelStr];
     }  
     return;
+}
+
+// showInfo Function my info
+-(void)showInfo
+{
+    NSString *labelStr = @"Application - Mark Evans";
+    NSLog(@"%@", labelStr);
+    [infoLabel setText:labelStr];
 }
 
 - (void)viewDidUnload
