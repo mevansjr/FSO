@@ -79,6 +79,22 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+// OnClick Function for login
+-(void)onClick
+{
+    NSString *userNameText = [textField text];
+    int stringLength = [userNameText length];
+    if (stringLength == 0)
+    {
+        NSString *labelStr = @"Username cannot be empty.";
+        [textStatusLabel setText:(NSString *)labelStr];
+    } else {
+        NSString *labelStr = [NSString stringWithFormat:@"User: %@ has been logged in.", userNameText];
+        [textStatusLabel setText:(NSString *)labelStr];
+    }  
+    return;
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
