@@ -15,7 +15,7 @@
 
 - (void)viewDidLoad
 {
-// UI Labels, Text, Date, Info ----------------------
+// UI Labels, Text, Date, Info ----------------------/
     UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 100.0f, 30.0f)];
     if (textLabel != nil)
     {
@@ -96,7 +96,7 @@
     return;
 }
 
-// showInfo Function my info -------------------------
+// showInfo Function my info -------------------------/
 -(void)showInfo
 {
     NSString *labelStr = @"Application - Mark Evans";
@@ -104,7 +104,7 @@
     [infoLabel setText:labelStr];
 }
 
-// showDate Function  --------------------------------
+// showDate Function  --------------------------------/
 -(void)showDate
 {
     
@@ -114,7 +114,6 @@
     if (dateFormatter != nil)
     {
         [dateFormatter setDateFormat:@"MMMM dd, yyyy hh:mm:ss aaa zzzz"];
-        //[dateFormatter setDateFormat:@"yyyy-MM-dd"];
         NSString* str = [dateFormatter stringFromDate:date];
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Date" message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
