@@ -15,6 +15,7 @@
 
 - (void)viewDidLoad
 {
+// UI Labels, Text, Date, Info ----------------------
     UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 100.0f, 30.0f)];
     if (textLabel != nil)
     {
@@ -79,7 +80,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
-// OnClick Function for login
+// OnClick Function for login ------------------------
 -(void)onClick
 {
     NSString *userNameText = [textField text];
@@ -95,12 +96,33 @@
     return;
 }
 
-// showInfo Function my info
+// showInfo Function my info -------------------------
 -(void)showInfo
 {
     NSString *labelStr = @"Application - Mark Evans";
     NSLog(@"%@", labelStr);
     [infoLabel setText:labelStr];
+}
+
+// showDate Function  --------------------------------
+-(void)showDate
+{
+    
+    NSDate* date = [NSDate date];
+    
+    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init]autorelease];
+    if (dateFormatter != nil)
+    {
+        [dateFormatter setDateFormat:@"MMMM dd, yyyy hh:mm:ss aaa zzzz"];
+        //[dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString* str = [dateFormatter stringFromDate:date];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Date" message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        if(alertView != nil)
+        {
+            [alertView show];
+        }
+    }
 }
 
 - (void)viewDidUnload
