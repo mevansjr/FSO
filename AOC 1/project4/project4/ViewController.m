@@ -25,10 +25,8 @@
     {
         myText.borderStyle = UITextBorderStyleRoundedRect;
         [self.view addSubview:myText];
-// Code for keyboard to return ----------------------/
-        [myText addTarget:self
-                action:@selector(textFieldDone:)
-                forControlEvents:UIControlEventEditingDidEndOnExit];
+        // Code for keyboard to return ----------------/
+        [myText addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
     }
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
