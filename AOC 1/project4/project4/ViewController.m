@@ -7,11 +7,9 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
-
-@end
-
 @implementation ViewController
+
+
 
 - (void)viewDidLoad
 {
@@ -22,11 +20,15 @@
         textLabel.text = @"Username: ";
         [self.view addSubview:textLabel];
     }
-    textField = [[UITextField alloc] initWithFrame:CGRectMake(100.0f, 10.0f, 200.0f, 30.0f)];
-    if (textField != nil)
+    myText = [[UITextField alloc] initWithFrame:CGRectMake(100.0f, 10.0f, 200.0f, 30.0f)];
+    if (myText != nil)
     {
-        textField.borderStyle = UITextBorderStyleRoundedRect;
-        [self.view addSubview:textField];
+        myText.borderStyle = UITextBorderStyleRoundedRect;
+        [self.view addSubview:myText];
+// Code for keyboard to return ----------------------/
+        [myText addTarget:self
+                action:@selector(textFieldDone:)
+                forControlEvents:UIControlEventEditingDidEndOnExit];
     }
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -36,6 +38,7 @@
         [button setTitle:@"Login" forState:UIControlStateNormal];
         [button addTarget:self action:@selector(onClick) forControlEvents: UIControlEventTouchUpInside];
         [self.view addSubview:button];
+        
     }
     textStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 100.0f, 320.0f, 80.0f)];
     if (textStatusLabel != nil)
@@ -68,22 +71,27 @@
     {
         
         infoLabel.backgroundColor = [UIColor whiteColor];
-        infoLabel.textColor = [UIColor blueColor];
+        infoLabel.textColor = [UIColor greenColor];
         infoLabel.textAlignment = UITextAlignmentCenter;
         infoLabel.numberOfLines = 7;
         infoLabel.lineBreakMode = UILineBreakModeWordWrap;
         [self.view addSubview:infoLabel];
     }
-    //UITextField *userNameField = [UITextField textFieldAtIndex:1];
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
-// OnClick Function for login ------------------------
+// ResignFirstResponder code
+- (void)textFieldDone:(id)sender
+{
+    [sender resignFirstResponder];
+}
+
+// OnClick Function for login ------------------------/
 -(void)onClick
 {
-    NSString *userNameText = [textField text];
+    NSString *userNameText = [myText text];
     int stringLength = [userNameText length];
     if (stringLength == 0)
     {
@@ -99,9 +107,9 @@
 // showInfo Function my info -------------------------/
 -(void)showInfo
 {
-    NSString *labelStr = @"Application - Mark Evans";
-    NSLog(@"%@", labelStr);
+    NSString *labelStr = @"This Application was written \n by Mark Evans";
     [infoLabel setText:labelStr];
+    
 }
 
 // showDate Function  --------------------------------/

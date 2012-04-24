@@ -5,10 +5,15 @@
 //  Copyright (c) 2012 MdTA / Full Sail University. All rights reserved.
 //
 
-@interface ViewController : UIViewController
+#import <UIKit/UIKit.h>
+
+// Important to have <UITextFieldDelegate> to return keyboard
+@interface ViewController : UIViewController <UITextFieldDelegate>
 {
-    UITextField *textField;
+    UITextField *myText;
     UILabel *infoLabel;
     UILabel *textStatusLabel;
 }
+
+
 @end
