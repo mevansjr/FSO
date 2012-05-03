@@ -1,26 +1,27 @@
 //
-//  ShapeClass.m
+//  RectangleClass.m
 //  Project1
 //
 //  Created by Mark Evans on 5/3/12.
 //  Copyright (c) 2012 MdTA / Full Sail University. All rights reserved.
 //
 
+#import "RectangleClass.h"
 #import "ShapeClass.h"
 
-@implementation ShapeClass
--(id)initWithDetails:(int)type numSides:(int)numSides name:(NSString*)name areaVal:(int)areaVal
+@implementation RectangleClass
+-(id)initWithDetails: (int)numSides name:(NSString*)name
 {
-    _type = type;
-    _numSides = numSides;
-    _name = name;
-    _areaVal = areaVal;
+    if (self = [super init])
+    {
+        [self initWithDetails:2 numSides:4 name:@"Rectangle" areaVal:0]; 
+        
+    }
     return self;
 }
-
 -(int)GetArea
 {
-    NSLog(@"Shape %@, AREA %i", _name, _areaVal);
+    _areaVal = (5 * 8);
     return _areaVal;
 }
 
@@ -33,6 +34,5 @@
     }
     return nil;
     
-} 
-
+}
 @end
