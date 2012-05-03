@@ -7,6 +7,15 @@
 //
 
 #import "ViewController.h"
+#import "ShapeClass.h"
+#import "SquareClass.h"
+#import "TriangleClass.h"
+#import "RectangleClass.h"
+#import "ShapeFactory.h"
+
+@interface ViewController ()
+
+@end
 
 @implementation ViewController
 

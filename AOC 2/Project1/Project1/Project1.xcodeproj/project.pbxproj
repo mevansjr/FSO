@@ -19,6 +19,7 @@
 		5D0E1D8A1552BB4900C2973E /* RectangleClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0E1D891552BB4900C2973E /* RectangleClass.m */; };
 		5D0E1D8D1552BC9300C2973E /* SquareClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0E1D8C1552BC9300C2973E /* SquareClass.m */; };
 		5D0E1D901552BD0300C2973E /* TriangleClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0E1D8F1552BD0300C2973E /* TriangleClass.m */; };
+		5D0E1D931552BDB200C2973E /* ShapeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0E1D921552BDB200C2973E /* ShapeFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,8 @@
 		5D0E1D8C1552BC9300C2973E /* SquareClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareClass.m; sourceTree = "<group>"; };
 		5D0E1D8E1552BD0200C2973E /* TriangleClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleClass.h; sourceTree = "<group>"; };
 		5D0E1D8F1552BD0300C2973E /* TriangleClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleClass.m; sourceTree = "<group>"; };
+		5D0E1D911552BDB200C2973E /* ShapeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeFactory.h; sourceTree = "<group>"; };
+		5D0E1D921552BDB200C2973E /* ShapeFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeFactory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,8 @@
 				5D0E1D891552BB4900C2973E /* RectangleClass.m */,
 				5D0E1D841552BA3500C2973E /* ShapeClass.h */,
 				5D0E1D851552BA3500C2973E /* ShapeClass.m */,
+				5D0E1D911552BDB200C2973E /* ShapeFactory.h */,
+				5D0E1D921552BDB200C2973E /* ShapeFactory.m */,
 				5D0E1D8B1552BC9300C2973E /* SquareClass.h */,
 				5D0E1D8C1552BC9300C2973E /* SquareClass.m */,
 				5D0E1D8E1552BD0200C2973E /* TriangleClass.h */,
@@ -188,6 +193,7 @@
 				5D0E1D8A1552BB4900C2973E /* RectangleClass.m in Sources */,
 				5D0E1D8D1552BC9300C2973E /* SquareClass.m in Sources */,
 				5D0E1D901552BD0300C2973E /* TriangleClass.m in Sources */,
+				5D0E1D931552BDB200C2973E /* ShapeFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
