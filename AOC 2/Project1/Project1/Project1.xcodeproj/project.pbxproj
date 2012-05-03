@@ -15,6 +15,7 @@
 		5D0E1D741552B8FF00C2973E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0E1D731552B8FF00C2973E /* AppDelegate.m */; };
 		5D0E1D771552B8FF00C2973E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0E1D761552B8FF00C2973E /* ViewController.m */; };
 		5D0E1D7A1552B8FF00C2973E /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D0E1D781552B8FF00C2973E /* ViewController.xib */; };
+		5D0E1D861552BA3500C2973E /* ShapeClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0E1D851552BA3500C2973E /* ShapeClass.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,15 +23,17 @@
 		5D0E1D631552B8FF00C2973E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5D0E1D651552B8FF00C2973E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5D0E1D671552B8FF00C2973E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		5D0E1D6B1552B8FF00C2973E /* Project1-Info.plist */ = {isa = PBXFileReference; path = "Project1-Info.plist"; sourceTree = "<group>"; };
+		5D0E1D6B1552B8FF00C2973E /* Project1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Project1-Info.plist"; sourceTree = "<group>"; };
 		5D0E1D6D1552B8FF00C2973E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5D0E1D6F1552B8FF00C2973E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5D0E1D711552B8FF00C2973E /* Project1-Prefix.pch */ = {isa = PBXFileReference; path = "Project1-Prefix.pch"; sourceTree = "<group>"; };
-		5D0E1D721552B8FF00C2973E /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		5D0E1D711552B8FF00C2973E /* Project1-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Project1-Prefix.pch"; sourceTree = "<group>"; };
+		5D0E1D721552B8FF00C2973E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5D0E1D731552B8FF00C2973E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5D0E1D751552B8FF00C2973E /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		5D0E1D751552B8FF00C2973E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		5D0E1D761552B8FF00C2973E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5D0E1D791552B8FF00C2973E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		5D0E1D841552BA3500C2973E /* ShapeClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeClass.h; sourceTree = "<group>"; };
+		5D0E1D851552BA3500C2973E /* ShapeClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeClass.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				5D0E1D721552B8FF00C2973E /* AppDelegate.h */,
+				5D0E1D841552BA3500C2973E /* ShapeClass.h */,
+				5D0E1D851552BA3500C2973E /* ShapeClass.m */,
 				5D0E1D731552B8FF00C2973E /* AppDelegate.m */,
 				5D0E1D751552B8FF00C2973E /* ViewController.h */,
 				5D0E1D761552B8FF00C2973E /* ViewController.m */,
@@ -164,6 +169,7 @@
 				5D0E1D701552B8FF00C2973E /* main.m in Sources */,
 				5D0E1D741552B8FF00C2973E /* AppDelegate.m in Sources */,
 				5D0E1D771552B8FF00C2973E /* ViewController.m in Sources */,
+				5D0E1D861552BA3500C2973E /* ShapeClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +281,7 @@
 				5D0E1D7F1552B8FF00C2973E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
