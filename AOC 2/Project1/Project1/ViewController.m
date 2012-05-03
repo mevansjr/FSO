@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad
 {
-    self.view.backgroundColor = [UIColor colorWithRed:0.3294 green:0.6395 blue:0.8000 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:0.3294 green:0.6395 blue:0.8000 alpha:1]; // Blue-ish Color
     
     ShapeFactory *shapeFactory = [[ShapeFactory alloc] init];
     if (shapeFactory != nil)
@@ -31,7 +31,7 @@
         
         if (labelShapeType1 != nil)
         {
-            labelShapeType1.backgroundColor = [UIColor colorWithRed:0.3294 green:0.6395 blue:0.8000 alpha:1];
+            labelShapeType1.backgroundColor = [UIColor colorWithRed:0.3294 green:0.6395 blue:0.8000 alpha:1]; // Blue-ish Color
             labelShapeType1.text = [square getTextOutput];
             labelShapeType1.textAlignment = UITextAlignmentLeft;
             labelShapeType1.numberOfLines = 7;
@@ -47,7 +47,7 @@
         
         if (labelShapeType2 != nil)
         {
-            labelShapeType2.backgroundColor = [UIColor colorWithRed:0.3294 green:0.6395 blue:0.8000 alpha:1];
+            labelShapeType2.backgroundColor = [UIColor colorWithRed:0.3294 green:0.6395 blue:0.8000 alpha:1]; // Blue-ish Color
             labelShapeType2.text = [triangle getTextOutput];
             labelShapeType2.textAlignment = UITextAlignmentLeft;
             labelShapeType2.numberOfLines = 7;
@@ -63,7 +63,7 @@
         
         if (labelShapeType3 != nil)
         {
-            labelShapeType3.backgroundColor = [UIColor colorWithRed:0.3294 green:0.6395 blue:0.8000 alpha:1];
+            labelShapeType3.backgroundColor = [UIColor colorWithRed:0.3294 green:0.6395 blue:0.8000 alpha:1]; // Blue-ish Color
             labelShapeType3.text = [rectangle getTextOutput];
             labelShapeType3.textAlignment = UITextAlignmentLeft;
             labelShapeType3.numberOfLines = 7;
@@ -75,7 +75,7 @@
     labelProjectTitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 40.0f, 320.0f, 60.0f)];
     if (labelProjectTitle != nil)
     {
-        labelProjectTitle.backgroundColor = [UIColor colorWithRed:0.0824 green:0.1599 blue:0.2000 alpha:1];
+        labelProjectTitle.backgroundColor = [UIColor colorWithRed:0.0824 green:0.1599 blue:0.2000 alpha:1]; // Darker Blue-ish Color
         labelProjectTitle.text = @"AOC 2: Mark Evans";
         labelProjectTitle.textAlignment = UITextAlignmentCenter;
         labelProjectTitle.numberOfLines = 5;
@@ -88,7 +88,7 @@
     
     if (labelItemDetails != nil)
     {
-        labelItemDetails.backgroundColor = [UIColor colorWithRed:0.3294 green:0.6395 blue:0.8000 alpha:1];
+        labelItemDetails.backgroundColor = [UIColor colorWithRed:0.3294 green:0.6395 blue:0.8000 alpha:1]; // Blue-ish Color
         labelItemDetails.text = @"";
         labelItemDetails.textAlignment = UITextAlignmentCenter;
         labelItemDetails.numberOfLines = 7;
