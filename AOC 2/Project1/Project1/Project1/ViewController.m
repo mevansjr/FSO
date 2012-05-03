@@ -29,6 +29,20 @@
 
 - (void)viewDidLoad
 {
+    self.view.backgroundColor = [UIColor colorWithRed:0.3294 green:0.6395 blue:0.8000 alpha:1];
+    
+    labelProjectTitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 40.0f, 320.0f, 60.0f)];
+    if (labelProjectTitle != nil)
+    {
+        labelProjectTitle.backgroundColor = [UIColor colorWithRed:0.0824 green:0.1599 blue:0.2000 alpha:1];
+        labelProjectTitle.text = @"AOC 2: Mark Evans";
+        labelProjectTitle.textAlignment = UITextAlignmentCenter;
+        labelProjectTitle.numberOfLines = 5;
+        labelProjectTitle.textColor = [UIColor whiteColor];
+        
+    }
+    [self.view addSubview:labelProjectTitle];
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }

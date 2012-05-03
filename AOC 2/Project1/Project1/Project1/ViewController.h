@@ -14,5 +14,7 @@
 #import "ShapeFactory.h"
 
 @interface ViewController : UIViewController
-
+{
+    UILabel *labelProjectTitle;
+}
 @end
