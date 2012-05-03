@@ -17,6 +17,7 @@
 		5D0E1D7A1552B8FF00C2973E /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D0E1D781552B8FF00C2973E /* ViewController.xib */; };
 		5D0E1D861552BA3500C2973E /* ShapeClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0E1D851552BA3500C2973E /* ShapeClass.m */; };
 		5D0E1D8A1552BB4900C2973E /* RectangleClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0E1D891552BB4900C2973E /* RectangleClass.m */; };
+		5D0E1D8D1552BC9300C2973E /* SquareClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0E1D8C1552BC9300C2973E /* SquareClass.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		5D0E1D851552BA3500C2973E /* ShapeClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeClass.m; sourceTree = "<group>"; };
 		5D0E1D881552BB4900C2973E /* RectangleClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RectangleClass.h; sourceTree = "<group>"; };
 		5D0E1D891552BB4900C2973E /* RectangleClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectangleClass.m; sourceTree = "<group>"; };
+		5D0E1D8B1552BC9300C2973E /* SquareClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareClass.h; sourceTree = "<group>"; };
+		5D0E1D8C1552BC9300C2973E /* SquareClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareClass.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,8 @@
 				5D0E1D891552BB4900C2973E /* RectangleClass.m */,
 				5D0E1D841552BA3500C2973E /* ShapeClass.h */,
 				5D0E1D851552BA3500C2973E /* ShapeClass.m */,
+				5D0E1D8B1552BC9300C2973E /* SquareClass.h */,
+				5D0E1D8C1552BC9300C2973E /* SquareClass.m */,
 				5D0E1D751552B8FF00C2973E /* ViewController.h */,
 				5D0E1D761552B8FF00C2973E /* ViewController.m */,
 				5D0E1D781552B8FF00C2973E /* ViewController.xib */,
@@ -176,6 +181,7 @@
 				5D0E1D771552B8FF00C2973E /* ViewController.m in Sources */,
 				5D0E1D861552BA3500C2973E /* ShapeClass.m in Sources */,
 				5D0E1D8A1552BB4900C2973E /* RectangleClass.m in Sources */,
+				5D0E1D8D1552BC9300C2973E /* SquareClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
