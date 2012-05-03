@@ -16,5 +16,8 @@
 @interface ViewController : UIViewController
 {
     UILabel *labelProjectTitle;
+    UILabel *labelShapeType1;  
+    UILabel *labelShapeType2;
+    UILabel *labelShapeType3;
 }
 @end

@@ -43,6 +43,56 @@
     }
     [self.view addSubview:labelProjectTitle];
     
+    ShapeFactory *shapeFactory = [[ShapeFactory alloc] init];
+    if (shapeFactory != nil)
+    {
+        SquareClass *square = (SquareClass*) [shapeFactory CreateShape:0];
+        [square GetArea];
+        labelShapeType1 = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 180.0f, 200.0f, 20.0f)];
+        
+        if (labelShapeType1 != nil)
+        {
+            labelShapeType1.backgroundColor = [UIColor colorWithRed:0.3294 green:0.6395 blue:0.8000 alpha:1];
+            labelShapeType1.text = [square getTextOutput];
+            labelShapeType1.textAlignment = UITextAlignmentLeft;
+            labelShapeType1.numberOfLines = 7;
+            labelShapeType1.textColor = [UIColor blackColor]; 
+        }
+        [self.view addSubview:labelShapeType1];
+    }
+    {
+        TriangleClass *triangle = (TriangleClass*) [shapeFactory CreateShape:1];
+        [triangle GetArea];
+        
+        labelShapeType2 = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 210.0f, 200.0f, 20.0f)];
+        
+        if (labelShapeType2 != nil)
+        {
+            labelShapeType2.backgroundColor = [UIColor colorWithRed:0.3294 green:0.6395 blue:0.8000 alpha:1];
+            labelShapeType2.text = [triangle getTextOutput];
+            labelShapeType2.textAlignment = UITextAlignmentLeft;
+            labelShapeType2.numberOfLines = 7;
+            labelShapeType2.textColor = [UIColor blackColor]; 
+        }
+        [self.view addSubview:labelShapeType2];
+    }
+    {
+        ShapeClass *rectangle = [shapeFactory CreateShape:2];
+        [rectangle GetArea];
+        
+        labelShapeType3 = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 240.0f, 200.0f, 20.0f)];
+        
+        if (labelShapeType3 != nil)
+        {
+            labelShapeType3.backgroundColor = [UIColor colorWithRed:0.3294 green:0.6395 blue:0.8000 alpha:1];
+            labelShapeType3.text = [rectangle getTextOutput];
+            labelShapeType3.textAlignment = UITextAlignmentLeft;
+            labelShapeType3.numberOfLines = 7;
+            labelShapeType3.textColor = [UIColor blackColor]; 
+        }
+        [self.view addSubview:labelShapeType3];
+    }
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
