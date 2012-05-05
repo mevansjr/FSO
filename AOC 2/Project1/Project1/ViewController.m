@@ -12,9 +12,6 @@
 #import "RectangleClass.h"
 #import "ShapeFactory.h"
 
-@interface ViewController ()
-
-@end
 
 @implementation ViewController
 
