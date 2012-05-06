@@ -10,7 +10,6 @@
 		53CB80FE139D70FF0030ADD7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53CB80FD139D70FF0030ADD7 /* UIKit.framework */; };
 		53CB8100139D70FF0030ADD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53CB80FF139D70FF0030ADD7 /* Foundation.framework */; };
 		53CB8102139D70FF0030ADD7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53CB8101139D70FF0030ADD7 /* CoreGraphics.framework */; };
-		5D0E1DCC1553028F00C2973E /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D0E1DCA1553028F00C2973E /* DetailsViewController.xib */; };
 		5D0E1E53155423B000C2973E /* git-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D0E1E51155423B000C2973E /* git-bg.png */; };
 		5D0E1E54155423B000C2973E /* git-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D0E1E52155423B000C2973E /* git-bg@2x.png */; };
 		5D0E1E5815543E1100C2973E /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0E1E5615543E1000C2973E /* WebViewController.m */; };
@@ -46,7 +45,6 @@
 		53CB80FD139D70FF0030ADD7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		53CB80FF139D70FF0030ADD7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		53CB8101139D70FF0030ADD7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		5D0E1DCA1553028F00C2973E /* DetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailsViewController.xib; path = Files/DetailsViewController.xib; sourceTree = "<group>"; };
 		5D0E1E51155423B000C2973E /* git-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "git-bg.png"; path = "Files/git-bg.png"; sourceTree = "<group>"; };
 		5D0E1E52155423B000C2973E /* git-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "git-bg@2x.png"; path = "Files/git-bg@2x.png"; sourceTree = "<group>"; };
 		5D0E1E5515543E1000C2973E /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = Files/WebViewController.h; sourceTree = "<group>"; };
@@ -194,9 +192,8 @@
 		5DB802B715517F3B00D18717 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5D0E1DCA1553028F00C2973E /* DetailsViewController.xib */,
-				5DB802BC15517F7200D18717 /* SearchViewController.xib */,
 				5DB802CF1551803100D18717 /* MainWindow.xib */,
+				5DB802BC15517F7200D18717 /* SearchViewController.xib */,
 				5DB802D11551803100D18717 /* RootViewController.xib */,
 				5D0E1E5715543E1000C2973E /* WebViewController.xib */,
 			);
@@ -282,7 +279,6 @@
 				5DB802D31551803100D18717 /* MainWindow.xib in Resources */,
 				5DB802D41551803100D18717 /* RootViewController.xib in Resources */,
 				5DB802F215519FC800D18717 /* github_icon.png in Resources */,
-				5D0E1DCC1553028F00C2973E /* DetailsViewController.xib in Resources */,
 				5D0E1E53155423B000C2973E /* git-bg.png in Resources */,
 				5D0E1E54155423B000C2973E /* git-bg@2x.png in Resources */,
 				5D0E1E5915543E1100C2973E /* WebViewController.xib in Resources */,
