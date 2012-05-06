@@ -46,7 +46,8 @@
     self.results = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated 
+{
     NSURL *url = [NSURL URLWithString:urlToGet];
     
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
@@ -64,7 +65,8 @@
     [super dealloc];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
+{
     return YES;
 }
 
@@ -89,7 +91,8 @@
     static NSString *LoadCellIdentifier = @"LoadingCell";
     
     NSUInteger count = [self.results count];
-    if ((count == 0) && (indexPath.row == 0)) {
+    if ((count == 0) && (indexPath.row == 0)) 
+    {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadCellIdentifier];
         if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
@@ -106,7 +109,8 @@
     }
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ResultCellIdentifier];
-    if (cell == nil) {
+    if (cell == nil) 
+    {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
                                        reuseIdentifier:ResultCellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
@@ -148,8 +152,8 @@
 
 #define RESULTS_PERPAGE 100
 
-- (void)loadQuery {
-    
+- (void)loadQuery 
+{
     NSString *path = [NSString stringWithFormat:@"http://github.com/api/v2/json/repos/show/%@", self.query];
     path = [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
@@ -167,8 +171,8 @@
     [self.buffer appendData:data];
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection 
+{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     self.connection = nil;
     
@@ -182,8 +186,8 @@
     [self.tableView flashScrollIndicators];
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error 
+{    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     self.connection = nil;
     self.buffer = nil;
