@@ -126,7 +126,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    WebViewController *extendedView = [[WebViewController alloc] init];
+    WebViewController *extendedView = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:[NSBundle mainBundle]];
     
     NSDictionary *repo = [self.results objectAtIndex:indexPath.row];
     NSString *message = [NSString stringWithFormat:@"%@", [repo objectForKey:@"url"]];
