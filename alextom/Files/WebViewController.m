@@ -14,6 +14,13 @@
 @synthesize webView;
 @synthesize urlToGet;
 
+- (void)dealloc
+{
+    [webView release];
+    [urlToGet release];
+    [super dealloc];
+}
+
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
