@@ -2,22 +2,29 @@
 //  AppDelegate.m
 //  Project2
 //
-//  Created by Mark Evans on 5/5/12.
+//  Created by Mark Evans on 5/7/12.
 //  Copyright (c) 2012 MdTA / Full Sail University. All rights reserved.
 //
 
 #import "AppDelegate.h"
 
+#import "ViewController.h"
+
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize viewController = _viewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    self.window.rootViewController = self.viewController;
+    [self.window makeKeyAndVisible];
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /*
