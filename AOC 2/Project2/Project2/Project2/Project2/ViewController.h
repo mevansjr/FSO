@@ -23,5 +23,6 @@
 -(IBAction)onCancelInput:(id)sender;
 -(IBAction)onClearAll:(id)sender;
 -(IBAction)onOpClick:(id)sender;
+-(IBAction)onColorClick:(id)sender;
 
 @end

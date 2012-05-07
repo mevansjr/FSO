@@ -94,6 +94,34 @@
     
 }
 
+-(IBAction)onColorClick:(id)sender
+{
+    UISegmentedControl *segControl = (UISegmentedControl*)sender;
+    if (segControl != nil)
+    {
+        int selectedIndex = segControl.selectedSegmentIndex;
+        NSLog(@"%d", selectedIndex);
+        switch (selectedIndex) 
+        {
+            case 0:
+                self.view.backgroundColor = [UIColor whiteColor];
+                break;
+                
+            case 1:
+                self.view.backgroundColor = [UIColor redColor];
+                break;
+                
+            case 2:
+                self.view.backgroundColor = [UIColor greenColor];
+                break;
+                
+            default:
+                self.view.backgroundColor = [UIColor whiteColor];
+                break;
+        }
+    }
+}
+    
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
