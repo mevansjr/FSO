@@ -9,10 +9,6 @@
 #import "ViewController.h"
 #import "infoViewController.h"
 
-@interface ViewController ()
-
-@end
-
 @implementation ViewController
 
 - (void)viewDidLoad
