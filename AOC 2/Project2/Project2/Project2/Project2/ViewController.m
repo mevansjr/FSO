@@ -20,6 +20,10 @@
 
 - (void)viewDidLoad
 {
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    powerSwitch.on = true;
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -29,6 +33,22 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+-(IBAction)onSwitch:(id)sender
+{
+    UISwitch *thisSwitch = (UISwitch*)sender;
+    if (thisSwitch != nil)
+    {
+        //int tag = thisSwitch.tag;
+        int stateTemp = thisSwitch.state;
+        //powerSwitch.on = true;
+        NSLog(@"You turned the calculator %d", stateTemp);
+    }
+    else {
+        NSLog(@"Look closer!");
+        
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

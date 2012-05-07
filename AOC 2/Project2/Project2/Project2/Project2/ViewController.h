@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
+{
+    IBOutlet UISwitch* powerSwitch;
+}
+
+-(IBAction)onSwitch:(id)sender;
 
 @end
