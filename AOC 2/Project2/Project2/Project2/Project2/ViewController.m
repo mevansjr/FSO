@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "infoViewController.h"
 
 @interface ViewController ()
 
@@ -120,6 +121,16 @@
                 break;
         }
     }
+}
+
+-(IBAction)onInfoClick:(id)sender
+{
+    infoViewController *viewController = [[infoViewController alloc] initWithNibName:@"infoViewController" bundle:nil];
+    if (viewController != nil)
+    {
+        [self presentModalViewController:viewController animated:TRUE];
+    }
+    
 }
     
 - (void)viewWillAppear:(BOOL)animated

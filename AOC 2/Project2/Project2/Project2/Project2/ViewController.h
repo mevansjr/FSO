@@ -24,5 +24,6 @@
 -(IBAction)onClearAll:(id)sender;
 -(IBAction)onOpClick:(id)sender;
 -(IBAction)onColorClick:(id)sender;
+-(IBAction)onInfoClick:(id)sender;
 
 @end
