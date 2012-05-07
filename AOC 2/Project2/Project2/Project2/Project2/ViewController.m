@@ -8,15 +8,11 @@
 
 #import "ViewController.h"
 
+@interface ViewController ()
+
+@end
+
 @implementation ViewController
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
@@ -90,6 +86,14 @@
     
 }
 
+-(IBAction)onClearAll:(id)sender
+{
+    currentNum = 0;
+    calcScreen.text = @"0";
+    currentOperator = 0;
+    
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -98,16 +102,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

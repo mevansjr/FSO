@@ -11,7 +11,7 @@
 @interface ViewController : UIViewController
 {
     IBOutlet UILabel *calcScreen;
-    IBOutlet UISwitch* powerSwitch;
+    IBOutlet UISwitch *powerSwitch;
     int currentOperator;
     int currentColor;
     float currentNum;
