@@ -10,9 +10,15 @@
 
 @interface ViewController : UIViewController
 {
+    IBOutlet UILabel *calcScreen;
     IBOutlet UISwitch* powerSwitch;
+    int currentOperator;
+    int currentColor;
+    float currentNum;
+    float result;
 }
 
 -(IBAction)onSwitch:(id)sender;
+-(IBAction)onDigitClick:(id)sender;
 
 @end

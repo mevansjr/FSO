@@ -51,6 +51,15 @@
     }
 }
 
+-(IBAction)onDigitClick:(id)sender
+{
+    if (powerSwitch.on != false)
+    {
+        currentNum = currentNum*10 + (float)[sender tag];
+        calcScreen.text = [NSString stringWithFormat:@"%2f", currentNum];
+    } 
+} 
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
