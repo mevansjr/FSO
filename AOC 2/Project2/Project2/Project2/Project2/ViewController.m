@@ -60,6 +60,36 @@
     } 
 } 
 
+-(IBAction)onOpClick:(id)sender
+{
+    if (currentOperator == 0)
+    {
+        result = currentNum;
+    } else {
+        switch (currentOperator) {
+            case 1:
+                result += currentNum;
+                break;
+            case 2:
+                currentOperator = 0;
+                break;
+        }
+        
+    }
+    currentNum = 0;
+    calcScreen.text = [NSString stringWithFormat:@"%2f", result];
+    if ([sender tag] == 0) 
+        result = 0;
+    currentOperator = [sender tag];
+}
+
+-(IBAction)onCancelInput:(id)sender
+{
+    currentNum = 0;
+    calcScreen.text = @"0";
+    
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

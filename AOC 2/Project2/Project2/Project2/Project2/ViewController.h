@@ -20,5 +20,8 @@
 
 -(IBAction)onSwitch:(id)sender;
 -(IBAction)onDigitClick:(id)sender;
+-(IBAction)onCancelInput:(id)sender;
+-(IBAction)onClearAll:(id)sender;
+-(IBAction)onOpClick:(id)sender;
 
 @end
