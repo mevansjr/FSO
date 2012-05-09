@@ -27,7 +27,7 @@
     self.title = @"GitHub Project";
     
     NSString *fullURL = urlToGet;
-    NSLog(fullURL);
+    NSLog(@"%@", fullURL);
     NSURL *url = [NSURL URLWithString:fullURL]; 
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url]; 
     [webView loadRequest:requestObj];

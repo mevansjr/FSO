@@ -35,4 +35,9 @@
 	return YES;
 }
 
+-(IBAction)onClick:(id)sender
+{
+    [userName resignFirstResponder];
+}
+
 @end

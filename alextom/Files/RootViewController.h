@@ -9,7 +9,9 @@
 
 @interface RootViewController : UIViewController <UITextFieldDelegate> 
 {
-
+    IBOutlet UITextField *userName;
 }
+
+-(IBAction)onClick:(id)sender;
 
 @end
