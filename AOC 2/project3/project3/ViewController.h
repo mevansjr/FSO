@@ -17,7 +17,7 @@
 @interface ViewController : UIViewController <testDelegate>
 {
     IBOutlet UITextView *textView;
-    NSMutableString *outPutText;
+    NSMutableString *outputText;
 }
 
 -(IBAction)onClick:(id)sender;
