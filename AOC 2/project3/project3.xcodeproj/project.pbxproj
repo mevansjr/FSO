@@ -17,6 +17,8 @@
 		5D8E251E15615E0B00D05DC5 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D8E251C15615E0B00D05DC5 /* ViewController.xib */; };
 		5D8E25271561617900D05DC5 /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8E25251561617900D05DC5 /* TopViewController.m */; };
 		5D8E25281561617900D05DC5 /* TopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D8E25261561617900D05DC5 /* TopViewController.xib */; };
+		5D8E252C156165B400D05DC5 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D8E252A156165B400D05DC5 /* icon@2x.png */; };
+		5D8E252D156165B400D05DC5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D8E252B156165B400D05DC5 /* icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		5D8E25241561617900D05DC5 /* TopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopViewController.h; sourceTree = "<group>"; };
 		5D8E25251561617900D05DC5 /* TopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopViewController.m; sourceTree = "<group>"; };
 		5D8E25261561617900D05DC5 /* TopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopViewController.xib; sourceTree = "<group>"; };
+		5D8E252A156165B400D05DC5 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		5D8E252B156165B400D05DC5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +59,7 @@
 		5D8E24F815615E0B00D05DC5 = {
 			isa = PBXGroup;
 			children = (
-				5D8E250D15615E0B00D05DC5 /* project3 */,
+				5D8E250D15615E0B00D05DC5 /* Files */,
 				5D8E250615615E0B00D05DC5 /* Frameworks */,
 				5D8E250415615E0B00D05DC5 /* Products */,
 			);
@@ -79,19 +83,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5D8E250D15615E0B00D05DC5 /* project3 */ = {
+		5D8E250D15615E0B00D05DC5 /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				5D8E251615615E0B00D05DC5 /* AppDelegate.h */,
-				5D8E251715615E0B00D05DC5 /* AppDelegate.m */,
-				5D8E25241561617900D05DC5 /* TopViewController.h */,
-				5D8E25251561617900D05DC5 /* TopViewController.m */,
-				5D8E25261561617900D05DC5 /* TopViewController.xib */,
-				5D8E251915615E0B00D05DC5 /* ViewController.h */,
-				5D8E251A15615E0B00D05DC5 /* ViewController.m */,
-				5D8E251C15615E0B00D05DC5 /* ViewController.xib */,
+				5D8E25291561658900D05DC5 /* images */,
+				5D8E2532156166A200D05DC5 /* Classes */,
+				5D8E2533156166C500D05DC5 /* Interface Builder */,
 				5D8E250E15615E0B00D05DC5 /* Supporting Files */,
 			);
+			name = Files;
 			path = project3;
 			sourceTree = "<group>";
 		};
@@ -104,6 +104,37 @@
 				5D8E251515615E0B00D05DC5 /* project3-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5D8E25291561658900D05DC5 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				5D8E252A156165B400D05DC5 /* icon@2x.png */,
+				5D8E252B156165B400D05DC5 /* icon.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		5D8E2532156166A200D05DC5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5D8E251615615E0B00D05DC5 /* AppDelegate.h */,
+				5D8E251715615E0B00D05DC5 /* AppDelegate.m */,
+				5D8E25241561617900D05DC5 /* TopViewController.h */,
+				5D8E25251561617900D05DC5 /* TopViewController.m */,
+				5D8E251915615E0B00D05DC5 /* ViewController.h */,
+				5D8E251A15615E0B00D05DC5 /* ViewController.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		5D8E2533156166C500D05DC5 /* Interface Builder */ = {
+			isa = PBXGroup;
+			children = (
+				5D8E25261561617900D05DC5 /* TopViewController.xib */,
+				5D8E251C15615E0B00D05DC5 /* ViewController.xib */,
+			);
+			name = "Interface Builder";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +191,8 @@
 				5D8E251215615E0B00D05DC5 /* InfoPlist.strings in Resources */,
 				5D8E251E15615E0B00D05DC5 /* ViewController.xib in Resources */,
 				5D8E25281561617900D05DC5 /* TopViewController.xib in Resources */,
+				5D8E252C156165B400D05DC5 /* icon@2x.png in Resources */,
+				5D8E252D156165B400D05DC5 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
