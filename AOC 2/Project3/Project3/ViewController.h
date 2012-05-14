@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@protocol testDelegate <NSObject>
+
+-(void)DidClose:(NSString*)newString;
 
 @end
+
+@interface ViewController : UIViewController <testDelegate>
+{
+    IBOutlet UITextView *textView;
+}
+
+-(IBAction)onClick:(id)sender;
