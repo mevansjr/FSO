@@ -7,12 +7,19 @@
 //
 
 #import "ViewController.h"
+#import "TopViewController.h"
 
 @implementation ViewController
 
 -(IBAction)onClick:(id)sender
 {
-  
+    TopViewController *topView = [[TopViewController alloc] initWithNibName:@"TopViewController" bundle:nil];
+    if (topView != nil)
+    {
+        topView.delegate = self;
+        [self presentModalViewController:topView animated:true];
+    }
+    [textView resignFirstResponder];
 }
 
 -(void)DidClose:(NSString*)newString

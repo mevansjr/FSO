@@ -12,7 +12,6 @@
 @interface TopViewController : UIViewController
 {
     IBOutlet UITextField *textField;
-    
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *closeKeyBoardButton;
