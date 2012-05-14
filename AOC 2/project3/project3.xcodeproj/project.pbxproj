@@ -15,6 +15,8 @@
 		5D8E251815615E0B00D05DC5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8E251715615E0B00D05DC5 /* AppDelegate.m */; };
 		5D8E251B15615E0B00D05DC5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8E251A15615E0B00D05DC5 /* ViewController.m */; };
 		5D8E251E15615E0B00D05DC5 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D8E251C15615E0B00D05DC5 /* ViewController.xib */; };
+		5D8E25271561617900D05DC5 /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8E25251561617900D05DC5 /* TopViewController.m */; };
+		5D8E25281561617900D05DC5 /* TopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D8E25261561617900D05DC5 /* TopViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,9 @@
 		5D8E251915615E0B00D05DC5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		5D8E251A15615E0B00D05DC5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5D8E251D15615E0B00D05DC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		5D8E25241561617900D05DC5 /* TopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopViewController.h; sourceTree = "<group>"; };
+		5D8E25251561617900D05DC5 /* TopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopViewController.m; sourceTree = "<group>"; };
+		5D8E25261561617900D05DC5 /* TopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +84,9 @@
 			children = (
 				5D8E251615615E0B00D05DC5 /* AppDelegate.h */,
 				5D8E251715615E0B00D05DC5 /* AppDelegate.m */,
+				5D8E25241561617900D05DC5 /* TopViewController.h */,
+				5D8E25251561617900D05DC5 /* TopViewController.m */,
+				5D8E25261561617900D05DC5 /* TopViewController.xib */,
 				5D8E251915615E0B00D05DC5 /* ViewController.h */,
 				5D8E251A15615E0B00D05DC5 /* ViewController.m */,
 				5D8E251C15615E0B00D05DC5 /* ViewController.xib */,
@@ -151,6 +159,7 @@
 			files = (
 				5D8E251215615E0B00D05DC5 /* InfoPlist.strings in Resources */,
 				5D8E251E15615E0B00D05DC5 /* ViewController.xib in Resources */,
+				5D8E25281561617900D05DC5 /* TopViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +173,7 @@
 				5D8E251415615E0B00D05DC5 /* main.m in Sources */,
 				5D8E251815615E0B00D05DC5 /* AppDelegate.m in Sources */,
 				5D8E251B15615E0B00D05DC5 /* ViewController.m in Sources */,
+				5D8E25271561617900D05DC5 /* TopViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
