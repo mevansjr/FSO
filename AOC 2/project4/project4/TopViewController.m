@@ -26,6 +26,35 @@
     return self;
 }
 
+-(void)onSwipe:(UISwipeGestureRecognizer*)recognizer
+{
+    
+    if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft)
+        if (delegate != nil)
+        {
+            if ((myDatePicker != nil) && (myTextField != nil))
+            {
+                NSDate *selected = myDatePicker.date;
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"MM-dd-yyyy HH:mm:SS a"];           
+                
+                NSString *newEventLabel = [[NSString alloc] initWithString:@"New Event: "];
+                NSString *textFieldVar = [[NSString alloc] initWithString: textField.text];
+                NSString *dateString = [dateFormatter stringFromDate:selected];  
+                NSString *newString = [[NSString alloc] initWithFormat:@"%@%@\n%@ \n\n",newEventLabel, textFieldVar, dateString];          
+                [delegate DidClose:newString];            
+            }
+            [self dismissModalViewControllerAnimated:true];
+        }
+    
+        else if (recognizer.direction == UISwipeGestureRecognizerDirectionRight)
+        {
+            NSString *test = @"hello";
+            NSLog(@"%@", test);
+        }
+    
+}
+
 //-(IBAction)DidSave:(id)sender
 //{
 //    if (delegate != nil)
@@ -66,6 +95,19 @@
     [self setMyDatePicker:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    topLeftSwiper = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipe:)];
+    topLeftSwiper.direction = UISwipeGestureRecognizerDirectionLeft;
+    [topSwipeLabel addGestureRecognizer:topLeftSwiper];
+    
+    topRightSwiper = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipe:)];
+    topRightSwiper.direction = UISwipeGestureRecognizerDirectionRight;
+    [topSwipeLabel addGestureRecognizer:topRightSwiper];
+    
+    [super viewWillAppear:animated];
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)eventTextField
