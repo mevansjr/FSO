@@ -60,7 +60,37 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipe:)];
+    leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
+    [swipeLabel addGestureRecognizer:leftSwipe];
+    
+    rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipe:)];
+    rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
+    [swipeLabel addGestureRecognizer:rightSwipe];
+    
     [super viewWillAppear:animated];
+}
+-(void)onSwipe:(UISwipeGestureRecognizer*)recognizer
+{
+    
+    if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft)
+    {
+        NSString *test = @"left";
+        NSLog(@"%@", test);
+    }
+    else if (recognizer.direction == UISwipeGestureRecognizerDirectionRight)
+    {
+        TopViewController *topView = [[TopViewController alloc] initWithNibName:@"TopViewController" bundle:nil];
+        if (topView != nil)
+        {
+            topView.delegate = self;
+            [self presentModalViewController:topView animated:true];
+        }
+        [textView resignFirstResponder];
+        
+    }
+    
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

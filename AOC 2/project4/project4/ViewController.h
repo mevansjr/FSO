@@ -18,6 +18,9 @@
 {
     IBOutlet UITextView *textView;
     NSMutableString *outputText;
+    IBOutlet UILabel *swipeLabel;
+    UISwipeGestureRecognizer *leftSwipe;
+    UISwipeGestureRecognizer *rightSwipe;
 }
 
 -(IBAction)onClick:(id)sender;
