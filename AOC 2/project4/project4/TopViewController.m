@@ -12,7 +12,7 @@
 @implementation TopViewController
 
 @synthesize closeKeyBoardButton;
-@synthesize saveDataButton;
+@synthesize leftSwiper;
 @synthesize myDatePicker;
 @synthesize myTextField;
 @synthesize delegate;
@@ -26,26 +26,26 @@
     return self;
 }
 
--(IBAction)DidSave:(id)sender
-{
-    if (delegate != nil)
-    {
-        if ((myDatePicker != nil) && (myTextField != nil))
-        {
-            myDatePicker.minimumDate = [NSDate date];
-            NSDate *selected = myDatePicker.date;
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"MM-dd-yyyy HH:mm:SS a"];           
-            
-            NSString *newEventLabel = [[NSString alloc] initWithString:@"New Event: "];
-            NSString *textFieldVar = [[NSString alloc] initWithString: textField.text];
-            NSString *dateString = [dateFormatter stringFromDate:selected];  
-            NSString *newString = [[NSString alloc] initWithFormat:@"%@%@\n%@ \n\n",newEventLabel, textFieldVar, dateString];         
-            [delegate DidClose:newString];            
-        }
-        [self dismissModalViewControllerAnimated:true];
-    }
-}
+//-(IBAction)DidSave:(id)sender
+//{
+//    if (delegate != nil)
+//    {
+//        if ((myDatePicker != nil) && (myTextField != nil))
+//        {
+//            myDatePicker.minimumDate = [NSDate date];
+//            NSDate *selected = myDatePicker.date;
+//            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//            [dateFormatter setDateFormat:@"MM-dd-yyyy HH:mm:SS a"];           
+//            
+//            NSString *newEventLabel = [[NSString alloc] initWithString:@"New Event: "];
+//            NSString *textFieldVar = [[NSString alloc] initWithString: textField.text];
+//            NSString *dateString = [dateFormatter stringFromDate:selected];  
+//            NSString *newString = [[NSString alloc] initWithFormat:@"%@%@\n%@ \n\n",newEventLabel, textFieldVar, dateString];         
+//            [delegate DidClose:newString];            
+//        }
+//        [self dismissModalViewControllerAnimated:true];
+//    }
+//}
 
 - (IBAction)dismissKeyboard:(id)sender {
     [myTextField resignFirstResponder];
@@ -62,7 +62,7 @@
     myTextField = nil;
     [self setMyTextField:nil];
     [self setCloseKeyBoardButton:nil];
-    [self setSaveDataButton:nil];
+    //[self setSaveDataButton:nil];
     [self setMyDatePicker:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
