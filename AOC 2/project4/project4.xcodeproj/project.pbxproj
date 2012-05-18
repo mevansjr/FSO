@@ -1,0 +1,282 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5DAC95D215665D3400522198 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAC95D115665D3400522198 /* UIKit.framework */; };
+		5DAC95D415665D3400522198 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAC95D315665D3400522198 /* Foundation.framework */; };
+		5DAC95D615665D3400522198 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAC95D515665D3400522198 /* CoreGraphics.framework */; };
+		5DAC95DC15665D3400522198 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DAC95DA15665D3400522198 /* InfoPlist.strings */; };
+		5DAC95DE15665D3400522198 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC95DD15665D3400522198 /* main.m */; };
+		5DAC95E215665D3400522198 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC95E115665D3400522198 /* AppDelegate.m */; };
+		5DAC95E515665D3400522198 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC95E415665D3400522198 /* ViewController.m */; };
+		5DAC95E815665D3400522198 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAC95E615665D3400522198 /* ViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5DAC95CD15665D3400522198 /* project4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project4.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DAC95D115665D3400522198 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		5DAC95D315665D3400522198 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5DAC95D515665D3400522198 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5DAC95D915665D3400522198 /* project4-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "project4-Info.plist"; sourceTree = "<group>"; };
+		5DAC95DB15665D3400522198 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5DAC95DD15665D3400522198 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5DAC95DF15665D3400522198 /* project4-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "project4-Prefix.pch"; sourceTree = "<group>"; };
+		5DAC95E015665D3400522198 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5DAC95E115665D3400522198 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5DAC95E315665D3400522198 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		5DAC95E415665D3400522198 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5DAC95E715665D3400522198 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5DAC95CA15665D3400522198 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAC95D215665D3400522198 /* UIKit.framework in Frameworks */,
+				5DAC95D415665D3400522198 /* Foundation.framework in Frameworks */,
+				5DAC95D615665D3400522198 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5DAC95C215665D3400522198 = {
+			isa = PBXGroup;
+			children = (
+				5DAC95D715665D3400522198 /* project4 */,
+				5DAC95D015665D3400522198 /* Frameworks */,
+				5DAC95CE15665D3400522198 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5DAC95CE15665D3400522198 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5DAC95CD15665D3400522198 /* project4.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5DAC95D015665D3400522198 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5DAC95D115665D3400522198 /* UIKit.framework */,
+				5DAC95D315665D3400522198 /* Foundation.framework */,
+				5DAC95D515665D3400522198 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5DAC95D715665D3400522198 /* project4 */ = {
+			isa = PBXGroup;
+			children = (
+				5DAC95E015665D3400522198 /* AppDelegate.h */,
+				5DAC95E115665D3400522198 /* AppDelegate.m */,
+				5DAC95E315665D3400522198 /* ViewController.h */,
+				5DAC95E415665D3400522198 /* ViewController.m */,
+				5DAC95E615665D3400522198 /* ViewController.xib */,
+				5DAC95D815665D3400522198 /* Supporting Files */,
+			);
+			path = project4;
+			sourceTree = "<group>";
+		};
+		5DAC95D815665D3400522198 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5DAC95D915665D3400522198 /* project4-Info.plist */,
+				5DAC95DA15665D3400522198 /* InfoPlist.strings */,
+				5DAC95DD15665D3400522198 /* main.m */,
+				5DAC95DF15665D3400522198 /* project4-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5DAC95CC15665D3400522198 /* project4 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DAC95EB15665D3400522198 /* Build configuration list for PBXNativeTarget "project4" */;
+			buildPhases = (
+				5DAC95C915665D3400522198 /* Sources */,
+				5DAC95CA15665D3400522198 /* Frameworks */,
+				5DAC95CB15665D3400522198 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = project4;
+			productName = project4;
+			productReference = 5DAC95CD15665D3400522198 /* project4.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5DAC95C415665D3400522198 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "MdTA / Full Sail University";
+			};
+			buildConfigurationList = 5DAC95C715665D3400522198 /* Build configuration list for PBXProject "project4" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5DAC95C215665D3400522198;
+			productRefGroup = 5DAC95CE15665D3400522198 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5DAC95CC15665D3400522198 /* project4 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5DAC95CB15665D3400522198 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAC95DC15665D3400522198 /* InfoPlist.strings in Resources */,
+				5DAC95E815665D3400522198 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5DAC95C915665D3400522198 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAC95DE15665D3400522198 /* main.m in Sources */,
+				5DAC95E215665D3400522198 /* AppDelegate.m in Sources */,
+				5DAC95E515665D3400522198 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5DAC95DA15665D3400522198 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5DAC95DB15665D3400522198 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		5DAC95E615665D3400522198 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5DAC95E715665D3400522198 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5DAC95E915665D3400522198 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		5DAC95EA15665D3400522198 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5DAC95EC15665D3400522198 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "project4/project4-Prefix.pch";
+				INFOPLIST_FILE = "project4/project4-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		5DAC95ED15665D3400522198 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "project4/project4-Prefix.pch";
+				INFOPLIST_FILE = "project4/project4-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5DAC95C715665D3400522198 /* Build configuration list for PBXProject "project4" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DAC95E915665D3400522198 /* Debug */,
+				5DAC95EA15665D3400522198 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5DAC95EB15665D3400522198 /* Build configuration list for PBXNativeTarget "project4" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DAC95EC15665D3400522198 /* Debug */,
+				5DAC95ED15665D3400522198 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5DAC95C415665D3400522198 /* Project object */;
+}
