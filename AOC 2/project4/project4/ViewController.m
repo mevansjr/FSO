@@ -22,6 +22,9 @@
         [defaults setObject:dataString forKey:@"data"];
         
         [defaults synchronize]; 
+        
+        NSString *msg = [NSString stringWithFormat:@"Information has been saved!"];
+        NSLog(@"%@",msg);
     }
     
 }

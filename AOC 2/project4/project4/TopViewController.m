@@ -32,7 +32,16 @@
     if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft)
         if (delegate != nil)
         {
-            if ((myDatePicker != nil) && (myTextField != nil))
+            if (textField.text.length == 0 || [textField.text isEqualToString:@"Enter Something"])
+            {
+                NSString *str = [NSString stringWithFormat:@"Please Enter Something!"];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                if(alertView != nil)
+                {
+                    [alertView show];
+                }
+            }
+            else if ((myDatePicker != nil) && (myTextField != nil))
             {
                 NSDate *selected = myDatePicker.date;
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
