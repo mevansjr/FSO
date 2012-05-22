@@ -13,13 +13,17 @@
 
 -(IBAction)onClick:(id)sender
 {
-    TopViewController *topView = [[TopViewController alloc] initWithNibName:@"TopViewController" bundle:nil];
-    if (topView != nil)
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (defaults != nil)
     {
-        topView.delegate = self;
-        [self presentModalViewController:topView animated:true];
+        
+        NSString *dataString = textView.text;
+        
+        [defaults setObject:dataString forKey:@"data"];
+        
+        [defaults synchronize]; 
     }
-    [textView resignFirstResponder];
+    
 }
 
 -(void)DidClose:(NSString*)newString
@@ -31,7 +35,8 @@
         [outputText appendString:newString];
         textView.text = outputText;
     }
-    else {
+    else 
+    {
         outputText = [NSMutableString stringWithString:textView.text];
         [outputText appendString:newString];
         textView.text = outputText;
