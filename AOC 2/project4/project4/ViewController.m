@@ -13,37 +13,38 @@
 
 -(IBAction)onClick:(id)sender
 {
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (defaults != nil)
+    NSString *dataString = textView.text;
+    [defaults setValue:dataString forKey:@"data"];
+    [defaults synchronize];
+    
+    if ((textView.text.length == 0)||([textView.text isEqualToString:@"Empty!"]))
     {
-        NSString *dataString = textView.text;
-        [defaults setObject:dataString forKey:@"data"];
-        [defaults synchronize]; 
-        
-        NSString *showData = [defaults stringForKey:@"data"];
-        UIAlertView *dataAlert = [[UIAlertView alloc] initWithTitle:@"Saved Data" message:showData delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        if(dataAlert != nil)
-        {
-            [dataAlert show];
-        }
-    } 
+        UIAlertView *showAlert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"You need to add an Event to save data!"  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [showAlert show];
+    }
+    else 
+    {
+        UIAlertView *showAlert2 = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Data has been saved."  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [showAlert2 show];
+    }
 }
 
 -(void)DidClose:(NSString*)newString
 {
     if([textView.text isEqualToString:@"Empty!"])
+        {
+            textView.text = @"";
+            outputText = [NSMutableString stringWithString:textView.text];
+            [outputText appendString:newString];
+            textView.text = outputText;
+        }
+    else
     {
-        textView.text = @"";
         outputText = [NSMutableString stringWithString:textView.text];
         [outputText appendString:newString];
         textView.text = outputText;
-    }
-    else 
-    {
-        outputText = [NSMutableString stringWithString:textView.text];
-        [outputText appendString:newString];
-        textView.text = outputText;
-        
     }
 }
 
@@ -55,6 +56,12 @@
 
 - (void)viewDidLoad
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *appendText = [defaults stringForKey:@"data"];
+    if (appendText.length > 0) 
+    {
+        textView.text = appendText;
+    }
     //[ViewController loadEvents];
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
