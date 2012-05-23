@@ -16,17 +16,17 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (defaults != nil)
     {
-        
         NSString *dataString = textView.text;
-        
         [defaults setObject:dataString forKey:@"data"];
-        
         [defaults synchronize]; 
         
-        NSString *msg = [NSString stringWithFormat:@"Information has been saved!"];
-        NSLog(@"%@",msg);
-    }
-    
+        NSString *showData = [defaults stringForKey:@"data"];
+        UIAlertView *dataAlert = [[UIAlertView alloc] initWithTitle:@"Saved Data" message:showData delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        if(dataAlert != nil)
+        {
+            [dataAlert show];
+        }
+    } 
 }
 
 -(void)DidClose:(NSString*)newString
