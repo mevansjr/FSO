@@ -104,8 +104,6 @@
         [textView resignFirstResponder];
         
     }
-    
-    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
