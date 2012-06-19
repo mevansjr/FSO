@@ -163,7 +163,7 @@
 		5D8E24FA15615E0B00D05DC5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "MdTA / Full Sail University";
 			};
 			buildConfigurationList = 5D8E24FD15615E0B00D05DC5 /* Build configuration list for PBXProject "project3" */;
