@@ -4,5 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Ravens Roster</string>
-
+	<string name="torrey_smith">Torrey Smith</string>
+	<string name="ed_dickson">Ed Dickson</string>
+    
 </resources>
