@@ -8,6 +8,9 @@ import android.widget.LinearLayout;
 import com.example.recipe.it.up.lib.View;
 import com.example.recipe.it.up.lib.Recipe;
 import com.example.recipe.it.up.lib.Meals;
+import java.util.ArrayList;
+import com.example.recipe.it.up.lib.Food;
+import com.example.recipe.it.up.lib.FoodItem;
 
 public class MainActivity extends Activity {
 	
@@ -42,6 +45,11 @@ public class MainActivity extends Activity {
         	Log.i("Error: ", m);
         }
         
+        // An ArrayList using an interface for Food Name and Source.
+        ArrayList<Food> foods = new ArrayList<Food>();
+        foods.add(new FoodItem("Dry Martini", "Food Network"));
+        foods.add(new FoodItem("Chocolate Cake", "All Recipes"));
+        foods.add(new FoodItem("Cajun Chicken Pasta", "Food"));
         
         ll.addView(setup);
         setContentView(ll);
