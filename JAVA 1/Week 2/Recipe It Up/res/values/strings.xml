@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">Recipe It Up</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Recipe It Up</string>
+    <string name="pizza_name">Pepperoni Pizza</string>
+    <string name="pizza_source">Food Network</string>
+    <string name="pizza_ingredients">Pizza Doh, Tomato Sauce, Cheese, and Pepperoni</string>
+    
+
+</resources>
