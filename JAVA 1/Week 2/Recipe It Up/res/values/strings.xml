@@ -7,6 +7,17 @@
     <string name="pizza_name">Pepperoni Pizza</string>
     <string name="pizza_source">Food Network</string>
     <string name="pizza_ingredients">Pizza Doh, Tomato Sauce, Cheese, and Pepperoni</string>
-    
+    <string name="cake_name">Chocolate Cake</string>
+    <string name="cake_source">All Recipes</string>
+    <string name="cake_ingredients">Flower, Sugar, Baking Powder, and Chocolate Icing</string>
+    <string name="screwdriver_name">Screwdriver Drink</string>
+    <string name="screwdriver_source">All Recipes</string>
+    <string name="screwdriver_ingredients">Vodka, Orange Juice</string>
+    <string name="cajunchicken_name">Cajun Chicken Pasta</string>
+    <string name="cajunchicken_source">Food Network</string>
+    <string name="cajunchicken_ingredients">Chicken, Cajun spices, Pasta noodles, Alfedo Sauce</string>
+    <string name="turkeysandwich_name">Turkey Sandwich</string>
+    <string name="turkeysandwich_source">All Recipes</string>
+    <string name="turkeysandwich_ingredients">Turkey, Cheese, Mayo, Lettuce, Tomato, Bread</string>
 
 </resources>

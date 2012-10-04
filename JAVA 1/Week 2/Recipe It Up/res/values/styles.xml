@@ -1,5 +1,24 @@
 <resources>
+<style name="MyAppTheme" parent="@android:style/Theme.Holo.Light">
+    <item name="android:actionBarStyle">@style/MyActionBar</item>
+</style>
 
-    <style name="AppTheme" parent="android:Theme.Light" />
+<style name="MyActionBar" parent="@android:style/Widget.Holo.ActionBar">
+    <item name="android:titleTextStyle">@style/MyActionBar.TitleTextStyle</item>
+    <item name="android:actionMenuTextAppearance">@style/MyActionBar.MenuTextStyle</item>
+</style>
 
+<style name="MyActionBar.TitleTextStyle"
+    parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+    <item name="android:textColor">#F0F</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textSize">24dip</item>
+</style>
+
+<style name="MyActionBar.MenuTextStyle"
+    parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+    <item name="android:textColor">#F0F</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textSize">24dip</item>
+</style>
 </resources>
