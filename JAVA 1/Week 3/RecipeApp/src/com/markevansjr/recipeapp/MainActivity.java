@@ -21,6 +21,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -58,10 +60,16 @@ public class MainActivity extends Activity {
         // SEARCH VIEW
         _search = SearchForm.setup(_context, "Find Recipes", "Search");
         final EditText textField = (EditText) _search.findViewById(1);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         Button searchBtn = (Button) _search.findViewById(2);
         searchBtn.setOnClickListener(new OnClickListener(){
         	@Override
         	public void onClick(View v){
+        		// HIDES KEYBOARD
+        		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        		imm.hideSoftInputFromWindow(textField.getWindowToken(), 0);
+        		
+        		// CALLS SEARCH
         		doSearch(textField.getText().toString());
         	}
         });   
