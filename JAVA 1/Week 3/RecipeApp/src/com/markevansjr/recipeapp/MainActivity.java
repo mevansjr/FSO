@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
         _appLayout = new LinearLayout(this);
         _context = this;
         _history = getHistory();
-        Log.i("HISTORY READ", _history.toString());
+        //Log.i("HISTORY READ", _history.get("title"));
         
         // SEARCH VIEW
         _search = SearchForm.setup(_context, "Find Recipes", "Search");
@@ -161,8 +161,7 @@ public class MainActivity extends Activity {
 				    map.put("source_name", s.getString("source_name"));
 				    map.put("source_url", s.getString("source_url"));
 				    data.add(map);
-				    
-					//_history.put(s.getString("title"), results.toString());
+				    //_history.put(s.getString("title"), results.toString());
 					//FileStuff.storeObjectFile(_context, "history", _history, false);
 					//FileStuff.storeStringFile(_context, "temp", s.toString(), true);
 				}
@@ -179,8 +178,8 @@ public class MainActivity extends Activity {
 		        	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {        		
 		        		@SuppressWarnings("unchecked")
 						HashMap<String, String> o = (HashMap<String, String>) tlv.getItemAtPosition(position);	        		
-		        		Toast.makeText(_context, "URL --> " + o.get("source_url"), Toast.LENGTH_SHORT).show(); 
-
+		        		Toast.makeText(_context, "URL --> " + o.get("source_url"), Toast.LENGTH_SHORT).show();
+		        		//FileStuff.storeStringFile(_context, "temp", o.get("source_url").toString(), true);
 					}
 				});
 				
