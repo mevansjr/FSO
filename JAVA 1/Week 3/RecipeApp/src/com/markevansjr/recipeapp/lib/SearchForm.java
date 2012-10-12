@@ -18,7 +18,7 @@ public class SearchForm {
         EditText et = new EditText(context);
         lp = new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f);
         et.setHint(hint);
-        et.setHintTextColor(Color.WHITE);
+        et.setHintTextColor(Color.LTGRAY);
         et.setTextColor(Color.WHITE);
         et.setLayoutParams(lp);
         et.setId(1);
@@ -26,7 +26,8 @@ public class SearchForm {
         
         Button b = new Button(context);
         b.setText(buttonText);
-        b.setTextColor(Color.WHITE);
+        b.setTextColor(Color.YELLOW);
+        b.setBackgroundColor(Color.DKGRAY);
         b.setId(2);
         b.setTag(et);
         b.setTextSize(15.0f);

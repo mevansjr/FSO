@@ -4,18 +4,20 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="5dp"
+    android:background="@drawable/cellbg"
     >
-<TextView  
-	android:id="@android:id/text1"
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:textAppearance="?android:attr/textAppearanceMedium"
-    android:padding="1dp"
-    android:textSize="13dp" />
+	<TextView  
+		android:id="@android:id/text1"
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content" 
+    	android:textAppearance="?android:attr/textAppearanceMedium"
+    	android:padding="1dp"
+    	android:textSize="13dp" />
     <TextView  
-	android:id="@android:id/text2"
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:padding="1dp"
-    android:textSize="10dp" />
+		android:id="@android:id/text2"
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content" 
+    	android:padding="1dp"
+    	android:textSize="10dp" />
+    
 </LinearLayout>

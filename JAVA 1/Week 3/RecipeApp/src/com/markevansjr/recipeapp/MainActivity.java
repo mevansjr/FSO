@@ -14,9 +14,12 @@ import org.json.JSONObject;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -32,30 +35,41 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.markevansjr.recipeapp.lib.FavDisplay;
 import com.markevansjr.recipeapp.lib.FileStuff;
 import com.markevansjr.recipeapp.lib.RecipeDisplay;
 import com.markevansjr.recipeapp.lib.WebStuff;
 import com.markevansjr.recipeapp.lib.SearchForm;
 
+@SuppressLint("NewApi")
 public class MainActivity extends Activity {
 	LinearLayout _appLayout;
 	Context _context;
 	LinearLayout _search;
 	Boolean connected = false;
 	RecipeDisplay _recipedisplay;
-	HashMap <String, String> _history;
     LinearLayout linearLayout;
 	ListView listView;
+	FavDisplay _favorites;
+	ArrayList<String> _ra = new ArrayList<String>();
 	
-	@SuppressWarnings("deprecation")
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActionBar actionBar = getActionBar();
+        actionBar.hide();
         
         _appLayout = new LinearLayout(this);
         _context = this;
-        _history = getHistory();
-        //Log.i("HISTORY READ", _history.get("title"));
+        _ra = getFav();
+        Log.i("FAV READ", _ra.toString());
+        
+        LinearLayout navll = new LinearLayout(this);
+        Drawable f = getResources().getDrawable(R.drawable.navbar);
+        navll.setBackground(f);
+        _appLayout.addView(navll,new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams.MATCH_PARENT,
+        LinearLayout.LayoutParams.WRAP_CONTENT));
         
         // SEARCH VIEW
         _search = SearchForm.setup(_context, "Find Recipes", "Search");
@@ -73,39 +87,61 @@ public class MainActivity extends Activity {
         		doSearch(textField.getText().toString());
         	}
         });   
+        //Drawable e = getResources().getDrawable(R.drawable.newcellbg);
+        _search.setBackgroundColor(Color.DKGRAY);
+        //_search.setPadding(5, 15, 5, 5);
         _appLayout.addView(_search);
         
-        //DETECT NETWORK
+        // ADD FAVS
+        _favorites = new FavDisplay(_context, _ra);
+        _favorites.setBackgroundColor(Color.LTGRAY);
+        _appLayout.addView(_favorites);
+        
+        // DETECT NETWORK
         connected = WebStuff.getConnectionStatus(_context);
         if(connected){
         	Log.i("NETWORK CONNECTION", WebStuff.getConnectionType(_context));
         }
         
+        // SET BACKGROUND IMAGE
+        Drawable d = getResources().getDrawable(R.drawable.welcome);
+        _appLayout.setBackground(d);
+        
         // LIST VIEW
         listView = new ListView(this);
-        listView.setBackgroundColor(Color.WHITE);
+        Drawable g = getResources().getDrawable(R.drawable.wood);
+        listView.setBackground(g);
         listView.setId(5);
         _appLayout.addView(listView,new LinearLayout.LayoutParams(
-        	    LinearLayout.LayoutParams.FILL_PARENT,
-        	    LinearLayout.LayoutParams.WRAP_CONTENT));
-
+        LinearLayout.LayoutParams.MATCH_PARENT,
+        LinearLayout.LayoutParams.WRAP_CONTENT));
         _appLayout.setOrientation(LinearLayout.VERTICAL);
-        _appLayout.setBackgroundColor(Color.BLACK);
+        //_appLayout.setBackgroundColor(Color.BLACK);
+        
+        // TABLE DISPLAY
+        //TableDisplay table = new TableDisplay(_context);
+        //_appLayout.addView(table);
+        
         setContentView(_appLayout);
     }
+	
+	public void addFav(View view) {
+	    Log.e("DO", "SOMETHING");
+	}
 
-	@SuppressWarnings("unchecked")
-	private HashMap<String, String> getHistory() {
-		Object stored = FileStuff.readObjectFile(_context, "history", false);
+	private ArrayList<String> getFav() {
+		String stored = FileStuff.readStringFile(_context, "temp", true);
 		
-		HashMap<String, String> history;
-		if(stored != null){
+		ArrayList<String> fav = new ArrayList<String>();
+		if(stored == null){
 			Log.i("HISTORY", "NO HISTORY FILE FOUND");
-			history = new HashMap<String, String>();
 		} else {
-			history = (HashMap<String, String>) stored;
+			String[] favs = stored.split(",");
+			for(int i=0; i<favs.length; i++){
+				fav.add(favs[i]);
+			}
 		}
-		return history;
+		return fav;
 	}
 
 	@Override
@@ -161,10 +197,12 @@ public class MainActivity extends Activity {
 				    map.put("source_name", s.getString("source_name"));
 				    map.put("source_url", s.getString("source_url"));
 				    data.add(map);
-				    //_history.put(s.getString("title"), results.toString());
-					//FileStuff.storeObjectFile(_context, "history", _history, false);
-					//FileStuff.storeStringFile(_context, "temp", s.toString(), true);
 				}
+		        
+		        //_history.put(_varforsearch, results.toString());
+			    //_history.put(s.getString("title"), results.toString());
+				//FileStuff.storeObjectFile(_context, "history", _history, false);
+				//FileStuff.storeStringFile(_context, "temp", s.toString(), true);
 				Log.i("THE RESULTS", results.toString());
 				
 				final ListView tlv = (ListView) listView.findViewById(5);
@@ -173,13 +211,17 @@ public class MainActivity extends Activity {
                         new String[] {"title", "source_name", "source_url"},
                         new int[] {android.R.id.text1,
                                    android.R.id.text2});
-				tlv.setAdapter(adapter);;
+				tlv.setAdapter(adapter);
+		        
 				tlv.setOnItemClickListener(new OnItemClickListener() {
 		        	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {        		
 		        		@SuppressWarnings("unchecked")
 						HashMap<String, String> o = (HashMap<String, String>) tlv.getItemAtPosition(position);	        		
 		        		Toast.makeText(_context, "URL --> " + o.get("source_url"), Toast.LENGTH_SHORT).show();
-		        		//FileStuff.storeStringFile(_context, "temp", o.get("source_url").toString(), true);
+		        		Log.i("LOG", o.get("title"));
+		        		
+		        		_ra.add(o.get("title"));
+		        		FileStuff.storeStringFile(_context, "temp", _ra.toString(), true);
 					}
 				});
 				
