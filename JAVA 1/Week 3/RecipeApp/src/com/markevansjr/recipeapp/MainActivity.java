@@ -92,11 +92,6 @@ public class MainActivity extends Activity {
         //_search.setPadding(5, 15, 5, 5);
         _appLayout.addView(_search);
         
-        // ADD FAVS
-        _favorites = new FavDisplay(_context, _ra);
-        _favorites.setBackgroundColor(Color.LTGRAY);
-        _appLayout.addView(_favorites);
-        
         // DETECT NETWORK
         connected = WebStuff.getConnectionStatus(_context);
         if(connected){
@@ -112,15 +107,17 @@ public class MainActivity extends Activity {
         Drawable g = getResources().getDrawable(R.drawable.wood);
         listView.setBackground(g);
         listView.setId(5);
+        listView.setMinimumHeight(600);
         _appLayout.addView(listView,new LinearLayout.LayoutParams(
         LinearLayout.LayoutParams.MATCH_PARENT,
         LinearLayout.LayoutParams.WRAP_CONTENT));
         _appLayout.setOrientation(LinearLayout.VERTICAL);
         //_appLayout.setBackgroundColor(Color.BLACK);
         
-        // TABLE DISPLAY
-        //TableDisplay table = new TableDisplay(_context);
-        //_appLayout.addView(table);
+        // ADD FAVS
+        _favorites = new FavDisplay(_context, _ra);
+        _favorites.setBackgroundColor(Color.LTGRAY);
+        _appLayout.addView(_favorites);
         
         setContentView(_appLayout);
     }
@@ -133,8 +130,9 @@ public class MainActivity extends Activity {
 		String stored = FileStuff.readStringFile(_context, "temp", true);
 		
 		ArrayList<String> fav = new ArrayList<String>();
+		fav.add("Select Favorite");
 		if(stored == null){
-			Log.i("HISTORY", "NO HISTORY FILE FOUND");
+			Log.i("PROBLEM", "NO FAV FILE FOUND");
 		} else {
 			String[] favs = stored.split(",");
 			for(int i=0; i<favs.length; i++){
@@ -152,7 +150,7 @@ public class MainActivity extends Activity {
 	
 	@SuppressWarnings("unused")
 	private void doSearch(String item){
-		String apiURL = "http://api.punchfork.com/recipes?key=13c42c860b3e65ae&q="+item+"&count=10";
+		String apiURL = "http://api.punchfork.com/recipes?key=13c42c860b3e65ae&q="+item+"&count=7";
 		String qs;
 		try{
 			qs = URLEncoder.encode(apiURL, "UTF-8");
@@ -219,9 +217,8 @@ public class MainActivity extends Activity {
 						HashMap<String, String> o = (HashMap<String, String>) tlv.getItemAtPosition(position);	        		
 		        		Toast.makeText(_context, "URL --> " + o.get("source_url"), Toast.LENGTH_SHORT).show();
 		        		Log.i("LOG", o.get("title"));
-		        		
 		        		_ra.add(o.get("title"));
-		        		FileStuff.storeStringFile(_context, "temp", _ra.toString(), true);
+		        		FileStuff.storeStringFile(_context, "temp", o.get("title"), true);
 					}
 				});
 				

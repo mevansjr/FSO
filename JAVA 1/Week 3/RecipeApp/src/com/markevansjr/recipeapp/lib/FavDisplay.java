@@ -3,10 +3,8 @@ package com.markevansjr.recipeapp.lib;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.AdapterView;
@@ -15,8 +13,6 @@ import android.view.View;
 
 public class FavDisplay extends LinearLayout {
 
-	Button _add;
-	Button _remove;
 	Spinner _list;
 	Context _context;
 	String _readFav;
@@ -48,13 +44,8 @@ public class FavDisplay extends LinearLayout {
 		});
 		
 		updateFavorites();
-
-		_remove = new Button(_context);
-		_remove.setText("-");
-		_remove.setTextColor(Color.WHITE);
 		
 		this.addView(_list);
-		this.addView(_remove);
 		
 		lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		this.setLayoutParams(lp);
