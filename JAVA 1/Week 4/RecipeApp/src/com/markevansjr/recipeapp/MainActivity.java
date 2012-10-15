@@ -21,6 +21,9 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,8 +35,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.webkit.WebView;
 
 import com.markevansjr.recipeapp.lib.FavDisplay;
 import com.markevansjr.recipeapp.lib.FileStuff;
@@ -51,25 +57,28 @@ public class MainActivity extends Activity {
     LinearLayout linearLayout;
 	ListView listView;
 	FavDisplay _favorites;
+	WebView webview;
+	TextView t1;
+	TextView t2;
 	ArrayList<String> _ra = new ArrayList<String>();
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActionBar actionBar = getActionBar();
-        actionBar.hide();
+        //ActionBar actionBar = getActionBar();
+        //actionBar.hide();
         
         _appLayout = new LinearLayout(this);
         _context = this;
         _ra = getFav();
         Log.i("FAV READ", _ra.toString());
         
-        LinearLayout navll = new LinearLayout(this);
-        Drawable f = getResources().getDrawable(R.drawable.navbar);
-        navll.setBackground(f);
-        _appLayout.addView(navll,new LinearLayout.LayoutParams(
-        LinearLayout.LayoutParams.MATCH_PARENT,
-        LinearLayout.LayoutParams.WRAP_CONTENT));
+//        LinearLayout navll = new LinearLayout(this);
+//        Drawable f = getResources().getDrawable(R.drawable.navbar);
+//        navll.setBackground(f);
+//        _appLayout.addView(navll,new LinearLayout.LayoutParams(
+//        LinearLayout.LayoutParams.MATCH_PARENT,
+//        LinearLayout.LayoutParams.WRAP_CONTENT));
         
         // SEARCH VIEW
         _search = SearchForm.setup(_context, "Find Recipes", "Search");
@@ -99,28 +108,61 @@ public class MainActivity extends Activity {
         }
         
         // SET BACKGROUND IMAGE
-        Drawable d = getResources().getDrawable(R.drawable.welcome);
-        _appLayout.setBackground(d);
+        //Drawable d = getResources().getDrawable(R.drawable.welcome);
+        //_appLayout.setBackground(d);
+        
+        // WEB VIEW
+        webview = new WebView(this);
+        webview.loadUrl("http://www.markevansjr.com/android.html");
+        webview.setInitialScale(1);
+        webview.getSettings().setBuiltInZoomControls(true);
+        webview.getSettings().setUseWideViewPort(true);
+        webview.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        webview.setScrollbarFadingEnabled(false);
+        webview.setId(7);
+        webview.setPadding(0, 5, 0, 5);
+        RelativeLayout rl2 = new RelativeLayout(this);
+        RelativeLayout.LayoutParams lay2 = new RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.MATCH_PARENT, 
+            300);
+        lay2.addRule(RelativeLayout.CENTER_IN_PARENT);
+        rl2.addView(webview, lay2);
+        _appLayout.addView(rl2);
         
         // LIST VIEW
         listView = new ListView(this);
-        Drawable g = getResources().getDrawable(R.drawable.wood);
-        listView.setBackground(g);
+        listView.setBackgroundColor(Color.LTGRAY);
         listView.setId(5);
-        listView.setMinimumHeight(600);
-        _appLayout.addView(listView,new LinearLayout.LayoutParams(
-        LinearLayout.LayoutParams.MATCH_PARENT,
-        LinearLayout.LayoutParams.WRAP_CONTENT));
+        //_appLayout.addView(listView,new LinearLayout.LayoutParams(
+        //LinearLayout.LayoutParams.MATCH_PARENT,
+        //LinearLayout.LayoutParams.WRAP_CONTENT));
         _appLayout.setOrientation(LinearLayout.VERTICAL);
-        //_appLayout.setBackgroundColor(Color.BLACK);
+        _appLayout.setBackgroundColor(Color.BLACK);
         
         // ADD FAVS
         _favorites = new FavDisplay(_context, _ra);
-        _favorites.setBackgroundColor(Color.LTGRAY);
-        _appLayout.addView(_favorites);
+        _favorites.setBackgroundColor(Color.DKGRAY);
+        _favorites.setGravity(Gravity.BOTTOM);
+        RelativeLayout rl = new RelativeLayout(this);
+        RelativeLayout.LayoutParams lay = new RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.MATCH_PARENT, 
+            RelativeLayout.LayoutParams.WRAP_CONTENT);
+        lay.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        rl.addView(listView);
+        rl.addView(_favorites, lay);
+        _appLayout.addView(rl);
         
         setContentView(_appLayout);
     }
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+	    if ((keyCode == KeyEvent.KEYCODE_BACK) && webview.canGoBack()) {
+	        webview.goBack();
+	        return true;
+	    }
+	    return super.onKeyDown(keyCode, event);
+	}
 	
 	public void addFav(View view) {
 	    Log.e("DO", "SOMETHING");
@@ -150,7 +192,7 @@ public class MainActivity extends Activity {
 	
 	@SuppressWarnings("unused")
 	private void doSearch(String item){
-		String apiURL = "http://api.punchfork.com/recipes?key=13c42c860b3e65ae&q="+item+"&count=7";
+		String apiURL = "http://api.punchfork.com/recipes?key=13c42c860b3e65ae&q="+item+"&count=3";
 		String qs;
 		try{
 			qs = URLEncoder.encode(apiURL, "UTF-8");
@@ -215,7 +257,16 @@ public class MainActivity extends Activity {
 		        	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {        		
 		        		@SuppressWarnings("unchecked")
 						HashMap<String, String> o = (HashMap<String, String>) tlv.getItemAtPosition(position);	        		
-		        		Toast.makeText(_context, "URL --> " + o.get("source_url"), Toast.LENGTH_SHORT).show();
+		        		//Toast.makeText(_context, "URL --> " + o.get("source_url"), Toast.LENGTH_SHORT).show();
+		        		
+		        		final WebView twv = (WebView) webview.findViewById(7);
+		        		twv.loadUrl(o.get("source_url"));
+		        		twv.setInitialScale(1);
+		        		twv.getSettings().setBuiltInZoomControls(true);
+		        		twv.getSettings().setUseWideViewPort(true);
+		        		twv.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+		        		twv.setScrollbarFadingEnabled(false);
+		        		
 		        		Log.i("LOG", o.get("title"));
 		        		_ra.add(o.get("title"));
 		        		FileStuff.storeStringFile(_context, "temp", o.get("title"), true);

@@ -2,6 +2,8 @@ package com.markevansjr.recipeapp.lib;
 
 import java.util.ArrayList;
 
+import com.markevansjr.recipeapp.R;
+
 import android.content.Context;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -28,8 +30,8 @@ public class FavDisplay extends LinearLayout {
 		_list = new Spinner(_context);
 		lp = new LayoutParams(0, LayoutParams.WRAP_CONTENT, 1.0f);
 		_list.setLayoutParams(lp);
-		ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(_context, android.R.layout.simple_spinner_item, _recipes);
-		listAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+		ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(_context, R.layout.spinner, _recipes);
+		listAdapter.setDropDownViewResource(R.layout.spinnerdropdown);
 		_list.setAdapter(listAdapter);
 		_list.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
