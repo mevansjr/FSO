@@ -86,10 +86,10 @@ public class Main extends Activity {
         _LinearLayout.addView(_weatherDisplay);
         
         //ADD IMAGEVIEW
-        ImageView img = new ImageView(this);
-        img.setImageResource(R.drawable.logo);
-        img.setPadding(105, 0, 0, 155);
-        _LinearLayout.addView(img);
+        //ImageView img = new ImageView(this);
+        //img.setImageResource(R.drawable.logo);
+        //img.setPadding(105, 0, 0, 155);
+        //_LinearLayout.addView(img);
         
         //ADD FAVS AND FUNCTIONALITY
         ArrayList<String> favs = new ArrayList<String>(Arrays.<String>asList(FileStuff.readStringFile(_context, "favorites", true).split(",")));
