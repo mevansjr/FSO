@@ -6,12 +6,16 @@ import android.view.View;
 
 public class ThirdActivity extends Activity 
 {
-	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
+        
+        //TextView tv = (TextView) findViewById(R.id.textView2);
+        //Log.i("TEST", getIntent().getExtras().getString("thetext2"));
+        //String passedString = getIntent().getExtras().getString("thetext2");
+        //tv.setText(passedString);
     }
     
     // Calls Main Activity

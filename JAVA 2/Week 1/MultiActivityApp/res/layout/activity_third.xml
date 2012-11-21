@@ -2,20 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/DarkGry" >
 	
 	<Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="callMainActivity"
-        android:layout_marginTop="189dp"
-        android:text="@string/btn_text1" />
+	    android:id="@+id/button1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentTop="true"
+	    android:layout_centerHorizontal="true"
+	    android:layout_marginTop="189dp"
+	    android:minHeight="38dip"
+	    android:background="@color/White"
+	    android:onClick="callMainActivity"
+	    android:padding="5dp"
+	    android:text="@string/btn_text1" />
 
 	<TextView
-	    android:id="@+id/textView1"
+	    android:id="@+id/textView2"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentLeft="true"
@@ -23,6 +27,7 @@
 	    android:layout_marginTop="51dp"
 	    android:gravity="center"
 	    android:text="@string/full_name"
+	    android:textColor="@color/White"
 	    android:textSize="18dp" />
         
 </RelativeLayout>

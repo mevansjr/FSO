@@ -1,25 +1,39 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@drawable/bg" >
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:ems="10"
+        android:hint="@string/search_hint"
+        android:textColor="@color/Green"
+        android:textColorHint="@color/DarkGry"
+        android:textSize="24dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editText1"
+        android:background="@color/Green"
+        android:minHeight="38dip"
+        android:onClick="callSecondActivity"
+        android:padding="5dp"
+        android:text="@string/btn_text2"
+        android:textColor="@color/White" />
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:onClick="callThirdActivity"
-        android:text="@string/btn_text3" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_marginBottom="50dp"
-        android:onClick="callSecondActivity"
-        android:text="@string/btn_text2" />
+        android:contentDescription="@string/imagedes"
+        android:src="@drawable/punchfork" />
 
 </RelativeLayout>

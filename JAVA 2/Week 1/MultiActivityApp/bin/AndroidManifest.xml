@@ -6,6 +6,7 @@
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="15" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -20,8 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecondActivity" android:label="Second Activity"></activity>
-        <activity android:name=".ThirdActivity" android:label="Third Activity"></activity>
+        <activity android:name=".SecondActivity" android:label="Searched Recipe"></activity>
+        <activity android:name=".ThirdActivity" android:label="Web Browser"></activity>
     </application>
 
 </manifest>
