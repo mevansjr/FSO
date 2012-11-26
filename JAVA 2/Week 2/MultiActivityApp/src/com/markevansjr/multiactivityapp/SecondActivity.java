@@ -16,7 +16,6 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,19 +50,26 @@ public class SecondActivity extends Activity
     public void callThirdActivity(View v)
     {
     	String passedString = getIntent().getExtras().getString("search_text");
-    	Uri theuri;
+    	//Uri theuri;
+    	String theString;
     	
     	if (passedString == null || passedString.equals(""))
     	{
-    		theuri = Uri.parse("http://punchfork.com/");
-    		Log.i("URI", "http://punchfork.com/");
+    		theString = "http://punchfork.com/";
+    		//theuri = Uri.parse(theString);
+    		//Log.i("URI", "http://punchfork.com/");
     	} else {
-    		theuri = Uri.parse("http://punchfork.com/recipes/"+passedString);
-    		Log.i("URI", "http://punchfork.com/recipes/"+passedString);
+    		theString = "http://punchfork.com/recipes/"+passedString;
+    		//theuri = Uri.parse(theString);
+    		//Log.i("URI", "http://punchfork.com/recipes/"+passedString);
     	}
     	
-    	Intent intent = new Intent(Intent.ACTION_VIEW,
-		theuri);
+//    	Intent intent = new Intent(Intent.ACTION_VIEW,
+//		theuri);
+//    	startActivity(intent);
+    	
+    	Intent intent = new Intent(getApplicationContext(), ThirdActivity.class); 
+    	intent.putExtra("passedUrl", theString);
     	startActivity(intent);
     }
     
@@ -132,10 +138,13 @@ public class SecondActivity extends Activity
 						HashMap<String, String> o = (HashMap<String, String>) lv.getItemAtPosition(position);	        		
 		        		//Toast.makeText(getBaseContext(), "URL --> " + o.get("source_url"), Toast.LENGTH_SHORT).show();
 		        		//Log.i("LOG", o.get("title"));
-		        		Uri newuri = Uri.parse(o.get("source_url"));
-		        		Intent intent = new Intent(Intent.ACTION_VIEW,
-		        		newuri);
-		        		startActivity(intent);
+//		        		Uri newuri = Uri.parse(o.get("source_url"));
+//		        		Intent intent = new Intent(Intent.ACTION_VIEW,
+//		        		newuri);
+//		        		startActivity(intent);
+		        		Intent intent = new Intent(getApplicationContext(), ThirdActivity.class); 
+		            	intent.putExtra("passedUrl", o.get("source_url"));
+		            	startActivity(intent);
 					}
 				});
 				
