@@ -33,7 +33,7 @@ public class MainFragment extends ListFragment {
                 .getApplicationContext(), R.array.cat_titles,
                 android.R.layout.simple_list_item_1));	
 	}
-
+	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);

@@ -15,40 +15,96 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class MainActivity extends Activity implements MainFragment.MainListener {
 
 	List<Map<String, String>> _data;
 	JSONArray _results;
 	Context _context;
-	EditText _searchTxt;
+	EditText _et;
 	Button _searchBtn;
-	String _searchedText;
+	Spinner _list;
+	String _history;
+	ArrayList<String> _urlArray = new ArrayList<String>();
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        _searchTxt = (EditText) findViewById(R.id.editText_1);
+        _et = (EditText) findViewById(R.id.editText_1);
         _searchBtn = (Button) findViewById(R.id.button_1);
-        _searchedText = _searchTxt.getText().toString();
+        
+        _urlArray.add("Last Searched...");
+        
+        _history = getHistory();
+        Log.i("HISTORY READ",_history.toString());
+        
+        _list = (Spinner) findViewById(R.id.spinner1);
+		ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, _urlArray);
+		listAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown);
+		_list.setAdapter(listAdapter);
+		_list.setOnItemSelectedListener(new OnItemSelectedListener() {
+        	@Override
+        	public void onItemSelected(AdapterView<?> parent, View v, int pos, long id){
+        		if(pos > 0){
+        			String fav = parent.getItemAtPosition(pos).toString();	
+        			if (fav.equals("Last Searched...") || fav == "Last Searched..."){
+        				Log.i("FAV SELECTED", "Last Searched...");
+        				//_et.setText("");
+        			} else {
+        				//_et.setText(fav);
+        				onCategorySelected("http://punchfork.com/recipes/"+fav);
+        			}
+        		}
+        	}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+        });
+        
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        	_et.setHint(R.string.btn_text2);
+        	_searchBtn.setText(R.string.btn_text4);
+        }
         
         _searchBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 					//doSearch(_searchedText);
-					onCategorySelected("http://punchfork.com/recipes/"+_searchTxt.getText().toString());
+					onCategorySelected("http://punchfork.com/recipes/"+_et.getText().toString());
+					_urlArray.add(_et.getText().toString());
+					FileStuff.storeStringFile(getApplicationContext(), "history", _et.getText().toString(), false);
             	}
         });
+    }
+	
+	private String getHistory(){
+    	Object stored = FileStuff.readStringFile(getApplicationContext(), "history", false);
     	
+    	String history = null;
+    	if(stored == null){
+    		Log.i("HISTORY","NO HISTORY FILE FOUND");
+    	} else {
+    		history = (String) stored;
+    		_urlArray.add((String) stored);
+    	}
+    	return history;
     }
 	
 	@SuppressWarnings("unused")
@@ -115,7 +171,7 @@ public class MainActivity extends Activity implements MainFragment.MainListener 
 		} else {
 			Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
 			intent.putExtra("url", url);
-			startActivity(intent);
+			startActivityForResult(intent, 1);
 		}
 	}
 	
