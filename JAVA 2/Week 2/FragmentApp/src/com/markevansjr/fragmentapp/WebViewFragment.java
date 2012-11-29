@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.TextView;
 
 public class WebViewFragment extends Fragment {
 	@Override
@@ -30,8 +29,6 @@ public class WebViewFragment extends Fragment {
 
 	@SuppressLint("SetJavaScriptEnabled")
 	public void setNewPage(String url) {
-		TextView view = (TextView) getView().findViewById(R.id.Url);
-		view.setText("Recipe Browser");
 		WebView webView = (WebView) getView().findViewById(R.id.webView);
 		webView.setBackgroundColor(Color.DKGRAY);
 		webView.getSettings().setJavaScriptEnabled(true);

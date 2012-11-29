@@ -6,7 +6,6 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.webkit.WebView;
-import android.widget.TextView;
 
 public class WebViewActivity extends Activity {
 	@SuppressLint("SetJavaScriptEnabled")
@@ -24,8 +23,6 @@ public class WebViewActivity extends Activity {
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			String s = extras.getString("url");
-			TextView view = (TextView) findViewById(R.id.Url);
-			view.setText("Recipe Browser");
 			WebView webView = (WebView) findViewById(R.id.webView);
 			webView.loadUrl(s);
 			webView.setBackgroundColor(Color.DKGRAY);

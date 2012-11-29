@@ -5,24 +5,36 @@
     android:layout_height="match_parent"
     android:background="@color/DarkGry" >
 
-    <TextView
-        android:id="@+id/textView_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <EditText
+        android:id="@+id/editText_1"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="false"
-        android:background="@color/Green"
+        android:layout_toLeftOf="@+id/button_1"
+        android:background="@color/White"
         android:ems="10"
-        android:gravity="right"
-        android:textColor="@color/White"
+        android:paddingLeft="5dp"
+        android:inputType="textCapSentences"
+        android:hint="@string/search_hint"
+        android:textColor="@color/Green"
         android:textSize="18dp" />
 
     <fragment
         android:id="@+id/listFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/textView_1"
+        android:layout_below="@+id/editText_1"
         class="com.markevansjr.fragmentapp.MainFragment" />
 
-    
+    <Button
+        android:id="@+id/button_1"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@+id/editText_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/Green"
+        android:text="@string/btn_text2"
+        android:textColor="@color/White" />
+
 </RelativeLayout>

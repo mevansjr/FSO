@@ -29,12 +29,12 @@ public final class R {
         public static final int thumb_23_n_pinckney=0x7f020006;
     }
     public static final class id {
-        public static final int Url=0x7f090006;
+        public static final int button_1=0x7f090006;
+        public static final int editText_1=0x7f090003;
         public static final int grid_image=0x7f090000;
         public static final int grid_label=0x7f090001;
         public static final int grid_view=0x7f090002;
         public static final int listFragment=0x7f090004;
-        public static final int textView_1=0x7f090003;
         public static final int webView=0x7f090007;
         public static final int webViewFrag=0x7f090005;
     }
