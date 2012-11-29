@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/DarkGry"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/Url"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@color/Green"
+        android:gravity="right"
+        android:padding="6dp"
+        android:text="@string/browser"
+        android:textColor="@color/White"
+        android:textColorLink="@color/White"
+        android:textSize="18dp" />
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/Url"
+        android:background="@color/DarkGry" >
+
+    </WebView>
+
+</RelativeLayout>

@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/DarkGry" >
+
+    <TextView
+        android:id="@+id/textView_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/listFragment"
+        android:background="@color/Green"
+        android:ems="10"
+        android:textColor="@color/White"
+        android:textSize="18dp" />
+
+    <fragment
+        android:id="@+id/webViewFrag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView_1"
+        class="com.markevansjr.fragmentapp.WebViewFragment" >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:layout_width="175dip"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView_1"
+        class="com.markevansjr.fragmentapp.MainFragment" />
+
+</RelativeLayout>
