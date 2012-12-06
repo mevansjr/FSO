@@ -1,8 +1,5 @@
 package com.markevansjr.fragmentapp;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,33 +9,47 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Messenger;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-public class MainActivity extends Activity implements MainFragment.MainListener {
+@SuppressLint("HandlerLeak")
+public class MainActivity extends Activity {
 
-	static List<Map<String, String>> _data;
 	JSONArray _results;
 	Context _context;
 	EditText _et;
 	Button _searchBtn;
 	Spinner _list;
+	ListView _lv;
 	String _history;
+	String _passedData;
+	List<Map<String, String>> _data;
+	SimpleAdapter _adapter;
 	ArrayList<String> _urlArray = new ArrayList<String>();
+	GetRecipe getRecipe;
+	String _fav;
+	String _passed;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +58,9 @@ public class MainActivity extends Activity implements MainFragment.MainListener 
         
         _et = (EditText) findViewById(R.id.editText_1);
         _searchBtn = (Button) findViewById(R.id.button_1);
+        
+        // Adapter setup
+        _lv = (ListView) findViewById(R.id.listView1);
         
         _urlArray.add("Last Searched...");
         
@@ -61,14 +75,12 @@ public class MainActivity extends Activity implements MainFragment.MainListener 
         	@Override
         	public void onItemSelected(AdapterView<?> parent, View v, int pos, long id){
         		if(pos > 0){
-        			String fav = parent.getItemAtPosition(pos).toString();	
-        			if (fav.equals("Last Searched...") || fav == "Last Searched..."){
+        			_fav = parent.getItemAtPosition(pos).toString();	
+        			if (_fav.equals("Last Searched...") || _fav == "Last Searched..."){
         				Log.i("FAV SELECTED", "Last Searched...");
         				//_et.setText("");
         			} else {
-        				//_et.setText(fav);
-        				//onCategorySelected(fav);
-        				doSearch(fav);
+        				getRecipes(_fav);
         			}
         		}
         	}
@@ -88,6 +100,8 @@ public class MainActivity extends Activity implements MainFragment.MainListener 
         _searchBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+					InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+					imm.hideSoftInputFromWindow(_et.getWindowToken(), 0);
 					if (_et.getText().toString().equals("") || _et.getText().toString().equals(" ") || 
 							_et.getText().toString() == "" || _et.getText().toString() == " ")
 					{ 
@@ -96,8 +110,7 @@ public class MainActivity extends Activity implements MainFragment.MainListener 
 					}
 					else
 					{
-						doSearch(_et.getText().toString());
-						//onCategorySelected(_et.getText().toString());
+						getRecipes(_et.getText().toString());
 						_urlArray.add(_et.getText().toString());
 						FileStuff.storeStringFile(getApplicationContext(), "history", _et.getText().toString(), false);
 					}
@@ -118,78 +131,75 @@ public class MainActivity extends Activity implements MainFragment.MainListener 
     	return history;
     }
 	
-	@SuppressWarnings("unused")
-	private void doSearch(String item){
-		String apiURL = "http://api.punchfork.com/recipes?key=13c42c860b3e65ae&q="+item+"&count=50";
-		String qs;
-		try{
-			qs = URLEncoder.encode(apiURL, "UTF-8");
-		} catch (Exception e){
-			Log.e("BAD URL", "ENCODING PROBLEM");
-			qs = "";
-		}
-		URL finalURL;
-		try{
-			finalURL = new URL(apiURL);
-			RecipeRequest rr = new RecipeRequest();
-			rr.execute(finalURL);
-		} catch (MalformedURLException e){
-			Log.e("BAD URL", "MALFORMED URL");
-			finalURL = null;
-		}
-	}
-	
-	private class RecipeRequest extends AsyncTask<URL, Void, String>{
-		@Override
-		protected String doInBackground(URL... urls){
-			String response = "";
-			for(URL url: urls){
-				response = WebStuff.getURLStringResponse(url);
-			}
-			return response;
-		}
-		
-		@Override
-		protected void onPostExecute(String result){
-			Log.i("URL RESPONSE", result);
-			try{
-				JSONObject json = new JSONObject(result);
-				_results = json.getJSONArray("recipes");
-				
-				_data = new ArrayList<Map<String, String>>();
-			
-		        for(int i=0;i<_results.length();i++){							
-					JSONObject s = _results.getJSONObject(i);
-					Map<String, String> map = new HashMap<String, String>(2);
-					map.put("title", s.getString("title"));
-				    map.put("pf_url", s.getString("pf_url"));
-				    _data.add(map);
+	private Handler theHandler = new Handler(){
+		public void handleMessage(Message message){
+			Object path = message.obj;
+			if (message.arg1 == RESULT_OK && path != null){
+				String a = (String) message.obj.toString();
+				try{
+					JSONObject json = new JSONObject(a);
+					_results = json.getJSONArray("recipes");
+			        Log.i("THE RESULTS", _results.toString());
+			        
+			        _data = new ArrayList<Map<String, String>>();
+					
+				    for(int i=0;i<_results.length();i++){							
+						JSONObject s = _results.getJSONObject(i);
+						Map<String, String> map = new HashMap<String, String>(2);
+						map.put("title", s.getString("title"));
+						map.put("source_name", s.getString("source_name"));
+					    map.put("pf_url", s.getString("pf_url"));
+					    map.put("rating", s.getString("rating"));
+					    map.put("source_img", s.getString("source_img"));
+					    _data.add(map);
+				        
+				        _adapter = new SimpleAdapter(getApplicationContext(), _data, android.R.layout.simple_list_item_2,
+				                new String[] {"title", "source_name", "source_url", "rating", "source_img"},
+				                new int[] {android.R.id.text1,
+				                           android.R.id.text2});
+				        _lv.setAdapter(_adapter);
+				        
+				        _lv.setOnItemClickListener(new OnItemClickListener() {
+				        	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {        		
+				        		@SuppressWarnings("unchecked")
+								HashMap<String, String> o = (HashMap<String, String>) _lv.getItemAtPosition(position);
+				        		
+				        		SecondViewFragment fragment = (SecondViewFragment) getFragmentManager().findFragmentById(R.id.secViewFrag);
+				        		if (fragment != null && fragment.isInLayout()) {
+				        			fragment.setInfo(o);
+				        		} else {
+				        			Intent intent = new Intent(getApplicationContext(), SecondViewActivity.class);
+				        			intent.putExtra("RecipeData", o.toString());
+				        			intent.putExtra("RecipeTitle", o.get("title"));
+				        			intent.putExtra("RecipeUrl", o.get("pf_url"));
+				        			intent.putExtra("RecipeRating", o.get("rating"));
+				        			intent.putExtra("RecipeImageUrl", o.get("source_img"));
+				        			startActivity(intent);
+				        		}
+							}
+						});
+				    }
+			        
+				} catch (JSONException e){
+					Log.e("JSON", "JSON OBJECT EXCEPTION");
 				}
-		        Log.i("THE RESULTS", _results.toString());
-		        if (_results.length() == 0){
-		        	Toast toast = Toast.makeText(getApplicationContext(), "Results not Found!", Toast.LENGTH_SHORT);
-					toast.show();
-		        } else {
-		        	onCategorySelected(_results.toString());
-		        }
-				
-			} catch (JSONException e){
-				Log.e("JSON", "JSON OBJECT EXCEPTION");
 			}
 		}
-    
-	}
-
-	@Override
-	public void onCategorySelected(String url) {
-		WebViewFragment fragment = (WebViewFragment) getFragmentManager().findFragmentById(R.id.webViewFrag);
-		if (fragment != null && fragment.isInLayout()) {
-			fragment.setNewPage(url);
+	};
+	
+	private void getRecipes(String item){
+		if (_et.getText().toString().length() > 0){
+			item = _et.getText().toString();
 		} else {
-			Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
-			intent.putExtra("url", url);
-			startActivityForResult(intent, 1);
+			item = _fav;
 		}
+		_passed = item;
+		Log.i("CHECK ITEM", item);
+		Messenger messenger = new Messenger(theHandler);
+		Intent i = new Intent(getApplicationContext(), GetService.class);
+		i.putExtra("item", item);
+		i.putExtra("messenger", messenger);
+		startService(i);
 	}
 	
 }

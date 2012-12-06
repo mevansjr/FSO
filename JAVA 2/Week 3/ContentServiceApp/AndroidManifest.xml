@@ -15,19 +15,26 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
+            android:windowSoftInputMode="stateHidden"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".WebViewActivity"
-            android:label="Recipe It Up!" />
-        <activity
-            android:name=".GridActivity"
-            android:label="Recipe It Up!" />
+            android:name=".SecondViewActivity"
+            android:label="Recipe It Up!" >
+        </activity>
+        <service
+            android:name="com.markevansjr.fragmentapp.GetService"
+            android:enabled="true" >
+        </service>
+        <provider
+        	android:name="RecipeProvider"
+        	android:authorities="com.markevansjr.provider.recipeviewer"
+        	android:exported="false" >
+        </provider>
     </application>
 
 </manifest>

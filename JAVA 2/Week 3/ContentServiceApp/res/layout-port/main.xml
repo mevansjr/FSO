@@ -19,13 +19,12 @@
         android:textColor="@color/Green"
         android:textSize="18dp" />
 
-    <fragment
-        android:id="@+id/listFragment"
+    <ListView
+        android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/spinner1"
-        android:layout_below="@+id/editText_1"
-        class="com.markevansjr.fragmentapp.MainFragment" />
+        android:layout_below="@+id/editText_1" />
 
     <Button
         android:id="@+id/button_1"

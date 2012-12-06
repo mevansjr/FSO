@@ -5,29 +5,28 @@
     android:background="@color/DarkGry" >
 
     <fragment
-        android:id="@+id/webViewFrag"
+        android:id="@+id/secViewFrag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/listFragment"
-        class="com.markevansjr.fragmentapp.WebViewFragment" >
+        android:layout_toRightOf="@+id/listView1"
+        class="com.markevansjr.fragmentapp.SecondViewFragment" >
     </fragment>
 
-    <fragment
-        android:id="@+id/listFragment"
+    <ListView
+        android:id="@+id/listView1"
         android:layout_width="175dip"
         android:layout_height="match_parent"
         android:layout_above="@+id/spinner1"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/editText_1"
-        class="com.markevansjr.fragmentapp.MainFragment" />
+        android:layout_below="@+id/editText_1" />
 
     <Button
         android:id="@+id/button_1"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_above="@+id/listFragment"
-        android:layout_toLeftOf="@+id/webViewFrag"
+        android:layout_above="@+id/listView1"
+        android:layout_toLeftOf="@+id/secViewFrag"
         android:background="@color/Green"
         android:text="@string/btn_text2"
         android:textColor="@color/White" />
@@ -53,7 +52,7 @@
         android:layout_height="30dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/webViewFrag"
+        android:layout_toLeftOf="@+id/secViewFrag"
         android:background="@color/Green"
         android:paddingLeft="5dp" />
 
