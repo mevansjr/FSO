@@ -14,6 +14,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -46,41 +47,43 @@ public class MainActivity extends Activity {
 	String _passedData;
 	List<Map<String, String>> _data;
 	SimpleAdapter _adapter;
-	ArrayList<String> _urlArray = new ArrayList<String>();
+	ArrayList<String> _titleArray = new ArrayList<String>();
 	GetRecipe getRecipe;
 	String _fav;
 	String _passed;
+	HashMap<String, String> _recent = new HashMap<String, String>();
+	Spinner _recentsList;
+	ArrayList<String> _recentTitle = new ArrayList<String>();
+	boolean _check = true;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        // Receive and Update Favorites
+        getAndUpdate();
+        
+        // Find text field and search button
         _et = (EditText) findViewById(R.id.editText_1);
         _searchBtn = (Button) findViewById(R.id.button_1);
         
         // Adapter setup
         _lv = (ListView) findViewById(R.id.listView1);
         
-        _urlArray.add("Last Searched...");
-        
-        _history = getHistory();
-        Log.i("HISTORY READ",_history.toString());
-        
-        _list = (Spinner) findViewById(R.id.spinner1);
-		ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, _urlArray);
+        // Find spinner and set listAdapter
+        _recentsList = (Spinner) findViewById(R.id.spinner1);
+		ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, _recentTitle);
 		listAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown);
-		_list.setAdapter(listAdapter);
-		_list.setOnItemSelectedListener(new OnItemSelectedListener() {
+		_recentsList.setAdapter(listAdapter);
+		_recentsList.setOnItemSelectedListener(new OnItemSelectedListener() {
         	@Override
         	public void onItemSelected(AdapterView<?> parent, View v, int pos, long id){
         		if(pos > 0){
         			_fav = parent.getItemAtPosition(pos).toString();	
-        			if (_fav.equals("Last Searched...") || _fav == "Last Searched..."){
-        				Log.i("FAV SELECTED", "Last Searched...");
-        				//_et.setText("");
+        			if (_fav.equals("Past Searches...") || _fav == "Past Searches..."){
         			} else {
-        				getRecipes(_fav);
+        				_et.setText(_fav);
         			}
         		}
         	}
@@ -92,6 +95,7 @@ public class MainActivity extends Activity {
 			}
         });
         
+		// If view is in Landscape the text field hint and search button text will be different
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
         	_et.setHint(R.string.btn_text2);
         	_searchBtn.setText(R.string.btn_text4);
@@ -111,26 +115,41 @@ public class MainActivity extends Activity {
 					else
 					{
 						getRecipes(_et.getText().toString());
-						_urlArray.add(_et.getText().toString());
-						FileStuff.storeStringFile(getApplicationContext(), "history", _et.getText().toString(), false);
 					}
             	}
         });
     }
 	
-	private String getHistory(){
-    	Object stored = FileStuff.readStringFile(getApplicationContext(), "history", false);
-    	
-    	String history = null;
-    	if(stored == null){
-    		Log.i("HISTORY","NO HISTORY FILE FOUND");
-    	} else {
-    		history = (String) stored;
-    		_urlArray.add((String) stored);
+	private void updateRecents() {
+    	for(String key : _recent.keySet()) {
+    		_recentTitle.add(key);
     	}
-    	return history;
+    }
+    
+    @SuppressWarnings("unchecked")
+	private HashMap<String, String> getRecents() {
+    	Object stored = FileStuff.readObjectFile(getApplicationContext(), "recent", false);
+    	
+    	HashMap<String, String> recents;
+    	if (stored == null) {
+			Log.i("RECENTS", "NO RECENTS FOUND");
+			recents = new HashMap<String, String>();
+		} else {
+			recents = (HashMap<String, String>) stored;
+		}
+    	return recents;
+    }
+    
+    private void getAndUpdate() {
+    	if (!_recentTitle.isEmpty()) {
+    		_recentTitle.clear();
+		}
+    	_recentTitle.add("Past Searches...");
+    	_recent = getRecents();
+    	updateRecents();
     }
 	
+    // This receives the message from the service
 	private Handler theHandler = new Handler(){
 		public void handleMessage(Message message){
 			Object path = message.obj;
@@ -140,6 +159,19 @@ public class MainActivity extends Activity {
 					JSONObject json = new JSONObject(a);
 					_results = json.getJSONArray("recipes");
 			        Log.i("THE RESULTS", _results.toString());
+			        
+			        // results are stored
+			        _recent.put(_et.getText().toString(), _results.toString());
+	    			FileStuff.storeObjectFile(getApplicationContext(), "recent", _recent, false);
+	    			getAndUpdate();
+	    			
+	    			// This is where the provider would be updated but when active the application crashes (Did not have time to resolve) <-- ;-(
+	    			if(_check == true){
+	    				Log.i("PROVIDER", "IS NOT WORKING PROPERLY");
+					} else {
+						Uri initProvider = Uri.parse("content://com.markevansjr.fragment.provider/"+_et.getText().toString());
+						getContentResolver().update(initProvider, null, _results.toString(), null);
+					}
 			        
 			        _data = new ArrayList<Map<String, String>>();
 					
@@ -153,6 +185,7 @@ public class MainActivity extends Activity {
 					    map.put("source_img", s.getString("source_img"));
 					    _data.add(map);
 				        
+					    // List adapter is set
 				        _adapter = new SimpleAdapter(getApplicationContext(), _data, android.R.layout.simple_list_item_2,
 				                new String[] {"title", "source_name", "source_url", "rating", "source_img"},
 				                new int[] {android.R.id.text1,
@@ -168,6 +201,7 @@ public class MainActivity extends Activity {
 				        		if (fragment != null && fragment.isInLayout()) {
 				        			fragment.setInfo(o);
 				        		} else {
+				        			// Info is set to the details view via intent
 				        			Intent intent = new Intent(getApplicationContext(), SecondViewActivity.class);
 				        			intent.putExtra("RecipeData", o.toString());
 				        			intent.putExtra("RecipeTitle", o.get("title"));
@@ -195,6 +229,8 @@ public class MainActivity extends Activity {
 		}
 		_passed = item;
 		Log.i("CHECK ITEM", item);
+		
+		// Searched Item and Messenger is passed to GetService
 		Messenger messenger = new Messenger(theHandler);
 		Intent i = new Intent(getApplicationContext(), GetService.class);
 		i.putExtra("item", item);

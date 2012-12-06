@@ -29,10 +29,12 @@ public class GetService  extends IntentService{
     
     	Bundle extras = intent.getExtras();
         if (extras != null) {
+        	// Searched Item is received
         	_passedItem = (String) extras.get("item");
         	String responseString = "http://api.punchfork.com/recipes?key=13c42c860b3e65ae&q="+_passedItem+"&count=50";
             Log.i("onHandleIntent::", responseString);
             try{
+            	// API string response is generated below
     			finalURL = new URL(responseString);
     			_response = WebStuff.getURLStringResponse(finalURL);
     			if (_response.length() > 0) _result = Activity.RESULT_OK;
@@ -40,6 +42,7 @@ public class GetService  extends IntentService{
     			Log.e("BAD URL", "MALFORMED URL");
     			finalURL = null;
     		}
+            // Messenger is received and API response is sent back via a message object
         	Messenger messenger = (Messenger) extras.get("messenger");
         	Message msg = Message.obtain();
         	msg.arg1 = _result;

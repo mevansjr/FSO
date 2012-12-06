@@ -30,7 +30,7 @@ public class SecondViewActivity extends Activity {
 
 		setContentView(R.layout.secondview_activity);
 		
-		//Passed Data from MainFragment
+		// Passed Data from MainFragment
 		Intent i = getIntent();
 		_passedRecipeData = i.getStringExtra("RecipeData");
 		_passedTitle = i.getStringExtra("RecipeTitle");
@@ -38,22 +38,10 @@ public class SecondViewActivity extends Activity {
 		_passedRating = i.getStringExtra("RecipeRating");
 		_passedImgUrl = i.getStringExtra("RecipeImageUrl");
 		
+		// Text view is set and image is loaded from API URL
 		TextView tv = (TextView) findViewById(R.id.text_view_10);
 		tv.setText(_passedTitle+"\n\n"+_passedUrl+"\n\n"+_passedRating);
 		new DownloadImageTask((ImageView) findViewById(R.id.image_view))
         .execute(_passedImgUrl);
 	}
-	
-//	 @Override
-//	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//	  super.onActivityResult(requestCode, resultCode, data);
-//	  if(resultCode==RESULT_OK && requestCode==1){
-//	   String returned = data.getStringExtra("url");
-//	   Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//	   intent.putExtra("rurl", returned);
-//	   setResult(RESULT_OK, intent);
-//	   finish();
-//	  }
-//	 }
-
 }
