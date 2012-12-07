@@ -14,13 +14,13 @@ import android.util.Log;
 
 public class RecipeProvider extends ContentProvider {
 	
-	public static String PROVIDER_NAME = "com.markevansjr.fragmentapp.provider";
+	public static String PROVIDER_NAME = "com.markevansjr.ContentServiceApp.provider";
 	public static final Uri CONTENT_URI = Uri.parse("content://"+PROVIDER_NAME+"/item");
 	private static final UriMatcher uriMatcher;
 	static {
 		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-		uriMatcher.addURI("com.markevansjr.fragmentapp.provider", "", 1);
-		uriMatcher.addURI("com.markevansjr.fragmentapp.provider", "*", 2);
+		uriMatcher.addURI("com.markevansjr.ContentServiceApp.provider", "", 1);
+		uriMatcher.addURI("com.markevansjr.ContentServiceApp.provider", "*", 2);
 	}
 	
 	HashMap<String, String> _recents;
@@ -36,9 +36,9 @@ public class RecipeProvider extends ContentProvider {
 		public String getType(Uri uri) {
 			switch (uriMatcher.match(uri)){
 			case 1:
-				return "com.markevansjr.fragmentapp.provider.recents";
+				return "com.markevansjr.ContentServiceApp.provider.recents";
 			case 2:
-				return "com.markevansjr.fragmentapp.provider.search";
+				return "com.markevansjr.ContentServiceApp.search";
 				default:
 					throw new IllegalArgumentException("Unsupported URI: "+ uri);
 		}

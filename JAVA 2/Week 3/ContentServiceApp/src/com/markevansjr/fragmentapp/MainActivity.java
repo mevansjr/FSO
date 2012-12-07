@@ -54,7 +54,7 @@ public class MainActivity extends Activity {
 	HashMap<String, String> _recent = new HashMap<String, String>();
 	Spinner _recentsList;
 	ArrayList<String> _recentTitle = new ArrayList<String>();
-	boolean _check = true;
+	boolean _check = false;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -159,19 +159,11 @@ public class MainActivity extends Activity {
 					JSONObject json = new JSONObject(a);
 					_results = json.getJSONArray("recipes");
 			        Log.i("THE RESULTS", _results.toString());
-			        
-			        // results are stored
-			        _recent.put(_et.getText().toString(), _results.toString());
-	    			FileStuff.storeObjectFile(getApplicationContext(), "recent", _recent, false);
-	    			getAndUpdate();
 	    			
-	    			// This is where the provider would be updated but when active the application crashes (Did not have time to resolve) <-- ;-(
-	    			if(_check == true){
-	    				Log.i("PROVIDER", "IS NOT WORKING PROPERLY");
-					} else {
-						Uri initProvider = Uri.parse("content://com.markevansjr.fragment.provider/"+_et.getText().toString());
-						getContentResolver().update(initProvider, null, _results.toString(), null);
-					}
+	    			// Provider manages the saved results which stores it search history
+			        Uri initProvider = Uri.parse("content://com.markevansjr.ContentServiceApp.provider/"+_et.getText().toString());
+					getContentResolver().update(initProvider, null, _results.toString(), null);
+					getAndUpdate();
 			        
 			        _data = new ArrayList<Map<String, String>>();
 					

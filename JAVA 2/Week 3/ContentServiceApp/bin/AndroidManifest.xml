@@ -32,7 +32,7 @@
         </service>
         <provider
         	android:name="RecipeProvider"
-        	android:authorities="com.markevansjr.fragmentapp.provider"
+        	android:authorities="com.markevansjr.ContentServiceApp.provider"
         	android:exported="false" >
         </provider>
     </application>
