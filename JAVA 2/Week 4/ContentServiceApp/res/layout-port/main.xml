@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/DarkGry"
+    android:descendantFocusability="beforeDescendants"
+	android:focusableInTouchMode="true" >
+
+    <EditText
+        android:id="@+id/editText_1"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/button_1"
+        android:background="@color/White"
+        android:ems="10"
+        android:hint="@string/search_hint"
+        android:inputType="textCapSentences"
+        android:paddingLeft="5dp"
+        android:textColor="@color/Green"
+        android:textSize="18dp" />
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/spinner1"
+        android:layout_below="@+id/editText_1" />
+
+    <Button
+        android:id="@+id/button_1"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@+id/editText_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/Green"
+        android:text="@string/btn_text2"
+        android:textColor="@color/White" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@color/Green"
+        android:paddingLeft="5dp" />
+
+</RelativeLayout>

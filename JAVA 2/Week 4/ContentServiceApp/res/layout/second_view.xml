@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/DarkGry"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/text_view_10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll1"
+        android:background="@color/DarkGry"
+        android:textColor="@color/White"
+        android:textSize="16dp" >
+    </TextView>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ll1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@color/DarkGry"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:contentDescription="@string/image_des" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/text_view_10"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="14dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/Green"
+        android:padding="5dp"
+        android:text="@string/save"
+        android:textColor="@color/White" />
+
+</RelativeLayout>
