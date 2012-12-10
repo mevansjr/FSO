@@ -41,6 +41,7 @@ public class SecondViewActivity extends Activity {
 
 		setContentView(R.layout.secondview_activity);
 		
+		
 		// Passed Data from MainFragment
 		Intent i = getIntent();
 		_passedRecipeData = i.getStringExtra("RecipeData");
@@ -94,7 +95,7 @@ public class SecondViewActivity extends Activity {
 	
 		// Text view is set and image is loaded from API URL
 		TextView tv = (TextView) findViewById(R.id.text_view_10);
-		tv.setText(_passedTitle+"\n\n"+_passedUrl+"\n\n"+_passedRating);
+		tv.setText(_passedTitle.toUpperCase()+"\n"+"Rating: "+_passedRating);
 		new DownloadImageTask((ImageView) findViewById(R.id.image_view))
         .execute(_passedImgUrl);
 	}
@@ -109,7 +110,7 @@ public class SecondViewActivity extends Activity {
     // Calls Implict Intent
     public void callBrowser(View v)
     {
-    	Uri theuri = Uri.parse("http://punchfork.com/");
+    	Uri theuri = Uri.parse(_passedUrl);
     	Intent i = new Intent(Intent.ACTION_VIEW, theuri);
     	startActivity(i);
     }

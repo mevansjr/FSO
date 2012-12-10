@@ -50,24 +50,8 @@ public class SecondViewFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		_view = inflater.inflate(R.layout.second_view, container, false);
-		
 		return _view;
 	}
-	
-	// Calls Saved Favorites Activity
-    public void callFavs(View v)
-    {
-    	Intent i = new Intent(getActivity().getApplicationContext(), SavedRecipes.class); 
-    	startActivity(i);
-    }
-    
-    // Calls Implict Intent
-    public void callBrowser(View v)
-    {
-    	Uri theuri = Uri.parse("http://punchfork.com/");
-    	Intent i = new Intent(Intent.ACTION_VIEW, theuri);
-    	startActivity(i);
-    }
 
 	@SuppressLint("SetJavaScriptEnabled")
 	public void setInfo(HashMap<String, String> data) {
@@ -78,7 +62,7 @@ public class SecondViewFragment extends Fragment {
 		_rating = data.get("rating");
 		_theId = data.get("id");
 		_imageUrl = data.get("source_img");
-		tv.setText(_title+"\n\n"+_url+"\n\n"+_rating);
+		tv.setText(_title.toUpperCase()+"\n"+"Rating: "+_rating);
 		new DownloadImageTask((ImageView) getView().findViewById(R.id.image_view))
         .execute(_imageUrl);
 		
@@ -123,4 +107,19 @@ public class SecondViewFragment extends Fragment {
 					}); 
 				}
 	}
+	
+	// Calls Saved Favorites Activity
+    public void callFavs(View v)
+    {
+    	Intent i = new Intent(getActivity().getApplicationContext(), SavedRecipes.class); 
+    	startActivity(i);
+    }
+    
+    // Calls Implict Intent
+    public void callBrowser(View v)
+    {
+    	Uri theuri = Uri.parse(_url);
+    	Intent i = new Intent(Intent.ACTION_VIEW, theuri);
+    	startActivity(i);
+    }
 }
