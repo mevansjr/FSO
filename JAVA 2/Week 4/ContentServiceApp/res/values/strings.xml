@@ -33,4 +33,12 @@
 
     <string name="save">Save to Favorite</string>
 
+    <string name="savedfavs">Saved Favorites</string>
+
+    <string name="browsertxt">Open Browser</string>
+
+    <string name="openfavs">Open Favs</string>
+
+    <string name="saverecipe">Save Recipe</string>
+
 </resources>

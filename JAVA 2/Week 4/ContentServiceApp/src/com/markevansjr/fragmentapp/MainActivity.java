@@ -47,6 +47,7 @@ public class MainActivity extends Activity {
 	Context _context;
 	EditText _et;
 	Button _searchBtn;
+	Button _favBtn;
 	Spinner _list;
 	ListView _lv;
 	String _history;
@@ -56,13 +57,27 @@ public class MainActivity extends Activity {
 	SimpleAdapter _adapter;
 	SimpleAdapter _adapter2;
 	ArrayList<String> _titleArray = new ArrayList<String>();
-	GetRecipe getRecipe;
 	String _fav;
 	String _passed;
 	HashMap<String, String> _recent = new HashMap<String, String>();
 	Spinner _recentsList;
 	ArrayList<String> _recentTitle = new ArrayList<String>();
 	boolean _check = false;
+	
+	// Calls Saved Favorites Activity
+    public void callFavs(View v)
+    {
+    	Intent i = new Intent(getApplicationContext(), SavedRecipes.class); 
+    	startActivity(i);
+    }
+    
+    // Calls Implict Intent
+    public void callBrowser(View v)
+    {
+    	Uri theuri = Uri.parse("http://punchfork.com/");
+    	Intent i = new Intent(Intent.ACTION_VIEW, theuri);
+    	startActivity(i);
+    }
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,83 +94,77 @@ public class MainActivity extends Activity {
         _et = (EditText) findViewById(R.id.editText_1);
         _searchBtn = (Button) findViewById(R.id.button_1);
         
-        // List View setup
+        // List View setup for data from PARSE
         _lv = (ListView) findViewById(R.id.listView1);
 
-        ParseQuery query = new ParseQuery("savedFavObject");
-        query.findInBackground(new FindCallback() {
-          public void done(List<ParseObject> objects, ParseException e) {
-            if (e == null) {
+        // Find Fav Button
+        _favBtn = (Button) findViewById(R.id.SavedBtn);
+        
+        _favBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				ParseQuery query = new ParseQuery("savedFavObject");
+				query.findInBackground(new FindCallback() {
+					public void done(List<ParseObject> objects, ParseException e) {
+						if (e == null) {
             
-            if (objects.toArray().length > 0){
-            _data2 = new ArrayList<Map<String, String>>();
-            	
-              for(int ii=0;ii<objects.toArray().length;ii++){							
-      			ParseObject s = objects.get(ii);
-      			Map<String, String> map = new HashMap<String, String>(2);
-    			map.put("title", s.getString("title"));
-    			map.put("source_name", s.getString("source"));
-    		    map.put("pf_url", s.getString("recipe_url"));
-    		    map.put("rating", s.getString("rating"));
-    		    map.put("source_img", s.getString("img_url"));
-    		    map.put("check", "true");
-    		    map.put("id", s.getObjectId());
-    		    _data2.add(map);
-              }
+							if (objects.toArray().length > 0){
+								_data2 = new ArrayList<Map<String, String>>();
+            
+								for(int ii=0;ii<objects.toArray().length;ii++){							
+									ParseObject s = objects.get(ii);
+									Map<String, String> map = new HashMap<String, String>(2);
+									map.put("title", s.getString("title"));
+									map.put("source_name", s.getString("source"));
+									map.put("pf_url", s.getString("recipe_url"));
+									map.put("rating", s.getString("rating"));
+									map.put("source_img", s.getString("img_url"));
+									map.put("check", "true");
+									map.put("id", s.getObjectId());
+									_data2.add(map);
+								}
               
-           // List adapter is set
-              _adapter2 = new SimpleAdapter(getApplicationContext(), _data2, android.R.layout.simple_list_item_2,
-                      new String[] {"title", "source_name", "pf_url", "rating", "source_img", "check", "id"},
-                      new int[] {android.R.id.text1,
-                                 android.R.id.text2});
-              _lv.setAdapter(_adapter2);
+								// List adapter is set
+								_adapter2 = new SimpleAdapter(getApplicationContext(), _data2, android.R.layout.simple_list_item_2,
+										new String[] {"title", "source_name", "pf_url", "rating", "source_img", "check", "id"},
+										new int[] {android.R.id.text1,
+										android.R.id.text2});
+								_lv.setAdapter(_adapter2);
               
-              _lv.setOnItemClickListener(new OnItemClickListener() {
-              	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {        		
-              		@SuppressWarnings("unchecked")
-      				HashMap<String, String> o = (HashMap<String, String>) _lv.getItemAtPosition(position);
+								_lv.setOnItemClickListener(new OnItemClickListener() {
+							public void onItemClick(AdapterView<?> parent, View view, int position, long id) {        		
+								@SuppressWarnings("unchecked")
+								HashMap<String, String> o = (HashMap<String, String>) _lv.getItemAtPosition(position);
               		
-              		SecondViewFragment fragment = (SecondViewFragment) getFragmentManager().findFragmentById(R.id.secViewFrag);
-              		if (fragment != null && fragment.isInLayout()) {
-              			fragment.setInfo(o);
-              		} else {
-              			// Info is set to the details view via intent
-              			Intent intent = new Intent(getApplicationContext(), SecondViewActivity.class);
-              			intent.putExtra("RecipeData", o.toString());
-              			intent.putExtra("RecipeTitle", o.get("title"));
-              			intent.putExtra("RecipeUrl", o.get("pf_url"));
-              			intent.putExtra("RecipeRating", o.get("rating"));
-              			intent.putExtra("RecipeImageUrl", o.get("source_img"));
-              			intent.putExtra("check", "true");
-              			intent.putExtra("id", o.get("id"));
-              			startActivity(intent);
-              		}
-      			}
-      		});
+								SecondViewFragment fragment = (SecondViewFragment) getFragmentManager().findFragmentById(R.id.secViewFrag);
+								if (fragment != null && fragment.isInLayout()) {
+									fragment.setInfo(o);
+								} else {
+									// Info is set to the details view via intent
+									Intent intent = new Intent(getApplicationContext(), SecondViewActivity.class);
+									intent.putExtra("RecipeData", o.toString());
+									intent.putExtra("RecipeTitle", o.get("title"));
+									intent.putExtra("RecipeUrl", o.get("pf_url"));
+									intent.putExtra("RecipeRating", o.get("rating"));
+									intent.putExtra("RecipeImageUrl", o.get("source_img"));
+									intent.putExtra("check", "true");
+									intent.putExtra("id", o.get("id"));
+									startActivity(intent);
+								}
+							}
+						});
            
-            } else {
-            	Log.i("FROM PARSE::", "NO DATA STORED");
-            }
+						} else {
+							Log.i("FROM PARSE::", "NO DATA STORED");
+						}
               
-            } else {
-              Log.e("ERROR::", "ERROR");
-            }
-          }
-        });
-        
-//        ParseQuery query = new ParseQuery("savedFavObject");
-//        query.getFirstInBackground(new GetCallback() {
-//          public void done(ParseObject object, ParseException e) {
-//            if (object == null) {
-//              Log.d("TEST", "The getFirst request failed.");
-//            } else {
-//              Log.d("TEST", "Retrieved the object.");
-//            }
-//          }
-//        });
-      
-//        
-        
+						} else {
+							Log.e("ERROR::", "ERROR");
+						}
+					}
+				});    
+			}
+		});
         
         // Find spinner and set listAdapter
         _recentsList = (Spinner) findViewById(R.id.spinner1);

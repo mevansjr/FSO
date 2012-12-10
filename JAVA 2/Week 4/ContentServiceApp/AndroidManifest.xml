@@ -26,13 +26,17 @@
             android:name=".SecondViewActivity"
             android:label="Recipe It Up!" >
         </activity>
+        <activity
+            android:name=".SavedRecipes"
+            android:label="Recipe It Up!" >
+        </activity>
         <service
-            android:name="com.markevansjr.fragmentapp.GetService"
+            android:name="GetService"
             android:enabled="true" >
         </service>
         <provider
         	android:name="RecipeProvider"
-        	android:authorities="com.markevansjr.ContentServiceApp.provider"
+   			android:authorities="com.markevansjr.ContentServiceApp.provider"
         	android:exported="false" >
         </provider>
     </application>

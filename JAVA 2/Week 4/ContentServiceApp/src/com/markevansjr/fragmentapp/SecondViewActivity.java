@@ -1,5 +1,6 @@
 package com.markevansjr.fragmentapp;
 
+import com.markevansjr.fragmentapp.R;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -9,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SecondViewActivity extends Activity {
 	
@@ -63,11 +66,14 @@ public class SecondViewActivity extends Activity {
 						@Override
 						public void done(ParseObject object, ParseException e) {
 							object.deleteInBackground();
+							Toast toast = Toast.makeText(getApplicationContext(), "Recipe DELETED.", Toast.LENGTH_SHORT);
+							toast.show();
 						}
 					});
 				}
 			});
 		} else {
+			btn.setText("Save to Favorite");
 			btn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -79,6 +85,8 @@ public class SecondViewActivity extends Activity {
 					savedFavObject.put("rating", _passedRating);
 					savedFavObject.put("img_url", _passedImgUrl);
 					savedFavObject.saveInBackground();
+					Toast toast = Toast.makeText(getApplicationContext(), "Recipe SAVED.", Toast.LENGTH_SHORT);
+					toast.show();
 					Log.i("fav::", _passedTitle+" was SAVED.");
 				}
 			}); 
@@ -90,4 +98,19 @@ public class SecondViewActivity extends Activity {
 		new DownloadImageTask((ImageView) findViewById(R.id.image_view))
         .execute(_passedImgUrl);
 	}
+	
+	// Calls Saved Favorites Activity
+    public void callFavs(View v)
+    {
+    	Intent i = new Intent(getApplicationContext(), SavedRecipes.class); 
+    	startActivity(i);
+    }
+    
+    // Calls Implict Intent
+    public void callBrowser(View v)
+    {
+    	Uri theuri = Uri.parse("http://punchfork.com/");
+    	Intent i = new Intent(Intent.ACTION_VIEW, theuri);
+    	startActivity(i);
+    }
 }

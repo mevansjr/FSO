@@ -4,20 +4,52 @@
     android:layout_height="fill_parent"
     android:background="@color/DarkGry"
     android:orientation="vertical" >
+    
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ll1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/OpenBrowserBtn"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="50"
+            android:gravity="center"
+            android:onClick="callBrowser"
+            android:text="@string/browsertxt"
+            android:textColor="@color/White" />
+        
+        <Button
+            android:id="@+id/save_btn"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="50"
+            android:gravity="center"
+            android:onClick="callFavs"
+            android:text="@string/saverecipe"
+            android:textColor="@color/White" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/text_view_10"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/ll1"
+        android:layout_above="@+id/ll2"
+        android:layout_below="@+id/ll1"
         android:background="@color/DarkGry"
         android:textColor="@color/White"
         android:textSize="16dp" >
+
     </TextView>
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/ll1"
+        android:id="@+id/ll2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -32,18 +64,5 @@
             android:contentDescription="@string/image_des" />
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/save_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/text_view_10"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="14dp"
-        android:layout_marginRight="16dp"
-        android:background="@color/Green"
-        android:padding="5dp"
-        android:text="@string/save"
-        android:textColor="@color/White" />
 
 </RelativeLayout>
