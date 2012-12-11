@@ -33,15 +33,16 @@ public final class R {
         public static final int SavedBtn=0x7f090002;
         public static final int button_1=0x7f090004;
         public static final int editText_1=0x7f090003;
-        public static final int image_view=0x7f09000c;
+        public static final int image_view=0x7f09000d;
         public static final int linearLayout1=0x7f090006;
         public static final int listView1=0x7f090000;
         public static final int listView2=0x7f090009;
         public static final int ll1=0x7f090007;
-        public static final int save_btn=0x7f09000a;
+        public static final int mainBg=0x7f09000a;
+        public static final int save_btn=0x7f09000b;
         public static final int secViewFrag=0x7f090001;
         public static final int spinner1=0x7f090005;
-        public static final int text_view_10=0x7f09000b;
+        public static final int text_view_10=0x7f09000c;
     }
     public static final class integer {
         public static final int four=0x7f040000;

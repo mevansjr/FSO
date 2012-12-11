@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+@SuppressLint("DefaultLocale")
 public class SecondViewFragment extends Fragment {
 	
 	String _imageUrl;

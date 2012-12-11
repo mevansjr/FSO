@@ -13,14 +13,17 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class SavedRecipes extends Activity {
@@ -37,7 +40,7 @@ public class SavedRecipes extends Activity {
 			
 			return;
 		}
-
+		
 		setContentView(R.layout.saved_recipes);
 		
 		// Inits my Third Party Library PARSE
@@ -45,6 +48,10 @@ public class SavedRecipes extends Activity {
         
         // List View setup for data from PARSE
         _lv = (ListView) findViewById(R.id.listView2);
+        
+        ConnectivityManager connec = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
+				(connec.getNetworkInfo(0).isAvailable() == true)){
 
         ParseQuery query = new ParseQuery("savedFavObject");
         query.findInBackground(new FindCallback() {
@@ -106,6 +113,11 @@ public class SavedRecipes extends Activity {
             }
           }
         });
+        
+		} else {
+			Toast toast2 = Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_SHORT);
+			toast2.show();
+		}
 		
 	}
 }

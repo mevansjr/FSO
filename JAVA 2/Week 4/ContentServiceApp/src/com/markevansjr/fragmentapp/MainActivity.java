@@ -12,14 +12,18 @@ import org.json.JSONObject;
 import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
+import com.parse.PushService;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -63,20 +67,28 @@ public class MainActivity extends Activity {
 	Spinner _recentsList;
 	ArrayList<String> _recentTitle = new ArrayList<String>();
 	boolean _check = false;
+	Boolean _connected = false;
 	
 	// Calls Saved Favorites Activity
     public void callFavs(View v)
-    {
-    	Intent i = new Intent(getApplicationContext(), SavedRecipes.class); 
-    	startActivity(i);
+    {	
+		Intent i = new Intent(getApplicationContext(), SavedRecipes.class); 
+		startActivity(i);
     }
     
     // Calls Implict Intent
     public void callBrowser(View v)
     {
-    	Uri theuri = Uri.parse("http://punchfork.com/");
-    	Intent i = new Intent(Intent.ACTION_VIEW, theuri);
-    	startActivity(i);
+    	ConnectivityManager connec = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
+				(connec.getNetworkInfo(0).isAvailable() == true)){
+			Uri theuri = Uri.parse("http://punchfork.com/");
+			Intent i = new Intent(Intent.ACTION_VIEW, theuri);
+			startActivity(i);
+		} else {
+			Toast toast = Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_SHORT);
+			toast.show();
+		}
     }
 	
 	@Override
@@ -86,6 +98,9 @@ public class MainActivity extends Activity {
         
         // Inits my Third Party Library PARSE
         Parse.initialize(this, "PV07xPdLpxzJKBKUS2UP6iJ0W9GbEHvmfPMMQovz", "OPxrcJKt4Pe26WHvCAeuI86hnGzXjOlO1NmyfJyP");
+       
+        // Push Notification Subscribe
+        PushService.subscribe(getApplicationContext(), "Recipe", MainActivity.class);
         
         // Receive and Update Favorites
         getAndUpdate();
@@ -103,6 +118,22 @@ public class MainActivity extends Activity {
         _favBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				ConnectivityManager connec = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+				if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
+						(connec.getNetworkInfo(0).isAvailable() == true)){
+				Toast toast = Toast.makeText(getApplicationContext(), "Retrieving Recipe Data", Toast.LENGTH_LONG);
+				toast.show();
+				
+				// Create our installation query
+				ParseQuery pushQuery = ParseInstallation.getQuery();
+				pushQuery.whereEqualTo("Recipe", true);
+				
+				// Send push notification to query
+				ParsePush push = new ParsePush();
+				push.setQuery(pushQuery); // Set our installation query
+				push.setMessage("New Test");
+				push.sendInBackground();
+				
 				ParseQuery query = new ParseQuery("savedFavObject");
 				query.findInBackground(new FindCallback() {
 					public void done(List<ParseObject> objects, ParseException e) {
@@ -162,7 +193,11 @@ public class MainActivity extends Activity {
 							Log.e("ERROR::", "ERROR");
 						}
 					}
-				});    
+				});   
+				} else {
+					Toast toast = Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_SHORT);
+					toast.show();
+				}
 			}
 		});
         
@@ -199,8 +234,12 @@ public class MainActivity extends Activity {
         _searchBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				ConnectivityManager connec = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+				if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
+						(connec.getNetworkInfo(0).isAvailable() == true)){
 					InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 					imm.hideSoftInputFromWindow(_et.getWindowToken(), 0);
+					
 					if (_et.getText().toString().equals("") || _et.getText().toString().equals(" ") || 
 							_et.getText().toString() == "" || _et.getText().toString() == " ")
 					{ 
@@ -211,6 +250,12 @@ public class MainActivity extends Activity {
 					{
 						getRecipes(_et.getText().toString());
 					}
+					
+					ReceivePush.getPush();
+			} else {
+				Toast toast = Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_SHORT);
+				toast.show();
+			}
             	}
         });
     }
@@ -312,20 +357,24 @@ public class MainActivity extends Activity {
 	};
 	
 	private void getRecipes(String item){
-		if (_et.getText().toString().length() > 0){
-			item = _et.getText().toString();
-		} else {
-			item = _fav;
-		}
-		_passed = item;
-		Log.i("CHECK ITEM", item);
-		
-		// Searched Item and Messenger is passed to GetService
-		Messenger messenger = new Messenger(theHandler);
-		Intent i = new Intent(getApplicationContext(), GetService.class);
-		i.putExtra("item", item);
-		i.putExtra("messenger", messenger);
-		startService(i);
+			Toast toast = Toast.makeText(getApplicationContext(), "Retrieving Recipe Data", Toast.LENGTH_LONG);
+			toast.show();
+			
+			//Yay there is a connection
+			if (_et.getText().toString().length() > 0){
+				item = _et.getText().toString();
+			} else {
+				item = _fav;
+			}
+			_passed = item;
+			Log.i("CHECK ITEM", item);
+			
+			// Searched Item and Messenger is passed to GetService
+			Messenger messenger = new Messenger(theHandler);
+			Intent i = new Intent(getApplicationContext(), GetService.class);
+			i.putExtra("item", item);
+			i.putExtra("messenger", messenger);
+			startService(i);	
 	}
 	
 }

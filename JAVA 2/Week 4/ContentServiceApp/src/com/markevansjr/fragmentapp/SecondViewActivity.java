@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+@SuppressLint("DefaultLocale")
 public class SecondViewActivity extends Activity {
 	
 	String _passedRecipeData;
@@ -29,7 +30,7 @@ public class SecondViewActivity extends Activity {
 	String _passedRating;
 	String _passedImgUrl;
 
-	@SuppressLint("SetJavaScriptEnabled")
+	@SuppressLint({ "SetJavaScriptEnabled", "DefaultLocale" })
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -96,8 +97,8 @@ public class SecondViewActivity extends Activity {
 		// Text view is set and image is loaded from API URL
 		TextView tv = (TextView) findViewById(R.id.text_view_10);
 		tv.setText(_passedTitle.toUpperCase()+"\n"+"Rating: "+_passedRating);
-		new DownloadImageTask((ImageView) findViewById(R.id.image_view))
-        .execute(_passedImgUrl);
+		ImageView img = (ImageView) findViewById(R.id.image_view);
+		new DownloadImageTask(img).execute(_passedImgUrl);
 	}
 	
 	// Calls Saved Favorites Activity
