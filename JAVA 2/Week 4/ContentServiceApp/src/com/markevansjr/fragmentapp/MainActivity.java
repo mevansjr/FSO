@@ -86,7 +86,7 @@ public class MainActivity extends Activity {
 			Intent i = new Intent(Intent.ACTION_VIEW, theuri);
 			startActivity(i);
 		} else {
-			Toast toast = Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_SHORT);
+			Toast toast = Toast.makeText(getApplicationContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
 			toast.show();
 		}
     }
@@ -121,7 +121,7 @@ public class MainActivity extends Activity {
 				ConnectivityManager connec = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 				if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
 						(connec.getNetworkInfo(0).isAvailable() == true)){
-				Toast toast = Toast.makeText(getApplicationContext(), "Retrieving Recipe Data", Toast.LENGTH_LONG);
+				Toast toast = Toast.makeText(getApplicationContext(), "LOADING DATA..", Toast.LENGTH_LONG);
 				toast.show();
 				
 				// Create our installation query
@@ -195,7 +195,7 @@ public class MainActivity extends Activity {
 					}
 				});   
 				} else {
-					Toast toast = Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_SHORT);
+					Toast toast = Toast.makeText(getApplicationContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
 					toast.show();
 				}
 			}
@@ -211,7 +211,7 @@ public class MainActivity extends Activity {
         	public void onItemSelected(AdapterView<?> parent, View v, int pos, long id){
         		if(pos > 0){
         			_fav = parent.getItemAtPosition(pos).toString();	
-        			if (_fav.equals("Past Searches...") || _fav == "Past Searches..."){
+        			if (_fav.equals("PAST SEARCHES...") || _fav == "PAST SEARCHES..."){
         			} else {
         				_et.setText(_fav);
         			}
@@ -243,7 +243,7 @@ public class MainActivity extends Activity {
 					if (_et.getText().toString().equals("") || _et.getText().toString().equals(" ") || 
 							_et.getText().toString() == "" || _et.getText().toString() == " ")
 					{ 
-						Toast toast = Toast.makeText(getApplicationContext(), "Must Enter a Recipe!", Toast.LENGTH_SHORT);
+						Toast toast = Toast.makeText(getApplicationContext(), "MUST ENTER RECIPE!", Toast.LENGTH_SHORT);
 						toast.show();
 					}
 					else
@@ -253,7 +253,7 @@ public class MainActivity extends Activity {
 					
 					ReceivePush.getPush();
 			} else {
-				Toast toast = Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_SHORT);
+				Toast toast = Toast.makeText(getApplicationContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
 				toast.show();
 			}
             	}
@@ -284,7 +284,7 @@ public class MainActivity extends Activity {
     	if (!_recentTitle.isEmpty()) {
     		_recentTitle.clear();
 		}
-    	_recentTitle.add("Past Searches...");
+    	_recentTitle.add("PAST SEARCHES...");
     	_recent = getRecents();
     	updateRecents();
     }
@@ -357,7 +357,7 @@ public class MainActivity extends Activity {
 	};
 	
 	private void getRecipes(String item){
-			Toast toast = Toast.makeText(getApplicationContext(), "Retrieving Recipe Data", Toast.LENGTH_LONG);
+			Toast toast = Toast.makeText(getApplicationContext(), "LOADING DATA..", Toast.LENGTH_LONG);
 			toast.show();
 			
 			//Yay there is a connection

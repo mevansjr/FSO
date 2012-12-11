@@ -68,7 +68,7 @@ public class SecondViewActivity extends Activity {
 						@Override
 						public void done(ParseObject object, ParseException e) {
 							object.deleteInBackground();
-							Toast toast = Toast.makeText(getApplicationContext(), "Recipe DELETED.", Toast.LENGTH_SHORT);
+							Toast toast = Toast.makeText(getApplicationContext(), "RECIPE DELETED", Toast.LENGTH_SHORT);
 							toast.show();
 						}
 					});
@@ -87,9 +87,9 @@ public class SecondViewActivity extends Activity {
 					savedFavObject.put("rating", _passedRating);
 					savedFavObject.put("img_url", _passedImgUrl);
 					savedFavObject.saveInBackground();
-					Toast toast = Toast.makeText(getApplicationContext(), "Recipe SAVED.", Toast.LENGTH_SHORT);
+					Toast toast = Toast.makeText(getApplicationContext(), "RECIPE SAVED", Toast.LENGTH_SHORT);
 					toast.show();
-					Log.i("fav::", _passedTitle+" was SAVED.");
+					Log.i("fav::", _passedTitle+" WAS SAVED.");
 				}
 			}); 
 		}	

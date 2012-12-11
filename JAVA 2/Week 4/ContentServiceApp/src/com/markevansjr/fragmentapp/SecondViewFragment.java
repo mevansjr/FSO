@@ -83,7 +83,7 @@ public class SecondViewFragment extends Fragment {
 								@Override
 								public void done(ParseObject object, ParseException e) {
 									object.deleteInBackground();
-									Toast toast = Toast.makeText(_view.getContext(), "Recipe DELETED.", Toast.LENGTH_SHORT);
+									Toast toast = Toast.makeText(_view.getContext(), "RECIPE DELETED", Toast.LENGTH_SHORT);
 									toast.show();
 								}
 							});
@@ -101,7 +101,7 @@ public class SecondViewFragment extends Fragment {
 							savedFavObject.put("rating", _rating);
 							savedFavObject.put("img_url", _imageUrl);
 							savedFavObject.saveInBackground();
-							Toast toast = Toast.makeText(_view.getContext(), "Recipe SAVED.", Toast.LENGTH_SHORT);
+							Toast toast = Toast.makeText(_view.getContext(), "RECIPE SAVED", Toast.LENGTH_SHORT);
 							toast.show();
 							Log.i("fav::", _title+" was SAVED.");
 						}
