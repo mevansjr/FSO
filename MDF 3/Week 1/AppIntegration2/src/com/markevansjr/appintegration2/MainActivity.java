@@ -23,6 +23,7 @@ public class MainActivity extends Activity {
 		
 		_et = (EditText) findViewById(R.id.editText1);
 		Button btn = (Button) findViewById(R.id.button1);
+		_et.setText("http://www.");
 		
 		btn.setOnClickListener(new OnClickListener() {
 			@Override
@@ -34,7 +35,7 @@ public class MainActivity extends Activity {
 					Toast toast = Toast.makeText(getApplicationContext(), "Search Field is empty!", Toast.LENGTH_SHORT);
 					toast.show();
 				} else {
-					String scheme = "hotel://name/" +_et.getText().toString();
+					String scheme = "search://name/" +_et.getText().toString();
 					Uri webpage = Uri.parse(scheme);
 					
 					Intent browseIntent = new Intent(Intent.ACTION_VIEW, webpage);

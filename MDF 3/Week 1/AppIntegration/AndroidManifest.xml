@@ -27,7 +27,7 @@
     		<intent-filter>
         		<action android:name="android.intent.action.VIEW"/>
         		<category android:name="android.intent.category.DEFAULT"/>
-        		<data android:scheme="hotel" android:host="name" />
+        		<data android:scheme="search" android:host="name" />
     		</intent-filter>
         </activity>
         <activity

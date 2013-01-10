@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FragmentApp</string>
+    <string name="full_name">Mark Evans</string>
+    <string name="search_hint">Find a Recipe</string>
+    <string name="btn_text1">Go Back</string>
+    <string name="btn_text2">Search</string>
+    <string name="btn_text3">Search Punchfork</string>
+    <string name="btn_text4">Go</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Recipe It Up!</string>
+    <string name="imagedes">Logo</string>
+
+    <string-array name="cat_titles">
+        <item>Appetizers</item>
+        <item>Salads</item>
+        <item>Entrees</item>
+        <item>Desserts</item>
+        <item>Mixed Drinks</item>
+    </string-array>
+    <string-array name="cat_links">
+        <item>appetizer</item>
+        <item>salads</item>
+        <item>dinner</item>
+        <item>desserts</item>
+        <item>mixed drink</item>
+    </string-array>
+
+    <string name="browser">Recipe Browser</string>
+
+</resources>

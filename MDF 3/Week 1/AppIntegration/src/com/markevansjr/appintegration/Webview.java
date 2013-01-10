@@ -17,7 +17,9 @@ public class Webview extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.webview);
+		
 		_web = (WebView) findViewById(R.id.webview2);
+		
 		Intent intent = getIntent();
 		String url = intent.getStringExtra("data");
 		_web.loadUrl(url);

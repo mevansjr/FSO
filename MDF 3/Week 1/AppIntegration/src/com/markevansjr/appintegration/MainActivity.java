@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
 		    _name = name.substring(1, name.length());
 		    Log.i("TAG NAME", _name);
 		    Intent i = new Intent(this, Webview.class);
-		    i.putExtra("data", "http://www."+_name);
+		    i.putExtra("data", _name);
 		    startActivity(i);
 	    } else {
 	    	Log.i("TAG", "TAG1-b");
