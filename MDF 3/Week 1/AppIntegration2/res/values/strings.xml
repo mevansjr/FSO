@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Launcher</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Custom Launcher</string>
+    <string name="buttontext">Moogle It!</string>
+    <string name="introtext">Mark\'s version of Google - MOOGLE!</string>
+    <string name="searchhint">search..</string>
+    <string name="chooser_title">Which Browser..</string>
+
+</resources>
