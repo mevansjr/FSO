@@ -1,0 +1,130 @@
+package com.markevansjr.advancedfeatures;
+
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Toast;
+import android.widget.VideoView;
+import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+
+public class Main extends Activity {
+	String _btxt;
+	MediaPlayer _mp;
+	Button _btn1;
+	VideoView _vv;
+	Context _context;
+	Notification _notification;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
+		_context = this;
+		_mp = MediaPlayer.create(Main.this, R.raw.intro);
+		_btn1 = (Button) findViewById(R.id.button1);
+		_btxt = "Play";
+		_btn1.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(_btxt.equals("Play")){
+					_mp.start();
+					_btxt = "Pause";
+					_btn1.setText(_btxt);
+				} else {
+					_mp.pause();
+					_btxt = "Play";
+					_btn1.setText(_btxt);
+				}
+			}
+		});
+		_btn1.setText(_btxt);
+		
+		final Button b2 = (Button) findViewById(R.id.button2);
+		b2.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				_vv = (VideoView) findViewById(R.id.videoView1);
+				String uripath = "android.resource://"+ getPackageName() + "/" + R.raw.intro;
+				_vv.setVideoURI(Uri.parse(uripath));
+				if(b2.getText().equals("Play Video")){
+					b2.setText("Pause Video");
+					_vv.start();
+				} else {
+					b2.setText("Play Video");
+					_vv.pause();
+				}
+			}
+		});
+		b2.setText("Play Video");
+		
+		Button b3 = (Button) findViewById(R.id.button3);
+		b3.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Log.i("TAG", "HELLO");
+				NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+				NotificationCompat.Builder nbuilder = new NotificationCompat.Builder(_context)
+				.setSmallIcon(R.drawable.ic_launcher)
+				.setContentTitle("Advanced Features")
+				.setContentText("Visit my website!");
+				
+				// website
+				String url = "http://www.markevansjr.com/main.html";
+				Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+				
+				webIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				
+				PendingIntent pendingIntent = PendingIntent.getActivity(_context, 0, webIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+				
+				nbuilder.setContentIntent(pendingIntent);
+				_notification = nbuilder.build();
+				
+				_notification.tickerText = "Advanced Features!";
+				nm.notify(0, _notification);
+			}
+		});
+		
+		Button btnShowLocation = (Button) findViewById(R.id.Button4);
+		 
+        // show location button click event
+        btnShowLocation.setOnClickListener(new View.OnClickListener() {
+ 
+            @Override
+            public void onClick(View arg0) {
+                // create class object
+                GPSTracker gps = new GPSTracker(Main.this);
+ 
+                // check if GPS enabled
+                if(gps.canGetLocation()){
+ 
+                    double latitude = gps.getLatitude();
+                    double longitude = gps.getLongitude();
+ 
+                    // \n is for new line
+                    Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+                }else{
+                    // can't get location
+                    // GPS or Network is not enabled
+                    // Ask user to enable GPS/network in settings
+                    gps.showSettingsAlert();
+                }
+ 
+            }
+        });
+
+	}
+}
