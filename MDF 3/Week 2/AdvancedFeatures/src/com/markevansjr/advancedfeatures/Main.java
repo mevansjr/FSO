@@ -30,10 +30,13 @@ public class Main extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		//// GROUP ONE <---------------------- ////
 		_context = this;
 		_mp = MediaPlayer.create(Main.this, R.raw.intro);
 		_btn1 = (Button) findViewById(R.id.button1);
 		_btxt = "Play";
+		
+		// AUDIO PLAYBACK
 		_btn1.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -51,6 +54,7 @@ public class Main extends Activity {
 		});
 		_btn1.setText(_btxt);
 		
+		// VIDEO PLAYBACK
 		final Button b2 = (Button) findViewById(R.id.button2);
 		b2.setOnClickListener(new OnClickListener() {
 			
@@ -70,6 +74,32 @@ public class Main extends Activity {
 		});
 		b2.setText("Play Video");
 		
+		//// GROUP TWO <---------------------- ////
+		Button btnShowLocation = (Button) findViewById(R.id.Button4);
+	    // show location button click event
+	    btnShowLocation.setOnClickListener(new View.OnClickListener() {
+	 
+	    @Override
+	    public void onClick(View arg0) {
+	    // create class object
+	    	GPSTracker gps = new GPSTracker(Main.this);
+	    	// check if GPS enabled
+	       	if(gps.canGetLocation()){
+	       		double latitude = gps.getLatitude();
+	            double longitude = gps.getLongitude();
+	            // \n is for new line
+	            Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+	       	}else{
+	       		// can't get location
+	            // GPS or Network is not enabled
+	            // Ask user to enable GPS/network in settings
+	            gps.showSettingsAlert();
+	        }
+	 
+	        }
+	    });
+		
+		//// GROUP THREE <---------------------- ////
 		Button b3 = (Button) findViewById(R.id.button3);
 		b3.setOnClickListener(new OnClickListener() {
 			
@@ -97,34 +127,6 @@ public class Main extends Activity {
 				nm.notify(0, _notification);
 			}
 		});
-		
-		Button btnShowLocation = (Button) findViewById(R.id.Button4);
-		 
-        // show location button click event
-        btnShowLocation.setOnClickListener(new View.OnClickListener() {
- 
-            @Override
-            public void onClick(View arg0) {
-                // create class object
-                GPSTracker gps = new GPSTracker(Main.this);
- 
-                // check if GPS enabled
-                if(gps.canGetLocation()){
- 
-                    double latitude = gps.getLatitude();
-                    double longitude = gps.getLongitude();
- 
-                    // \n is for new line
-                    Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
-                }else{
-                    // can't get location
-                    // GPS or Network is not enabled
-                    // Ask user to enable GPS/network in settings
-                    gps.showSettingsAlert();
-                }
- 
-            }
-        });
 
 	}
 }
