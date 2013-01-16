@@ -1,5 +1,9 @@
 package com.markevansjr.advancedfeatures;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -14,9 +18,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.VideoView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class Home extends Activity {
 	String _btxt;
@@ -29,27 +37,22 @@ public class Home extends Activity {
 	EditText _et;
 	double latitude;
 	double longitude;
+	ListView _lv;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home);
 		_context = this;
-		
+		_lv = (ListView) findViewById(R.id.listView1);
+	    
 		//// GROUP TWO <---------------------- ////
-		// create class object
     	GPSTracker gps = new GPSTracker(Home.this);
-    	// check if GPS enabled
        	if(gps.canGetLocation()){
        		latitude = gps.getLatitude();
             longitude = gps.getLongitude();
-            // \n is for new line
-            //Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
             _gpsMsg ="GPS - Lat: "+latitude+" Lon: "+longitude;
             
        	} else {
-       		// can't get location
-            // GPS or Network is not enabled
-            // Ask user to enable GPS/network in settings
             gps.showSettingsAlert();
         }
 		
@@ -84,6 +87,28 @@ public class Home extends Activity {
 				// Hide Keyboard
 				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 				imm.hideSoftInputFromWindow(_et.getWindowToken(), 0);
+				
+				ArrayList<Map<String, String>> _data = new ArrayList<Map<String, String>>();
+				
+				Map<String, String> map = new HashMap<String, String>(2);
+				map.put("comment", _et.getText().toString());
+				map.put("location", "from "+_gpsMsg);
+				_data.add(map);
+				    
+				SimpleAdapter _adapter = new SimpleAdapter(getApplicationContext(), _data, android.R.layout.simple_list_item_2,
+		            new String[] {"comment", "location"},
+		            new int[] {android.R.id.text1, android.R.id.text2});
+		        _lv.setAdapter(_adapter);
+		        
+		        _lv.setOnItemClickListener(new OnItemClickListener() {
+		        	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {        		
+		        		
+		        		// Location via GPS
+						String url = "http://maps.google.com/?q="+latitude+", "+longitude;
+						Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+						startActivity(webIntent);
+		        	}
+				});
 				
 				// Clear search field
 				_et.setText("");
