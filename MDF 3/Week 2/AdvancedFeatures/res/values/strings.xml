@@ -9,5 +9,7 @@
     <string name="button">Button</string>
     <string name="notification">Notification</string>
     <string name="locate">Locate Me</string>
+    <string name="enter">Enter</string>
+    <string name="comment">Comment Here..</string>
 
 </resources>

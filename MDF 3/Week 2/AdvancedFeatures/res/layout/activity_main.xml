@@ -23,25 +23,29 @@
         android:id="@+id/videoView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button3"
+        android:layout_above="@+id/Button4"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/button2" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="@string/notification" />
-
-    <Button
         android:id="@+id/Button4"
-        android:layout_width="170dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button2"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="@string/locate" />
+        android:text="@string/enter" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/Button4"
+        android:layout_toLeftOf="@+id/Button4"
+        android:ems="10"
+        android:hint="@string/comment" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>

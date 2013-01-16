@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.EditText;
 import android.widget.VideoView;
 import android.app.Activity;
 import android.app.Notification;
@@ -24,6 +24,8 @@ public class Main extends Activity {
 	VideoView _vv;
 	Context _context;
 	Notification _notification;
+	String _gpsMsg;
+	EditText _et;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -75,33 +77,27 @@ public class Main extends Activity {
 		b2.setText("Play Video");
 		
 		//// GROUP TWO <---------------------- ////
-		Button btnShowLocation = (Button) findViewById(R.id.Button4);
-	    // show location button click event
-	    btnShowLocation.setOnClickListener(new View.OnClickListener() {
-	 
-	    @Override
-	    public void onClick(View arg0) {
-	    // create class object
-	    	GPSTracker gps = new GPSTracker(Main.this);
-	    	// check if GPS enabled
-	       	if(gps.canGetLocation()){
-	       		double latitude = gps.getLatitude();
-	            double longitude = gps.getLongitude();
-	            // \n is for new line
-	            Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
-	       	}else{
-	       		// can't get location
-	            // GPS or Network is not enabled
-	            // Ask user to enable GPS/network in settings
-	            gps.showSettingsAlert();
-	        }
-	 
-	        }
-	    });
+		// create class object
+    	GPSTracker gps = new GPSTracker(Main.this);
+    	// check if GPS enabled
+       	if(gps.canGetLocation()){
+       		double latitude = gps.getLatitude();
+            double longitude = gps.getLongitude();
+            // \n is for new line
+            //Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+            _gpsMsg ="GPS Location - Lat: "+latitude+" Lon: "+longitude;
+            
+       	}else{
+       		// can't get location
+            // GPS or Network is not enabled
+            // Ask user to enable GPS/network in settings
+            gps.showSettingsAlert();
+        }
 		
 		//// GROUP THREE <---------------------- ////
-		Button b3 = (Button) findViewById(R.id.button3);
-		b3.setOnClickListener(new OnClickListener() {
+		Button b4 = (Button) findViewById(R.id.Button4);
+		_et = (EditText) findViewById(R.id.editText1);
+		b4.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -109,8 +105,8 @@ public class Main extends Activity {
 				NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 				NotificationCompat.Builder nbuilder = new NotificationCompat.Builder(_context)
 				.setSmallIcon(R.drawable.ic_launcher)
-				.setContentTitle("Advanced Features")
-				.setContentText("Visit my website!");
+				.setContentTitle(_et.getText().toString()+"..")
+				.setContentText(_gpsMsg);
 				
 				// website
 				String url = "http://www.markevansjr.com/main.html";
@@ -123,7 +119,7 @@ public class Main extends Activity {
 				nbuilder.setContentIntent(pendingIntent);
 				_notification = nbuilder.build();
 				
-				_notification.tickerText = "Advanced Features!";
+				_notification.tickerText = "New Comment!";
 				nm.notify(0, _notification);
 			}
 		});
