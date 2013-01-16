@@ -27,6 +27,7 @@
         </activity>
         <activity android:name="com.markevansjr.advancedfeatures.Home" android:windowSoftInputMode="stateHidden"/>
         <activity android:name="com.markevansjr.advancedfeatures.Video"/>
+        <activity android:name="com.markevansjr.advancedfeatures.Start"/>
     </application>
 
 </manifest>

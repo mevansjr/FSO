@@ -11,5 +11,7 @@
     <string name="locate">Locate Me</string>
     <string name="enter">Enter</string>
     <string name="comment">Comment Here..</string>
+    <string name="thetitle">Advanced Features</string>
+    <string name="myname">created by: Mark Evans</string>
 
 </resources>

@@ -2,4 +2,6 @@
 <resources>
     <dimen name="padding">5px</dimen>
     <dimen name="padding2">10px</dimen>
+    <dimen name="title">24dp</dimen>
+    <dimen name="name">18dp</dimen>
 </resources>

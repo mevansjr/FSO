@@ -20,7 +20,8 @@ public class Main extends TabActivity {
 	
 	private void setTabs()
 	{
-		addTab("Home", R.drawable.tab_home, Home.class);
+		addTab("Home", R.drawable.tab_home, Start.class);
+		addTab("Chat", R.drawable.tab_chat, Home.class);
 		addTab("Media", R.drawable.tab_video, Video.class);
 	}
 	
