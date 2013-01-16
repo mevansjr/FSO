@@ -7,6 +7,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.VideoView;
@@ -26,6 +27,8 @@ public class Main extends Activity {
 	Notification _notification;
 	String _gpsMsg;
 	EditText _et;
+	double latitude;
+	double longitude;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -81,11 +84,11 @@ public class Main extends Activity {
     	GPSTracker gps = new GPSTracker(Main.this);
     	// check if GPS enabled
        	if(gps.canGetLocation()){
-       		double latitude = gps.getLatitude();
-            double longitude = gps.getLongitude();
+       		latitude = gps.getLatitude();
+            longitude = gps.getLongitude();
             // \n is for new line
             //Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
-            _gpsMsg ="GPS Location - Lat: "+latitude+" Lon: "+longitude;
+            _gpsMsg ="GPS - Lat: "+latitude+" Lon: "+longitude;
             
        	}else{
        		// can't get location
@@ -108,8 +111,8 @@ public class Main extends Activity {
 				.setContentTitle(_et.getText().toString()+"..")
 				.setContentText(_gpsMsg);
 				
-				// website
-				String url = "http://www.markevansjr.com/main.html";
+				// Dynamic location via GPS
+				String url = "http://maps.google.com/?q="+latitude+", "+longitude;
 				Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 				
 				webIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -121,6 +124,13 @@ public class Main extends Activity {
 				
 				_notification.tickerText = "New Comment!";
 				nm.notify(0, _notification);
+				
+				// Hide Keyboard
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(_et.getWindowToken(), 0);
+				
+				// Clear search field
+				_et.setText("");
 			}
 		});
 
