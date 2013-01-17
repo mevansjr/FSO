@@ -21,8 +21,8 @@ public class Main extends TabActivity {
 	private void setTabs()
 	{
 		addTab("Home", R.drawable.tab_home, Start.class);
-		addTab("Chat", R.drawable.tab_chat, Home.class);
-		addTab("Media", R.drawable.tab_video, Video.class);
+		addTab("Chat", R.drawable.tab_chat, Chat.class);
+		addTab("Media", R.drawable.tab_video, Media.class);
 	}
 	
 	private void addTab(String labelId, int drawableId, Class<?> c)
