@@ -37,19 +37,20 @@ public final class R {
         public static final int OpenBrowserBtn=0x7f0a0008;
         public static final int SavedBtn=0x7f0a0003;
         public static final int button_1=0x7f0a0004;
-        public static final int image_view=0x7f0a000f;
+        public static final int image_view=0x7f0a0010;
         public static final int item_about=0x7f0a000a;
+        public static final int item_home=0x7f0a000b;
         public static final int linearLayout1=0x7f0a0006;
         public static final int listView1=0x7f0a0001;
-        public static final int listView2=0x7f0a000b;
+        public static final int listView2=0x7f0a000c;
         public static final int ll1=0x7f0a0007;
-        public static final int mainBg=0x7f0a000c;
+        public static final int mainBg=0x7f0a000d;
         public static final int menu_search=0x7f0a0009;
-        public static final int save_btn=0x7f0a000d;
+        public static final int save_btn=0x7f0a000e;
         public static final int secViewFrag=0x7f0a0002;
         public static final int spinner1=0x7f0a0005;
         public static final int textView1=0x7f0a0000;
-        public static final int text_view_10=0x7f0a000e;
+        public static final int text_view_10=0x7f0a000f;
     }
     public static final class integer {
         public static final int four=0x7f050000;
@@ -73,6 +74,7 @@ public final class R {
         public static final int btn_text2=0x7f060004;
         public static final int btn_text3=0x7f060005;
         public static final int btn_text4=0x7f060006;
+        public static final int byme=0x7f060013;
         public static final int full_name=0x7f060001;
         public static final int hello_world=0x7f060008;
         public static final int image_des=0x7f060007;

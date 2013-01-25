@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/LinearLayout01"
-    android:layout_height="120dp"
+    android:id="@+id/LinearLayout1"
     android:layout_width="320dp"
-    android:orientation="horizontal"
-    >
+    android:layout_height="120dp"
+    android:background="@drawable/newthebg"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/widget_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@android:color/transparent" />
     
-<TextView
-    android:id="@+id/widget_textview"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center_vertical|center_horizontal"
-    android:text="@string/starttime"
-    android:textColor="@android:color/white"
-    android:textSize="16pt" />
+	<TextView
+    	android:id="@+id/widget_textview"
+    	android:layout_width="0dp"
+    	android:layout_height="match_parent"
+    	android:layout_weight="1"
+    	android:gravity="center"
+    	android:text="@string/starttime"
+    	android:textColor="@android:color/white"
+    	android:textSize="10pt" />
     
 </LinearLayout>

@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="174dp"
-        android:text="Created By: Mark Evans"
+        android:text="@string/byme"
         android:textColor="@color/White"
         android:textSize="@dimen/theabouttitle" />
 

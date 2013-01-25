@@ -11,29 +11,35 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
-//Mark Evans
 
-public class WidgetConfigActivity extends AppWidgetProvider {
-	public static WidgetConfigActivity Widget = null;
+public class WidgetActivity extends AppWidgetProvider {
+	public static WidgetActivity Widget = null;
 	public static Context context;
 	public static AppWidgetManager appWidgetManager;
 	public static int appWidgetIds[];	
 	
 	@Override
-    public void onUpdate( Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds )    {		
-		if (null == context) context = WidgetConfigActivity.context;
-	    if (null == appWidgetManager) appWidgetManager = WidgetConfigActivity.appWidgetManager;
-	    if (null == appWidgetIds) appWidgetIds = WidgetConfigActivity.appWidgetIds;
+    public void onUpdate( Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds ){		
+		if (null == context){
+			context = WidgetActivity.context;
+		}
+		else if (null == appWidgetManager){
+			appWidgetManager = WidgetActivity.appWidgetManager;
+		}
+		else if (null == appWidgetIds){
+			appWidgetIds = WidgetActivity.appWidgetIds;
+		}
 	    
-	    WidgetConfigActivity.Widget = this;
-	    WidgetConfigActivity.context = context;
-	    WidgetConfigActivity.appWidgetManager = appWidgetManager;
-	    WidgetConfigActivity.appWidgetIds = appWidgetIds;
+	    WidgetActivity.Widget = this;
+	    WidgetActivity.context = context;
+	    WidgetActivity.appWidgetManager = appWidgetManager;
+	    WidgetActivity.appWidgetIds = appWidgetIds;
 	    
 		Log.i("TAG", "onUpdate");
 		
@@ -50,13 +56,18 @@ public class WidgetConfigActivity extends AppWidgetProvider {
             int appWidgetId) {
         
         DateFormat format = SimpleDateFormat.getTimeInstance( SimpleDateFormat.MEDIUM, Locale.getDefault() );
-        CharSequence text = "Time: " + format.format( new Date());
+        CharSequence text = format.format( new Date());
                 
         Intent intent = new Intent(context, UpdateService.class);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
         
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
-        remoteViews.setOnClickPendingIntent(R.id.LinearLayout01, pendingIntent);
+        remoteViews.setOnClickPendingIntent(R.id.LinearLayout1, pendingIntent);
+        
+        Intent btnIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.markevansjr.com"));
+		PendingIntent pi = PendingIntent.getActivity(context, 0, btnIntent, 0);
+		
+		remoteViews.setOnClickPendingIntent(R.id.widget_button, pi);
         
         remoteViews.setTextViewText(R.id.widget_textview, text);
  
@@ -69,7 +80,7 @@ public class WidgetConfigActivity extends AppWidgetProvider {
 	public static class UpdateService extends Service {
         @Override
         public void onStart(Intent intent, int startId) {
-        	WidgetConfigActivity.Widget.onUpdate(context, appWidgetManager, appWidgetIds);
+        	WidgetActivity.Widget.onUpdate(context, appWidgetManager, appWidgetIds);
         	Toast.makeText(context, "Update Widget", Toast.LENGTH_SHORT).show();
         }
 

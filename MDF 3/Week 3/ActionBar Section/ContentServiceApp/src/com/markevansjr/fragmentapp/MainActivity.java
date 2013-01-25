@@ -331,6 +331,12 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
 //					getContentResolver().update(initProvider, null, _results.toString(), null);
 //					getAndUpdate();
 			        
+			        Log.i("TAG", String.valueOf(_results.length()));
+			        if (_results.length() == 0){
+			        	Toast toast = Toast.makeText(getApplicationContext(), "NO RESULTS!", Toast.LENGTH_LONG);
+						toast.show();
+			        }
+			        
 			        _data = new ArrayList<Map<String, String>>();
 					
 				    for(int i=0;i<_results.length();i++){							
@@ -436,7 +442,7 @@ public class MainActivity extends Activity implements SearchView.OnQueryTextList
 	 public boolean onQueryTextSubmit(String query) {
 		 Log.i("TAG QUERY", query);
 		 
-		 ConnectivityManager connec = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+		 	ConnectivityManager connec = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 			if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
 					(connec.getNetworkInfo(0).isAvailable() == true)){
 				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

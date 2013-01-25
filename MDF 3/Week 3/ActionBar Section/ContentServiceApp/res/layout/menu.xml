@@ -11,4 +11,9 @@
             android:icon="@drawable/action_about"
             android:title="About"
             android:showAsAction="never" />
+    <item
+            android:id="@+id/item_home"
+            android:icon="@drawable/action_about"
+            android:title="Home"
+            android:showAsAction="never" />
 </menu>

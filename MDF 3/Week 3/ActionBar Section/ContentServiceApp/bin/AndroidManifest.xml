@@ -4,8 +4,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="15"
-        android:targetSdkVersion="15" />
+        android:minSdkVersion="16"
+        android:targetSdkVersion="16" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -45,8 +45,8 @@
             android:label="Recipe It Up!" >
         </activity>
         <activity 
-            android:name=".SearchResultsActivity"
-           	android:label="Recipe It Up!">
+            android:name=".SearchResultsActivity" 
+            android:exported="false" >
     		<intent-filter>
         		<action android:name="android.intent.action.SEARCH" />
     		</intent-filter>

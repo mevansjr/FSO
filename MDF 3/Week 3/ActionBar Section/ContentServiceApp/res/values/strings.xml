@@ -42,4 +42,6 @@
 
     <string name="saverecipe">Save Recipe</string>
 
+    <string name="byme">Created By: Mark Evans</string>
+
 </resources>
