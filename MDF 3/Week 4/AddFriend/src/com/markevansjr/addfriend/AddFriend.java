@@ -13,7 +13,9 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -21,26 +23,29 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Spinner;
+import android.widget.Toast;
 
 public class AddFriend extends Activity {
 
-	HashMap<String, String> _recent = new HashMap<String, String>();
-	Spinner _recentsList;
-	ArrayList<String> _recentTitle = new ArrayList<String>();
 	List<Map<String, String>> _data;
 	List<Map<String, String>> _data2;
 	SimpleAdapter _adapter;
-	SimpleAdapter _adapter2;
+	@SuppressWarnings("rawtypes")
+	ArrayAdapter _adapter2;
 	ListView _lv;
+	Context _context;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_addfriend);
 		
+		ConnectivityManager connec = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
+				(connec.getNetworkInfo(0).isAvailable() == true)){
 		Parse.initialize(this, "PV07xPdLpxzJKBKUS2UP6iJ0W9GbEHvmfPMMQovz", "OPxrcJKt4Pe26WHvCAeuI86hnGzXjOlO1NmyfJyP"); 
         
 		// Create our installation query
@@ -52,6 +57,7 @@ public class AddFriend extends Activity {
 		
 		ParseQuery query = new ParseQuery("ContactObject");
 		query.findInBackground(new FindCallback() {
+			@SuppressWarnings("unchecked")
 			public void done(List<ParseObject> objects, ParseException e) {
 				if (e == null) {
     
@@ -65,11 +71,11 @@ public class AddFriend extends Activity {
 							map.put("lname", s.getString("lname"));
 							map.put("phone", s.getString("phone"));
 							map.put("email", s.getString("email"));
+							map.put("id", s.getObjectId());
 							map.put("fullname", s.getString("fname")+" "+s.getString("lname"));
 							_data.add(map);
 						}
-      
-						
+				        
 						// List adapter is set
 						_adapter = new SimpleAdapter(getApplicationContext(), _data, android.R.layout.simple_list_item_2,
 								new String[] {"fullname", "phone", "fname", "lname", "phone", "email"},
@@ -79,7 +85,7 @@ public class AddFriend extends Activity {
       
 							_lv.setOnItemClickListener(new OnItemClickListener() {
 							public void onItemClick(AdapterView<?> parent, View view, int position, long id) {        		
-								@SuppressWarnings("unchecked")
+								
 								HashMap<String, String> o = (HashMap<String, String>) _lv.getItemAtPosition(position);
 								
 								Intent intent = new Intent(getApplicationContext(), Details.class);
@@ -89,13 +95,17 @@ public class AddFriend extends Activity {
 								intent.putExtra("phone", o.get("phone"));
 								intent.putExtra("email", o.get("email"));
 								intent.putExtra("fullname", o.get("fullname"));
+								intent.putExtra("id", o.get("id"));
 								startActivity(intent);
 								
 							}
-							});
+						});
    
 					} else {
 						Log.i("FROM PARSE::", "NO DATA STORED");
+						String[] thedata = {"You have no friends."};
+						_adapter2 = new ArrayAdapter<Object>(getApplicationContext(), android.R.layout.simple_list_item_1, thedata);
+						_lv.setAdapter(_adapter2);
 					}
       
 				} else {
@@ -103,7 +113,10 @@ public class AddFriend extends Activity {
 				}
 			}
 		});
-
+		} else {
+			Toast toast = Toast.makeText(this, "NO CONNECTION", Toast.LENGTH_SHORT);
+    		toast.show();
+		}
 		
 	}
 
@@ -126,8 +139,15 @@ public class AddFriend extends Activity {
 	    case R.id.home:
 	        //click on about item
 	    	Log.i("TAG", "HOME");
-	    	Intent ii = new Intent(getApplicationContext(), MainActivity.class); 
-			startActivity(ii);
+	    	ConnectivityManager connec = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+			if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
+					(connec.getNetworkInfo(0).isAvailable() == true)){
+				Intent ii = new Intent(getApplicationContext(), MainActivity.class); 
+				startActivity(ii);
+			} else {
+				Toast toast = Toast.makeText(this, "NO CONNECTION", Toast.LENGTH_SHORT);
+	    		toast.show();
+			}
 	        break;
     	}
 	    return true;

@@ -9,5 +9,9 @@
     <string name="addfriend">Add Friend</string>
     <string name="menu_home">Home</string>
     <string name="call">Call</string>
+    <string name="listnametext">John Doe</string>
+    <string name="listdetailtext">This is an example</string>
+    <string name="email">Email</string>
+    <string name="delete">Delete</string>
 
 </resources>
