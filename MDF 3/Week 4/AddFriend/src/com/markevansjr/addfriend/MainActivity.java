@@ -137,7 +137,7 @@ public class MainActivity extends Activity {
 	  //@JavascriptInterface
 	    public void showCamera(String c) {
 	    	Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-	        File photo = new File(Environment.getExternalStorageDirectory(),  "Pic.jpg");
+	        File photo = new File(Environment.getExternalStorageDirectory(), "Pic.jpg");
 	        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photo));
 	        imageUri = Uri.fromFile(photo);
 	        startActivityForResult(intent, TAKE_PICTURE);
