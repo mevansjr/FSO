@@ -15,5 +15,6 @@
     <string name="searchbutton">Go</string>
     <string name="searchhint">Search By Author..</string>
     <string name="savebtn">Save Quote</string>
+    <string name="deletebtn">Delete</string>
 
 </resources>

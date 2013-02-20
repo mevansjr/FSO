@@ -7,6 +7,8 @@ import java.util.Map;
 
 import org.json.JSONArray;
 
+import com.markevansjr.quoteme.lib.MainListener;
+import com.markevansjr.quoteme.lib.QuoteList;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -135,7 +137,7 @@ public class SearchFragmentTab extends Fragment{
 								@SuppressWarnings("unchecked")
 								HashMap<String, String> o = (HashMap<String, String>) _lv.getItemAtPosition(position);
 								Log.i("TAG O", o.toString());
-								listener.passObjectString(o.toString(),o.get("theQuote"), o.get("theAuthor"));
+								listener.passForSearch(o.toString(),o.get("theQuote"), o.get("theAuthor"));
 							}
 						});
 	   
@@ -188,7 +190,7 @@ public class SearchFragmentTab extends Fragment{
 								@SuppressWarnings("unchecked")
 								HashMap<String, String> o = (HashMap<String, String>) _lv.getItemAtPosition(position);
 								Log.i("TAG O", o.toString());
-								listener.passObjectString(o.toString(),o.get("theQuote"), o.get("theAuthor"));
+								listener.passForSearch(o.toString(),o.get("theQuote"), o.get("theAuthor"));
 							}
 						});
 	   

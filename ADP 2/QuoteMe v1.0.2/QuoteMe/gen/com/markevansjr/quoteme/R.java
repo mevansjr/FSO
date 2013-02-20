@@ -57,15 +57,17 @@ public final class R {
         public static final int grid_item_image=0x7f0a0003;
         public static final int grid_item_label=0x7f0a0004;
         public static final int home_frag=0x7f0a0007;
-        public static final int home_item=0x7f0a0010;
+        public static final int home_item=0x7f0a0012;
         public static final int home_quote_text=0x7f0a0008;
         public static final int home_save_btn=0x7f0a0009;
         public static final int label=0x7f0a0005;
-        public static final int saved_item=0x7f0a0012;
-        public static final int search_item=0x7f0a0011;
-        public static final int share_item=0x7f0a0013;
+        public static final int saved_item=0x7f0a0014;
+        public static final int search_item=0x7f0a0013;
+        public static final int share_item=0x7f0a0015;
         public static final int singleview_quote_text=0x7f0a000e;
         public static final int singleview_save_btn=0x7f0a000f;
+        public static final int singleviewsaved_delete_btn=0x7f0a0011;
+        public static final int singleviewsaved_quote_text=0x7f0a0010;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -77,6 +79,7 @@ public final class R {
         public static final int saved_frag=0x7f030006;
         public static final int search_frag=0x7f030007;
         public static final int single_quote_view=0x7f030008;
+        public static final int single_quote_view_saved=0x7f030009;
     }
     public static final class menu {
         public static final int activity_main=0x7f090000;
@@ -86,6 +89,7 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f060000;
+        public static final int deletebtn=0x7f06000e;
         public static final int frag1=0x7f060004;
         public static final int frag2=0x7f060005;
         public static final int frag3=0x7f060006;

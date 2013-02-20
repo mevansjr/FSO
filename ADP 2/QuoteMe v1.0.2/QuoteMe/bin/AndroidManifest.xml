@@ -26,7 +26,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SingleQuoteViewActivity"
+            android:name=".SingleQuoteView_Search"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name=".SingleQuoteView_Saved"
             android:label="@string/title_activity_main" >
         </activity>
         <activity
@@ -42,11 +46,7 @@
             android:label="@string/title_activity_main" >
         </activity>
         <service
-            android:name="GetService"
-            android:enabled="true" >
-        </service>
-        <service
-            android:name="GetServiceJokes"
+            android:name="com.markevansjr.quoteme.lib.GetService"
             android:enabled="true" >
         </service>
     </application>

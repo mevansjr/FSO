@@ -1,4 +1,4 @@
-package com.markevansjr.quoteme;
+package com.markevansjr.quoteme.lib;
 
 import java.util.ArrayList;
 

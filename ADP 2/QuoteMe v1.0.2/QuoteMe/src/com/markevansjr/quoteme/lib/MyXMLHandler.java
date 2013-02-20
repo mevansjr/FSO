@@ -1,4 +1,4 @@
-package com.markevansjr.quoteme;
+package com.markevansjr.quoteme.lib;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

@@ -2,6 +2,7 @@ package com.markevansjr.quoteme;
 
 import java.util.ArrayList;
 
+import com.markevansjr.quoteme.lib.QuoteList;
 import com.parse.ParseObject;
 
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SingleQuoteViewActivity extends Activity{
+public class SingleQuoteView_Search extends Activity{
 	
 	QuoteList _quoteList = null;
 	ArrayList<String> _data = new ArrayList<String>();

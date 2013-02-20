@@ -3,14 +3,18 @@ package com.markevansjr.quoteme;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import com.markevansjr.quoteme.lib.MainListener;
+import com.markevansjr.quoteme.lib.QuoteList;
 import com.parse.Parse;
 
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
@@ -18,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity implements MainListener {
 	
@@ -133,19 +138,20 @@ public class MainActivity extends Activity implements MainListener {
 	        break;
 	    case R.id.share_item:
 	        //click on share item
-	    	Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-	    	sharingIntent.setType("text/plain");
-	    	sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, _sharedQuote);
-	    	sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "QuoteMe - Quote");
-	    	startActivity(Intent.createChooser(sharingIntent, "Share using.."));
-	    	Log.i("TAG", "SHARE");
-	    	finish();
-	    	
-//	    	HomeFragmentTab viewer = (HomeFragmentTab) getFragmentManager().findFragmentById(R.id.home_frag);
-//		    if (viewer == null || !viewer.isInLayout()) {
-//		    	Intent i = new Intent(getApplicationContext(), MainActivity.class);
-//				startActivity(i);
-//		    }
+	    	ConnectivityManager connec = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+			if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
+					(connec.getNetworkInfo(0).isAvailable() == true)){
+				Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+				sharingIntent.setType("text/plain");
+				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, _sharedQuote);
+				sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "QuoteMe - Quote");
+				startActivity(Intent.createChooser(sharingIntent, "Share using.."));
+				Log.i("TAG", "SHARE");
+				finish();
+			} else {
+				Toast toast = Toast.makeText(getApplicationContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
+				toast.show();
+			}
 	        break;
 	    }
 	    return true;
@@ -157,13 +163,26 @@ public class MainActivity extends Activity implements MainListener {
 	}
 
 	@Override
-	public void passObjectString(String objStr, String quote, String author) {
+	public void passForSearch(String objStr, String quote, String author) {
 		_passedObjStr = objStr;
 		Intent intent = new Intent();
-        intent.setClass(this, SingleQuoteViewActivity.class);
+        intent.setClass(this, SingleQuoteView_Search.class);
         intent.putExtra("passedString", _passedObjStr);
         intent.putExtra("passedQuote", quote);
         intent.putExtra("passedAuthor", author);
+        startActivity(intent);
+        finish();
+	}
+	
+	@Override
+	public void passForSaved(String objStr, String quote, String author, String id) {
+		_passedObjStr = objStr;
+		Intent intent = new Intent();
+        intent.setClass(this, SingleQuoteView_Saved.class);
+        intent.putExtra("passedString", _passedObjStr);
+        intent.putExtra("passedQuote", quote);
+        intent.putExtra("passedAuthor", author);
+        intent.putExtra("passedId", id);
         startActivity(intent);
         finish();
 	}

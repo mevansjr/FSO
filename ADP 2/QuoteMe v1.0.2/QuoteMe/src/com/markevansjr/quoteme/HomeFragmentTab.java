@@ -13,12 +13,19 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
+import com.markevansjr.quoteme.lib.FileStuff;
+import com.markevansjr.quoteme.lib.GetService;
+import com.markevansjr.quoteme.lib.MainListener;
+import com.markevansjr.quoteme.lib.MyXMLHandler;
+import com.markevansjr.quoteme.lib.QuoteList;
 import com.parse.ParseObject;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -72,17 +79,32 @@ public class HomeFragmentTab extends Fragment{
 		_tv = (TextView) _view.findViewById(R.id.home_quote_text);
 		_tv.setMovementMethod(new ScrollingMovementMethod());
 		_btn = (Button) _view.findViewById(R.id.home_save_btn);
-		getQuotes("");
+		ConnectivityManager connec = (ConnectivityManager)_view.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
+				(connec.getNetworkInfo(0).isAvailable() == true)){
+			getQuotes("");
+		} else {
+			Toast toast = Toast.makeText(_view.getContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
+			toast.show();
+		}
 		
 		_btn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				ParseObject savedFavObject = new ParseObject("savedObjects");
-				savedFavObject.put("savedQuote", _fullQuoteStr);
-				savedFavObject.put("savedAuthor", _fullSourceStr);
-				savedFavObject.saveInBackground();	
-				Toast toast = Toast.makeText(_view.getContext(), "Quote Saved!", Toast.LENGTH_SHORT);
-				toast.show();
+				ConnectivityManager connec = (ConnectivityManager)_view.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+				if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
+						(connec.getNetworkInfo(0).isAvailable() == true)){
+			
+					ParseObject savedFavObject = new ParseObject("savedObjects");
+					savedFavObject.put("savedQuote", _fullQuoteStr);
+					savedFavObject.put("savedAuthor", _fullSourceStr);
+					savedFavObject.saveInBackground();	
+					Toast toast = Toast.makeText(_view.getContext(), "Quote Saved!", Toast.LENGTH_SHORT);
+					toast.show();
+				} else {
+					Toast toast = Toast.makeText(_view.getContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
+					toast.show();
+				}
 			}
 		});
 	    return _view;

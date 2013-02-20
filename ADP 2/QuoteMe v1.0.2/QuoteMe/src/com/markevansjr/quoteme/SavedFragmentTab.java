@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.markevansjr.quoteme.lib.MainListener;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -12,6 +13,8 @@ import com.parse.ParseQuery;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class SavedFragmentTab extends Fragment {
@@ -45,6 +49,11 @@ public class SavedFragmentTab extends Fragment {
     	_view = inflater.inflate(R.layout.saved_frag, container, false);
     	_gridView = (GridView) _view.findViewById(R.id.gridView1);
     	
+    	ConnectivityManager connec = (ConnectivityManager)_view.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
+				(connec.getNetworkInfo(0).isAvailable() == true)){
+		Toast toast = Toast.makeText(_view.getContext(), "LOADING DATA..", Toast.LENGTH_SHORT);
+		toast.show();
     	ParseQuery query = new ParseQuery("savedObjects");
 		query.findInBackground(new FindCallback() {
 			public void done(List<ParseObject> objects, ParseException e) {
@@ -69,33 +78,28 @@ public class SavedFragmentTab extends Fragment {
 							map.put("theId", s.getObjectId());
 							_data.add(map);
 						}
-				 
-				        // Keys used in Hashmap
+						
 				        String[] from = {"image","pQuote"};
-				 
-				        // Ids of views in listview_layout
 				        int[] to = { R.id.grid_item_image,R.id.grid_item_label};
-				 
-				        // Instantiating an adapter to store each items
-				        // R.layout.listview_layout defines the layout of each item
 				        SimpleAdapter adapter = new SimpleAdapter(_view.getContext(), _data, R.layout.custom_grid_item, from, to);
 				 
-						
 						_gridView.setAdapter(adapter);
 						 
 						_gridView.setOnItemClickListener(new OnItemClickListener() {
 							@SuppressWarnings("unchecked")
 							public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 								HashMap<String, String> o = (HashMap<String, String>) _gridView.getItemAtPosition(position);
-								//Toast.makeText(_view.getContext(),o.get("savedQuote"), Toast.LENGTH_SHORT).show();
-								listener.passObjectString(o.toString(),o.get("savedQuote"), o.get("savedAuthor"));
+								listener.passForSaved(o.toString(),o.get("savedQuote"), o.get("savedAuthor"), o.get("theId"));
 							}
 						});
 					}
 				}
 			}
 		});
-        
+		} else {
+			Toast toast = Toast.makeText(_view.getContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
+			toast.show();
+		}
 		return _view;
     }
     

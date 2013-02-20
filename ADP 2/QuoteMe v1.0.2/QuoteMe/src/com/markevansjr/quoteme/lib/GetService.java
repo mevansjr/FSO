@@ -1,9 +1,10 @@
-package com.markevansjr.quoteme;
+package com.markevansjr.quoteme.lib;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.json.JSONArray;
+
 
 import android.app.IntentService;
 import android.content.Intent;
