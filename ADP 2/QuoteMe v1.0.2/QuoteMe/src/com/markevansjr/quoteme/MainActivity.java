@@ -3,12 +3,21 @@ package com.markevansjr.quoteme;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.markevansjr.quoteme.lib.FileStuff;
+import com.markevansjr.quoteme.lib.GetService;
 import com.markevansjr.quoteme.lib.MainListener;
 import com.markevansjr.quoteme.lib.QuoteList;
 import com.parse.Parse;
 
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Messenger;
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
@@ -24,6 +33,7 @@ import android.view.ViewConfiguration;
 import android.widget.TextView;
 import android.widget.Toast;
 
+@SuppressLint("HandlerLeak")
 public class MainActivity extends Activity implements MainListener {
 	
 	QuoteList _quoteList = null;
@@ -34,16 +44,38 @@ public class MainActivity extends Activity implements MainListener {
 	static String _theQuote;
 	static String _theAuthor;
 	public static String _passed;
-	public static String _sharedQuote;
+	public static String _sharedQuote = null;
 	public static String _passedObjStr;
+	public static String _passedQuote;
+	public static String _passedAuthor;
+	public static String _finalQuote;
+	public static String _finalAuthor;
+	String currentQuote = null;
 
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		// Initialize Parse
 		Parse.initialize(this, "AzORciWSbRjYRJ44OTDjmAufXcn7H87qXcz2wrKQ", "TBfaHCiVKpTQ5PvNgCj2zg8SHO8viYjTDuOCPVab");
 		
+		// Set Button
+		HomeFragmentTab._savedButton = "YES";
+		
+		// Generate Quote
+		ConnectivityManager connec = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
+				(connec.getNetworkInfo(0).isAvailable() == true)){
+			getQuote("");
+		} else {
+			Toast toast = Toast.makeText(getApplicationContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
+			toast.show();
+		}
+		
+		// Set ActionBar
 		ActionBar bar = getActionBar();
 	    
 	    bar.setDisplayShowCustomEnabled(true);
@@ -84,6 +116,45 @@ public class MainActivity extends Activity implements MainListener {
 	        // Ignore
 	    }
 	}
+	
+	public void getQuote(String item){
+		//Toast toast = Toast.makeText(_view.getContext(), "LOADING DATA..", Toast.LENGTH_SHORT);
+		//toast.show();
+		
+		// Searched Item and Messenger is passed to GetService
+		Messenger messenger = new Messenger(theHandler);
+		Intent i = new Intent(getApplicationContext(), GetService.class);
+		i.putExtra("item", item);
+		i.putExtra("messenger", messenger);
+		startService(i);	
+    }
+    
+    // This receives the message from the service
+ 	Handler theHandler = new Handler(){
+ 		@SuppressLint("DefaultLocale")
+ 		public void handleMessage(Message message){
+ 			Object path = message.obj;
+ 			if (message.arg1 == 0 && path != null){
+ 				String a = (String) message.obj.toString();
+ 				try{
+ 					JSONObject json = new JSONObject(a);
+ 			        Log.i("THE RESULTS", json.toString());
+ 					String thequote = json.getString("quote");
+ 					String source = json.getString("source");
+ 					String sourceFull = "-"+source.substring(0,1).toUpperCase()+source.substring(1,source.length());
+ 					_finalQuote = thequote;
+ 					_finalAuthor = sourceFull;
+ 					HomeFragmentTab._tv.setText(thequote+"\r\n\n"+sourceFull);
+ 					FileStuff.storeStringFile(getApplicationContext(), "QOD", thequote+"\r\n\n"+sourceFull, false);
+ 					//listener.pass(_tv.getText().toString(), "YES", "API", 1);
+ 				} catch (JSONException e){
+ 					Log.e("JSON", "JSON OBJECT EXCEPTION");
+ 					Toast toast = Toast.makeText(getApplicationContext(), "NO RESULTS!", Toast.LENGTH_LONG);
+ 					toast.show();
+ 				}
+ 			}
+ 		}
+ 	};
 	
 	protected class MyTabsListener implements ActionBar.TabListener {
 
@@ -147,7 +218,7 @@ public class MainActivity extends Activity implements MainListener {
 				sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "QuoteMe - Quote");
 				startActivity(Intent.createChooser(sharingIntent, "Share using.."));
 				Log.i("TAG", "SHARE");
-				finish();
+				//finish();
 			} else {
 				Toast toast = Toast.makeText(getApplicationContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
 				toast.show();
@@ -158,33 +229,33 @@ public class MainActivity extends Activity implements MainListener {
 	}
 
 	@Override
-	public void pass(String pass) {
+	public void pass(String pass, String buttonSave, String id, int number) {
+		ActionBar bar = getActionBar();
+	    ActionBar.Tab tabHome = bar.getTabAt(0);
 		_sharedQuote = pass;
+		FileStuff.storeStringFile(getBaseContext(), "savedQuote", pass, false);
+		FileStuff.storeStringFile(getBaseContext(), "buttonSave", buttonSave, false);
+		FileStuff.storeStringFile(getBaseContext(), "theId", id, false);
+		FileStuff.storeStringFile(getBaseContext(), "checkNull", String.valueOf(number), false);
+		HomeFragmentTab._tv.setText(pass);
+		bar.selectTab(tabHome);
 	}
 
 	@Override
 	public void passForSearch(String objStr, String quote, String author) {
-		_passedObjStr = objStr;
-		Intent intent = new Intent();
-        intent.setClass(this, SingleQuoteView_Search.class);
-        intent.putExtra("passedString", _passedObjStr);
-        intent.putExtra("passedQuote", quote);
-        intent.putExtra("passedAuthor", author);
-        startActivity(intent);
-        finish();
+		_finalQuote = quote;
+		_finalAuthor = author;
 	}
 	
 	@Override
 	public void passForSaved(String objStr, String quote, String author, String id) {
-		_passedObjStr = objStr;
-		Intent intent = new Intent();
-        intent.setClass(this, SingleQuoteView_Saved.class);
-        intent.putExtra("passedString", _passedObjStr);
-        intent.putExtra("passedQuote", quote);
-        intent.putExtra("passedAuthor", author);
-        intent.putExtra("passedId", id);
-        startActivity(intent);
-        finish();
+		_finalQuote = quote;
+		_finalAuthor = author;
+	}
+	
+	@Override
+	public void checkForQuote(String thequote, String theauthor) {
+		//
 	}
 
 }

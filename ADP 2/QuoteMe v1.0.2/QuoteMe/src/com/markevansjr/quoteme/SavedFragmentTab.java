@@ -67,14 +67,14 @@ public class SavedFragmentTab extends Fragment {
 							Map<String, String> map = new HashMap<String, String>(2);
 							map.put("savedQuote", s.getString("savedQuote"));
 							String quote = s.getString("savedQuote");
-							if (quote.length() >= 9){
-								String pQuote = quote.substring(0, 9);
+							if (quote.length() >= 20){
+								String pQuote = quote.substring(0, 20);
 								map.put("pQuote", pQuote+"..");
 							} else {
 								map.put("pQuote", quote);
 							}
 							map.put("savedAuthor", s.getString("savedAuthor"));
-							map.put("image", Integer.toString(R.drawable.ic_newpageicon));
+							map.put("image", Integer.toString(R.drawable.ic_gridpage));
 							map.put("theId", s.getObjectId());
 							_data.add(map);
 						}
@@ -89,6 +89,10 @@ public class SavedFragmentTab extends Fragment {
 							@SuppressWarnings("unchecked")
 							public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 								HashMap<String, String> o = (HashMap<String, String>) _gridView.getItemAtPosition(position);
+								String quote = o.get("savedQuote");
+								String author = o.get("savedAuthor");
+								String theid = o.get("theId");
+								listener.pass(quote+"\r\n\n"+author, "NO", theid, 0);
 								listener.passForSaved(o.toString(),o.get("savedQuote"), o.get("savedAuthor"), o.get("theId"));
 							}
 						});

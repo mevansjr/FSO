@@ -7,11 +7,14 @@ import org.json.JSONArray;
 
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Message;
 import android.os.Messenger;
 import android.util.Log;
+import android.widget.Toast;
  
 public class GetService  extends IntentService{
     URL finalURL = null;
@@ -33,6 +36,9 @@ public class GetService  extends IntentService{
         	_passedItem = (String) extras.get("item");
         	String responseString = "http://www.iheartquotes.com/api/v1/random?format=json&source="+_passedItem;
             Log.i("onHandleIntent::", responseString);
+            ConnectivityManager connec = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+    		if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
+    				(connec.getNetworkInfo(0).isAvailable() == true)){
             try{
             	// API string response is generated below
     			finalURL = new URL(responseString);
@@ -53,6 +59,10 @@ public class GetService  extends IntentService{
         	} catch (android.os.RemoteException e){
         		Log.e(getClass().getName(), "EXCEPTION sending message", e);
         	}
+    		} else {
+    			Toast toast = Toast.makeText(getApplicationContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
+    			toast.show();
+    		}
         } 
     }
 }

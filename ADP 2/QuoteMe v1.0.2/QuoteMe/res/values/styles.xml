@@ -21,5 +21,7 @@
 
 	<color name="black">#000</color>
 	<color name="white">#fff</color>
+	<color name="orange">#e08649</color>
+	<color name="blue">#028da2</color>
 
 </resources>

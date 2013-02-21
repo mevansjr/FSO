@@ -7,30 +7,29 @@ import java.util.Map;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
 import com.markevansjr.quoteme.lib.FileStuff;
-import com.markevansjr.quoteme.lib.GetService;
 import com.markevansjr.quoteme.lib.MainListener;
 import com.markevansjr.quoteme.lib.MyXMLHandler;
 import com.markevansjr.quoteme.lib.QuoteList;
+import com.parse.GetCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.os.Messenger;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,7 +46,7 @@ public class HomeFragmentTab extends Fragment{
 	ArrayList<String> _data = new ArrayList<String>();
 	ArrayList<String> _quotes = new ArrayList<String>();
 	ArrayList<String> _authors = new ArrayList<String>();
-	TextView _tv;
+	static TextView _tv;
 	ArrayList<Map<String, String>> _newdata;
 	static String _theQuote;
 	static String _theAuthor;
@@ -60,12 +59,16 @@ public class HomeFragmentTab extends Fragment{
 	JSONObject json;
 	String r;
 	MainListener listener;
+	String _savedQuote;
+	public static String _savedButton = "YES";
+	String _theId;
+	String _checkNull;
+	String _savedQuote2;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		
+	
 	}
 
 	@Override
@@ -78,75 +81,74 @@ public class HomeFragmentTab extends Fragment{
 		_view = inflater.inflate(R.layout.home_frag, container, false);
 		_tv = (TextView) _view.findViewById(R.id.home_quote_text);
 		_tv.setMovementMethod(new ScrollingMovementMethod());
+		Typeface tf = Typeface.createFromAsset(_view.getContext().getAssets(), "fonts/m-reg.ttf");
+		Typeface tf2 = Typeface.createFromAsset(_view.getContext().getAssets(), "fonts/m-bold.ttf");
+		_tv.setTypeface(tf);
 		_btn = (Button) _view.findViewById(R.id.home_save_btn);
-		ConnectivityManager connec = (ConnectivityManager)_view.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-		if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
-				(connec.getNetworkInfo(0).isAvailable() == true)){
-			getQuotes("");
-		} else {
-			Toast toast = Toast.makeText(_view.getContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
-			toast.show();
-		}
+		_btn.setTypeface(tf2);
+		_savedButton = FileStuff.readStringFile(_view.getContext(), "buttonSave", false);
+		Log.i("------TAG MAIN BUTTON-------", _savedButton);
+		_theId = FileStuff.readStringFile(_view.getContext(), "theId", false);
+		Log.i("------TAG MAIN ID-------", _theId);
 		
-		_btn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				ConnectivityManager connec = (ConnectivityManager)_view.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-				if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
-						(connec.getNetworkInfo(0).isAvailable() == true)){
+		ConnectivityManager connec = (ConnectivityManager)_view.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+		_savedQuote = FileStuff.readStringFile(_view.getContext(), "savedQuote", false);
+		Log.i("------TAG MAIN SAVE-------", _savedQuote);
+		_savedQuote2 = FileStuff.readStringFile(_view.getContext(), "QOD", false);
+		Log.i("------TAG MAIN QOD-------", _savedQuote2);
+		
+			if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
+					(connec.getNetworkInfo(0).isAvailable() == true)){
+				_tv.setText(_savedQuote);
+			} else {
+    			Toast toast = Toast.makeText(_view.getContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
+    			toast.show();
+    		}
 			
-					ParseObject savedFavObject = new ParseObject("savedObjects");
-					savedFavObject.put("savedQuote", _fullQuoteStr);
-					savedFavObject.put("savedAuthor", _fullSourceStr);
-					savedFavObject.saveInBackground();	
-					Toast toast = Toast.makeText(_view.getContext(), "Quote Saved!", Toast.LENGTH_SHORT);
-					toast.show();
-				} else {
-					Toast toast = Toast.makeText(_view.getContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
-					toast.show();
-				}
+			if (_savedButton.equals("YES")){
+				_btn.setText("Save Quote");
+				_btn.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						ConnectivityManager connec = (ConnectivityManager)_view.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+						if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
+								(connec.getNetworkInfo(0).isAvailable() == true)){
+					
+							ParseObject savedFavObject = new ParseObject("savedObjects");
+							savedFavObject.put("savedQuote", MainActivity._finalQuote);
+							savedFavObject.put("savedAuthor", MainActivity._finalAuthor);
+							savedFavObject.saveInBackground();	
+							Toast toast = Toast.makeText(_view.getContext(), "Quote Saved!", Toast.LENGTH_SHORT);
+							toast.show();
+						} else {
+							Toast toast = Toast.makeText(_view.getContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
+							toast.show();
+						}
+					}
+				});
+			} else {
+				_btn.setText("Delete Quote");
+				_btn.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						ParseQuery query = new ParseQuery("savedObjects");
+						query.getInBackground(_theId, new GetCallback() {
+							@Override
+							public void done(ParseObject object, ParseException e) {
+								object.deleteInBackground();
+								Toast toast = Toast.makeText(_view.getContext(), "Quote Deleted!", Toast.LENGTH_SHORT);
+								toast.show();
+							}
+						});
+						ActionBar bar = getActivity().getActionBar();
+					    ActionBar.Tab tabSaved = bar.getTabAt(2);
+					    bar.selectTab(tabSaved);
+					}
+				});
 			}
-		});
+
 	    return _view;
 	}
-    
-    public void getQuotes(String item){
-		Toast toast = Toast.makeText(_view.getContext(), "LOADING DATA..", Toast.LENGTH_SHORT);
-		toast.show();
-		
-		// Searched Item and Messenger is passed to GetService
-		Messenger messenger = new Messenger(theHandler);
-		Intent i = new Intent(_view.getContext(), GetService.class);
-		i.putExtra("item", item);
-		i.putExtra("messenger", messenger);
-		getActivity().startService(i);	
-    }
-    
-    // This receives the message from the service
- 	Handler theHandler = new Handler(){
- 		@SuppressLint("DefaultLocale")
- 		public void handleMessage(Message message){
- 			Object path = message.obj;
- 			if (message.arg1 == 0 && path != null){
- 				String a = (String) message.obj.toString();
- 				try{
- 					json = new JSONObject(a);
- 			        Log.i("THE RESULTS", json.toString());
- 					String thequote = json.getString("quote");
- 					_fullQuoteStr = '"'+thequote+'"';
- 					String source = json.getString("source");
- 					String sourceFull = "-"+source.substring(0,1).toUpperCase()+source.substring(1,source.length());
- 					_fullSourceStr = source.substring(0,1).toUpperCase()+source.substring(1,source.length());
- 					_tv.setText(thequote+"\r\n\n"+sourceFull);
- 					listener.pass(_tv.getText().toString());
- 				} catch (JSONException e){
- 					Log.e("JSON", "JSON OBJECT EXCEPTION");
- 					Toast toast = Toast.makeText(_view.getContext(), "NO RESULTS!", Toast.LENGTH_LONG);
- 					toast.show();
- 				}
- 			}
- 		}
- 	};
     
     class MyXMLHandlerTask extends AsyncTask<String, Void, QuoteList> {
 

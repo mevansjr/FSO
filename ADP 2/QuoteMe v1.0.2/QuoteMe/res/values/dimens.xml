@@ -7,4 +7,5 @@
     <dimen name="grid_item">100px</dimen>
     <dimen name="newtop">65px</dimen>
     <dimen name="toptop">95px</dimen>
+    <dimen name="pad20">20px</dimen>
 </resources>

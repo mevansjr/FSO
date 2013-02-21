@@ -17,6 +17,7 @@ import com.parse.ParseQuery;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -69,6 +70,8 @@ public class SearchFragmentTab extends Fragment{
 		_view = inflater.inflate(R.layout.search_frag, container, false);	
 		_lv = (ListView) _view.findViewById(R.id.List_View);
 		_et = (EditText) _view.findViewById(R.id.editText1);
+		Typeface tf = Typeface.createFromAsset(_view.getContext().getAssets(), "fonts/m-reg.ttf");
+		_et.setTypeface(tf);
 		_searchBtn = (Button) _view.findViewById(R.id.Search_Button);
 		
 		_searchBtn.setOnClickListener(new OnClickListener() {
@@ -126,10 +129,10 @@ public class SearchFragmentTab extends Fragment{
 						}
 	      
 						// List adapter is set
-						_adapter2 = new SimpleAdapter(_view.getContext(), _data2, android.R.layout.simple_list_item_2,
-								new String[] {"pTheQuote", "theAuthor", "theQuote", "theId"},
-									new int[] {android.R.id.text1,
-									android.R.id.text2});
+						_adapter2 = new SimpleAdapter(_view.getContext(), _data2, R.layout.list_row_layout,
+									new String[] {"pTheQuote", "theAuthor", "theQuote", "theId"},
+									new int[] {R.id.theText1,
+									R.id.theText2});
 						_lv.setAdapter(_adapter2);
 	      
 						_lv.setOnItemClickListener(new OnItemClickListener() {
@@ -138,6 +141,10 @@ public class SearchFragmentTab extends Fragment{
 								HashMap<String, String> o = (HashMap<String, String>) _lv.getItemAtPosition(position);
 								Log.i("TAG O", o.toString());
 								listener.passForSearch(o.toString(),o.get("theQuote"), o.get("theAuthor"));
+								String quote = o.get("theQuote");
+								String author = o.get("theAuthor");
+								String theid = o.get("theId");
+								listener.pass(quote+"\r\n\n"+author, "YES", theid, 0);
 							}
 						});
 	   
@@ -179,10 +186,10 @@ public class SearchFragmentTab extends Fragment{
 						}
 	      
 						// List adapter is set
-						_adapter2 = new SimpleAdapter(_view.getContext(), _data2, android.R.layout.simple_list_item_2,
+						_adapter2 = new SimpleAdapter(_view.getContext(), _data2, R.layout.list_row_layout,
 									new String[] {"pTheQuote", "theAuthor", "theQuote", "theId"},
-									new int[] {android.R.id.text1,
-									android.R.id.text2});
+									new int[] {R.id.theText1,
+									R.id.theText2});
 						_lv.setAdapter(_adapter2);
 	      
 						_lv.setOnItemClickListener(new OnItemClickListener() {
@@ -190,6 +197,10 @@ public class SearchFragmentTab extends Fragment{
 								@SuppressWarnings("unchecked")
 								HashMap<String, String> o = (HashMap<String, String>) _lv.getItemAtPosition(position);
 								Log.i("TAG O", o.toString());
+								String quote = o.get("theQuote");
+								String author = o.get("theAuthor");
+								String theid = o.get("theId");
+								listener.pass(quote+"\r\n\n"+author, "YES", theid, 0);
 								listener.passForSearch(o.toString(),o.get("theQuote"), o.get("theAuthor"));
 							}
 						});
