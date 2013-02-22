@@ -16,8 +16,7 @@ android:background="@layout/listitem_background"
     android:paddingLeft="@dimen/pad20"
     android:paddingTop="@dimen/textpadding"
     android:textColor="@color/white"
-    android:textSize="20sp"
-    android:typeface="serif" />
+    android:textSize="20sp" />
 
 <TextView
     android:id="@+id/theText2"
@@ -28,7 +27,6 @@ android:background="@layout/listitem_background"
     android:paddingLeft="@dimen/textpadding"
     android:paddingTop="@dimen/logopadding"
     android:textColor="@color/white"
-    android:textSize="16sp"
-    android:typeface="serif" />
+    android:textSize="16sp" />
 
 </RelativeLayout>

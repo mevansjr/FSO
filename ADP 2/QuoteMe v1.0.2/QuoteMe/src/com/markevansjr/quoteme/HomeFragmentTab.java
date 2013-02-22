@@ -22,7 +22,6 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
@@ -55,7 +54,8 @@ public class HomeFragmentTab extends Fragment{
 	String _fullQuoteStr;
 	String _fullSourceStr;
 	View _view;
-	Button _btn;
+	static Button _btn_save;
+	Button _btn_delete;
 	JSONObject json;
 	String r;
 	MainListener listener;
@@ -84,16 +84,18 @@ public class HomeFragmentTab extends Fragment{
 		Typeface tf = Typeface.createFromAsset(_view.getContext().getAssets(), "fonts/m-reg.ttf");
 		Typeface tf2 = Typeface.createFromAsset(_view.getContext().getAssets(), "fonts/m-bold.ttf");
 		_tv.setTypeface(tf);
-		_btn = (Button) _view.findViewById(R.id.home_save_btn);
-		_btn.setTypeface(tf2);
+		_btn_save = (Button) _view.findViewById(R.id.home_save_btn);
+		_btn_delete = (Button) _view.findViewById(R.id.home_delete_btn);
+		_btn_save.setTypeface(tf2);
+		_btn_delete.setTypeface(tf2);
 		_savedButton = FileStuff.readStringFile(_view.getContext(), "buttonSave", false);
-		Log.i("------TAG MAIN BUTTON-------", _savedButton);
+		Log.i("------TAG BUTTON SAVE CHECK-------", _savedButton);
 		_theId = FileStuff.readStringFile(_view.getContext(), "theId", false);
 		Log.i("------TAG MAIN ID-------", _theId);
 		
 		ConnectivityManager connec = (ConnectivityManager)_view.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 		_savedQuote = FileStuff.readStringFile(_view.getContext(), "savedQuote", false);
-		Log.i("------TAG MAIN SAVE-------", _savedQuote);
+		Log.i("------TAG MAIN SAVE QUOTE-------", _savedQuote);
 		_savedQuote2 = FileStuff.readStringFile(_view.getContext(), "QOD", false);
 		Log.i("------TAG MAIN QOD-------", _savedQuote2);
 		
@@ -104,12 +106,12 @@ public class HomeFragmentTab extends Fragment{
     			Toast toast = Toast.makeText(_view.getContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
     			toast.show();
     		}
-			
-			if (_savedButton.equals("YES")){
-				_btn.setText("Save Quote");
-				_btn.setOnClickListener(new OnClickListener() {
+				
+				// Save Button
+				_btn_save.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
+						if (_savedButton.equals("YES")){
 						ConnectivityManager connec = (ConnectivityManager)_view.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 						if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
 								(connec.getNetworkInfo(0).isAvailable() == true)){
@@ -124,13 +126,23 @@ public class HomeFragmentTab extends Fragment{
 							Toast toast = Toast.makeText(_view.getContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
 							toast.show();
 						}
+						
+						} else {
+							Toast toast = Toast.makeText(_view.getContext(), "QUOTE IS ALREADY SAVED", Toast.LENGTH_SHORT);
+							toast.show();
+						}
 					}
 				});
-			} else {
-				_btn.setText("Delete Quote");
-				_btn.setOnClickListener(new OnClickListener() {
+				
+				// Delete Button
+				_btn_delete.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
+						if (_savedButton.equals("NO")){
+						ConnectivityManager connec = (ConnectivityManager)_view.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+						if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
+								(connec.getNetworkInfo(0).isAvailable() == true)){
+							
 						ParseQuery query = new ParseQuery("savedObjects");
 						query.getInBackground(_theId, new GetCallback() {
 							@Override
@@ -140,12 +152,17 @@ public class HomeFragmentTab extends Fragment{
 								toast.show();
 							}
 						});
-						ActionBar bar = getActivity().getActionBar();
-					    ActionBar.Tab tabSaved = bar.getTabAt(2);
-					    bar.selectTab(tabSaved);
+					} else {
+						Toast toast = Toast.makeText(_view.getContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
+						toast.show();
+					}
+				
+					} else {
+						Toast toast = Toast.makeText(_view.getContext(), "DELETE IS DISABLED", Toast.LENGTH_SHORT);
+						toast.show();
+					}
 					}
 				});
-			}
 
 	    return _view;
 	}

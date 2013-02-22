@@ -70,6 +70,7 @@ public class SearchFragmentTab extends Fragment{
 		_view = inflater.inflate(R.layout.search_frag, container, false);	
 		_lv = (ListView) _view.findViewById(R.id.List_View);
 		_et = (EditText) _view.findViewById(R.id.editText1);
+		
 		Typeface tf = Typeface.createFromAsset(_view.getContext().getAssets(), "fonts/m-reg.ttf");
 		_et.setTypeface(tf);
 		_searchBtn = (Button) _view.findViewById(R.id.Search_Button);

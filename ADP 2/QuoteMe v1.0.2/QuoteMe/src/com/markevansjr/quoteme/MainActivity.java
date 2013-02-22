@@ -62,8 +62,8 @@ public class MainActivity extends Activity implements MainListener {
 		// Initialize Parse
 		Parse.initialize(this, "AzORciWSbRjYRJ44OTDjmAufXcn7H87qXcz2wrKQ", "TBfaHCiVKpTQ5PvNgCj2zg8SHO8viYjTDuOCPVab");
 		
-		// Set Button
-		HomeFragmentTab._savedButton = "YES";
+		// Set Save Condition
+		FileStuff.storeStringFile(getBaseContext(), "buttonSave", "YES", false);
 		
 		// Generate Quote
 		ConnectivityManager connec = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -212,13 +212,14 @@ public class MainActivity extends Activity implements MainListener {
 	    	ConnectivityManager connec = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 			if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
 					(connec.getNetworkInfo(0).isAvailable() == true)){
+				_sharedQuote = HomeFragmentTab._tv.getText().toString();
 				Intent sharingIntent = new Intent(Intent.ACTION_SEND);
 				sharingIntent.setType("text/plain");
 				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, _sharedQuote);
 				sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "QuoteMe - Quote");
 				startActivity(Intent.createChooser(sharingIntent, "Share using.."));
 				Log.i("TAG", "SHARE");
-				//finish();
+				finish();
 			} else {
 				Toast toast = Toast.makeText(getApplicationContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
 				toast.show();
@@ -232,7 +233,7 @@ public class MainActivity extends Activity implements MainListener {
 	public void pass(String pass, String buttonSave, String id, int number) {
 		ActionBar bar = getActionBar();
 	    ActionBar.Tab tabHome = bar.getTabAt(0);
-		_sharedQuote = pass;
+		//_sharedQuote = pass;
 		FileStuff.storeStringFile(getBaseContext(), "savedQuote", pass, false);
 		FileStuff.storeStringFile(getBaseContext(), "buttonSave", buttonSave, false);
 		FileStuff.storeStringFile(getBaseContext(), "theId", id, false);

@@ -1,13 +1,8 @@
 package com.markevansjr.quoteme;
 
-import java.util.List;
-import java.util.Random;
 
 import com.markevansjr.quoteme.R;
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
+import com.markevansjr.quoteme.lib.FileStuff;
 
 import android.app.PendingIntent;
 import android.app.Service;
@@ -15,7 +10,6 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -61,26 +55,9 @@ public class WidgetActivity extends AppWidgetProvider {
 	
 	static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
             int appWidgetId) {
-		ConnectivityManager connec = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-		if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
-				(connec.getNetworkInfo(0).isAvailable() == true)){
-			ParseQuery query = new ParseQuery("ListOfQuotes");
-			Log.i("WIDGET GET PARSE", "SHOW ALL");
-			query.findInBackground(new FindCallback() {
-				public void done(List<ParseObject> objects, ParseException e) {
-					if (e == null) {
-						Random gen = new Random(); 
-						int random = gen.nextInt(objects.toArray().length);
-						Log.i("WIDGET RANDOM", String.valueOf(random));
-						ParseObject s = objects.get(random);
-						_text = s.getString("quote");
-					}
-				}
-			});
-		} else {
-			Toast toast = Toast.makeText(context, "NO CONNECTION", Toast.LENGTH_SHORT);
-			toast.show();
-		}
+		
+		// Display Saved Quote of the Day
+        _text = FileStuff.readStringFile(context, "savedQuote", false);
         
         //DateFormat format = SimpleDateFormat.getTimeInstance( SimpleDateFormat.MEDIUM, Locale.getDefault() );
         //CharSequence text = format.format( new Date());
@@ -89,7 +66,7 @@ public class WidgetActivity extends AppWidgetProvider {
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
         
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
-        remoteViews.setOnClickPendingIntent(R.id.LinearLayout1, pendingIntent);
+        remoteViews.setOnClickPendingIntent(R.id.widget_textview, pendingIntent);
         
         //String scheme = "open://quoteme/";
         //Intent btnIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(scheme));
