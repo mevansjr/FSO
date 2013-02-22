@@ -40,6 +40,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="16dp"
         android:layout_marginRight="24dp"
-        android:background="@drawable/trash" />
+        android:background="@layout/button_selector3" />
  
 </RelativeLayout>

@@ -115,22 +115,26 @@ public class HomeFragmentTab extends Fragment{
 						ConnectivityManager connec = (ConnectivityManager)_view.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 						if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
 								(connec.getNetworkInfo(0).isAvailable() == true)){
-					
-							ParseObject savedFavObject = new ParseObject("savedObjects");
-							savedFavObject.put("savedQuote", MainActivity._finalQuote);
-							savedFavObject.put("savedAuthor", MainActivity._finalAuthor);
-							savedFavObject.saveInBackground();	
-							Toast toast = Toast.makeText(_view.getContext(), "Quote Saved!", Toast.LENGTH_SHORT);
-							toast.show();
+//							if (_tv.getText().toString().equals(_savedQuote)){
+//								Toast toast = Toast.makeText(_view.getContext(), "QUOTE ALREADY SAVED", Toast.LENGTH_SHORT);
+//								toast.show();
+//							} else {
+								ParseObject savedFavObject = new ParseObject("savedObjects");
+								savedFavObject.put("savedQuote", MainActivity._finalQuote);
+								savedFavObject.put("savedAuthor", MainActivity._finalAuthor);
+								savedFavObject.saveInBackground();	
+								Toast toast = Toast.makeText(_view.getContext(), "Quote Saved!", Toast.LENGTH_SHORT);
+								toast.show();
 						} else {
 							Toast toast = Toast.makeText(_view.getContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
 							toast.show();
 						}
-						
-						} else {
-							Toast toast = Toast.makeText(_view.getContext(), "QUOTE IS ALREADY SAVED", Toast.LENGTH_SHORT);
-							toast.show();
 						}
+						
+//						} else {
+//							Toast toast = Toast.makeText(_view.getContext(), "QUOTE IS ALREADY SAVED", Toast.LENGTH_SHORT);
+//							toast.show();
+//						}
 					}
 				});
 				
@@ -149,7 +153,7 @@ public class HomeFragmentTab extends Fragment{
 							public void done(ParseObject object, ParseException e) {
 								object.deleteInBackground();
 								Toast toast = Toast.makeText(_view.getContext(), "Quote Deleted!", Toast.LENGTH_SHORT);
-								toast.show();
+								toast.show(); 
 							}
 						});
 					} else {

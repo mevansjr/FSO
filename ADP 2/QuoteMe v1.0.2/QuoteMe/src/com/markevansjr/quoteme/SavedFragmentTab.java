@@ -66,20 +66,13 @@ public class SavedFragmentTab extends Fragment {
 							ParseObject s = objects.get(ii);
 							Map<String, String> map = new HashMap<String, String>(2);
 							map.put("savedQuote", s.getString("savedQuote"));
-							String quote = s.getString("savedQuote");
-							if (quote.length() >= 20){
-								String pQuote = quote.substring(0, 20);
-								map.put("pQuote", pQuote+"..");
-							} else {
-								map.put("pQuote", quote);
-							}
 							map.put("savedAuthor", s.getString("savedAuthor"));
 							map.put("image", Integer.toString(R.drawable.ic_gridpage));
 							map.put("theId", s.getObjectId());
 							_data.add(map);
 						}
 						
-				        String[] from = {"image","pQuote"};
+				        String[] from = {"image","savedQuote"};
 				        int[] to = { R.id.grid_item_image,R.id.grid_item_label};
 				        SimpleAdapter adapter = new SimpleAdapter(_view.getContext(), _data, R.layout.custom_grid_item, from, to);
 				 

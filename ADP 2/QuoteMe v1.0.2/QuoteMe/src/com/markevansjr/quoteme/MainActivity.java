@@ -219,7 +219,7 @@ public class MainActivity extends Activity implements MainListener {
 				sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "QuoteMe - Quote");
 				startActivity(Intent.createChooser(sharingIntent, "Share using.."));
 				Log.i("TAG", "SHARE");
-				finish();
+				//finish();
 			} else {
 				Toast toast = Toast.makeText(getApplicationContext(), "NO CONNECTION", Toast.LENGTH_SHORT);
 				toast.show();

@@ -70,8 +70,9 @@ public final class R {
         public static final int textbgwhite=0x7f020028;
         public static final int thesearchbg=0x7f020029;
         public static final int trash=0x7f02002a;
-        public static final int woodbg=0x7f02002b;
-        public static final int woodbg2=0x7f02002c;
+        public static final int trashblue=0x7f02002b;
+        public static final int woodbg=0x7f02002c;
+        public static final int woodbg2=0x7f02002d;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f0b0016;
@@ -108,20 +109,21 @@ public final class R {
         public static final int activity_main=0x7f030000;
         public static final int button_selector=0x7f030001;
         public static final int button_selector2=0x7f030002;
-        public static final int custom=0x7f030003;
-        public static final int custom2=0x7f030004;
-        public static final int custom_grid_item=0x7f030005;
-        public static final int customtextview=0x7f030006;
-        public static final int home_frag=0x7f030007;
-        public static final int list_row_layout=0x7f030008;
-        public static final int listitem_background=0x7f030009;
-        public static final int listitem_selector=0x7f03000a;
-        public static final int new_grid_selector=0x7f03000b;
-        public static final int saved_frag=0x7f03000c;
-        public static final int search_frag=0x7f03000d;
-        public static final int single_quote_view=0x7f03000e;
-        public static final int single_quote_view_saved=0x7f03000f;
-        public static final int widget_layout=0x7f030010;
+        public static final int button_selector3=0x7f030003;
+        public static final int custom=0x7f030004;
+        public static final int custom2=0x7f030005;
+        public static final int custom_grid_item=0x7f030006;
+        public static final int customtextview=0x7f030007;
+        public static final int home_frag=0x7f030008;
+        public static final int list_row_layout=0x7f030009;
+        public static final int listitem_background=0x7f03000a;
+        public static final int listitem_selector=0x7f03000b;
+        public static final int new_grid_selector=0x7f03000c;
+        public static final int saved_frag=0x7f03000d;
+        public static final int search_frag=0x7f03000e;
+        public static final int single_quote_view=0x7f03000f;
+        public static final int single_quote_view_saved=0x7f030010;
+        public static final int widget_layout=0x7f030011;
     }
     public static final class menu {
         public static final int activity_main=0x7f0a0000;

@@ -10,6 +10,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -68,11 +69,16 @@ public class WidgetActivity extends AppWidgetProvider {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
         remoteViews.setOnClickPendingIntent(R.id.widget_textview, pendingIntent);
         
-        //String scheme = "open://quoteme/";
-        //Intent btnIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(scheme));
-		//PendingIntent pi = PendingIntent.getActivity(context, 0, btnIntent, 0);
-		
-		//remoteViews.setOnClickPendingIntent(R.id.widget_button, pi);
+        PackageManager pm = context.getPackageManager();
+        try{
+        	String packageName = "com.markevansjr.quoteme";
+        	Intent btnIntent = pm.getLaunchIntentForPackage(packageName);
+        	PendingIntent pi = PendingIntent.getActivity(context, 0, btnIntent, 0);
+        	
+        	remoteViews.setOnClickPendingIntent(R.id.widget_button, pi);
+        } catch (Exception e1){
+        	Log.i("EXCEPTION", e1.toString());
+        }
         
 		remoteViews.setTextViewText(R.id.widget_textview, _text);
 		
