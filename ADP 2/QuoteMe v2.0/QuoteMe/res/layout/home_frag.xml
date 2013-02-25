@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_frag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/woodbg2" >
+
+    <Button
+        android:id="@+id/home_save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@layout/button_selector2"
+        android:text="@string/savebtn"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/home_quote_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_above="@id/home_save_btn"
+        android:background="@drawable/textbgwhite"
+        android:gravity="center_vertical"
+        android:padding="@dimen/top"
+        android:scrollbars="vertical"
+        android:textColor="@color/black"
+        android:shadowColor="@color/white"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/home_delete_btn"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/home_quote_text"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="24dp"
+        android:background="@layout/button_selector3" />
+ 
+</RelativeLayout>
