@@ -56,7 +56,7 @@ public class SavedFragmentTab extends Fragment {
     	}
     	
     	ArrayList<Map<String, String>> datafromfile = FileStuff.readArrayFile(_view.getContext(), "data", false);
-		if (!datafromfile.isEmpty()){
+		if (!(datafromfile == null)){
 			_data = datafromfile;
 			Log.i("TOTAL ARRAY", String.valueOf(_data.toArray().length));
 		} else {

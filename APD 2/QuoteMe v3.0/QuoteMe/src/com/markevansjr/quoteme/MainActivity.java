@@ -51,6 +51,8 @@ public class MainActivity extends Activity implements MainListener {
 	public static String _passedAuthor;
 	public static String _finalQuote;
 	public static String _finalAuthor;
+	String thequote;
+	String theauthor;
 	HashMap<String, String> _recent = new HashMap<String, String>();
 	String currentQuote = null;
 	public static String _checkButton;
@@ -61,6 +63,7 @@ public class MainActivity extends Activity implements MainListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		Log.i("H ERROR", "1");
 		// Get User Account Information
 		try {
 			AccountManager accountManager = AccountManager.get(getApplicationContext());
@@ -78,14 +81,17 @@ public class MainActivity extends Activity implements MainListener {
 		// Initialize Parse
 		Parse.initialize(this, "AzORciWSbRjYRJ44OTDjmAufXcn7H87qXcz2wrKQ", "TBfaHCiVKpTQ5PvNgCj2zg8SHO8viYjTDuOCPVab");
 		
+		Log.i("ERROR", "2");
 		// Set Save Condition
 		FileStuff.storeStringFile(getBaseContext(), "buttonSave", "YES", false);
 		
+		Log.i("ERROR", "3");
 		// Check for Connectivity
 		ConnectivityManager connec = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 		if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
 				(connec.getNetworkInfo(0).isAvailable() == true)){
 			
+			Log.i("ERROR", "5");
 			// Get Random Quote
 			getRandomQuote();
 		} else {
@@ -93,6 +99,7 @@ public class MainActivity extends Activity implements MainListener {
 			toast.show();
 		}
 		
+		Log.i("ERROR", "4");
 		// Set ActionBar
 		ActionBar bar = getActionBar();
 	    
@@ -149,21 +156,23 @@ public class MainActivity extends Activity implements MainListener {
 	public void getRandomQuote(){
 		ParseQuery query = new ParseQuery("ListOfQuotes");
 		Log.i("TAG GET PARSE", "SHOW ALL");
+		Log.i("ERROR", "6");
 		query.findInBackground(new FindCallback() {
 			public void done(List<ParseObject> objects, ParseException e) {
 				if (e == null) {
-					
+					Log.i("ERROR", "6A");
 					// Generate Random number from amount of Quotes in the array
 					int random = 0 + (int)(Math.random() * ((objects.toArray().length - 1)));
 					Log.i("TAG RANDOM COUNT", String.valueOf(random));
 					ParseObject s = objects.get(random);
-					String thequote = s.getString("quote");
-					String theauthor = s.getString("author");
+					thequote = s.getString("quote");
+					theauthor = s.getString("author");
+					Log.i("ERROR", "6B");
 					FileStuff.storeStringFile(getApplicationContext(), "savedQuote", thequote+"\r\n\n"+theauthor, false);
-					FileStuff.storeStringFile(getApplicationContext(), "QOD", thequote+"\r\n\n"+theauthor, false);
 					FileStuff.storeStringFile(getBaseContext(), "finalQuote", thequote, false);
 					FileStuff.storeStringFile(getBaseContext(), "finalAuthor", theauthor, false);
 				}
+				
 			}
 		});	
     }

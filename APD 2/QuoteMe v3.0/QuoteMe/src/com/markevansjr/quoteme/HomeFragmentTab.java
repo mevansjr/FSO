@@ -83,11 +83,13 @@ public class HomeFragmentTab extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		_view = inflater.inflate(R.layout.home_frag, container, false);
 		
+		Log.i("H ERROR", "1");
 		// Check for Recents
 		getRecents();
 		
+		Log.i("H ERROR", "2");
 		ArrayList<Map<String, String>> datafromfile = FileStuff.readArrayFile(_view.getContext(), "data", false);
-		if (!datafromfile.isEmpty()){
+		if (!(datafromfile == null)){
 			_data2 = datafromfile;
 			Log.i("TOTAL ARRAY", String.valueOf(_data2.toArray().length));
 		} else {
@@ -95,6 +97,7 @@ public class HomeFragmentTab extends Fragment{
 			Log.i("TOTAL ARRAY", String.valueOf(_data2.toArray().length));
 		}
 		
+		Log.i("H ERROR", "3");
 		// Set TextView and Typeface
 		_tv = (TextView) _view.findViewById(R.id.home_quote_text);
 		_tv.setMovementMethod(new ScrollingMovementMethod());
@@ -102,12 +105,14 @@ public class HomeFragmentTab extends Fragment{
 		Typeface tf2 = Typeface.createFromAsset(_view.getContext().getAssets(), "fonts/m-bold.ttf");
 		_tv.setTypeface(tf);
 		
+		Log.i("H ERROR", "4");
 		// Set Buttons and Typeface
 		_save_btn = (Button) _view.findViewById(R.id.home_save_btn);
 		_delete_btn = (Button) _view.findViewById(R.id.home_delete_btn);
 		_save_btn.setTypeface(tf2);
 		_delete_btn.setTypeface(tf2);
 		
+		Log.i("H ERROR", "5");
 		// Stored Preferences
 		_savedButton = FileStuff.readStringFile(_view.getContext(), "buttonSave", false);
 		Log.i("------TAG BUTTON SAVE CHECK-------", _savedButton);
@@ -122,11 +127,13 @@ public class HomeFragmentTab extends Fragment{
 		_author = FileStuff.readStringFile(_view.getContext(), "finalAuthor", false);
 		Log.i("------TAG AUTHOR ------", _author);
 		
+		Log.i("H ERROR", "6");
 		// Check for Connectivity
 		ConnectivityManager connec = (ConnectivityManager)_view.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 			if (connec != null && (connec.getNetworkInfo(1).isAvailable() == true) ||
 					(connec.getNetworkInfo(0).isAvailable() == true)){
 				
+				Log.i("H ERROR", "7");
 				// Get Quote of the Day
 				getQOD();
 			} else {
@@ -136,6 +143,7 @@ public class HomeFragmentTab extends Fragment{
     			toast.show();
     		}
 			
+			Log.i("H ERROR", "8");
 			// Check Button condition
 			if (_savedButton.equals("YES")){
 				_delete_btn.setVisibility(View.GONE);
@@ -232,13 +240,14 @@ public class HomeFragmentTab extends Fragment{
 	    return _view;
 	}
     
-    
 	private void getQOD() {
+		Log.i("H ERROR", "9");
 		_tv.setText(_quote+"\r\n\n"+_author);
     }
   
   @SuppressWarnings("unchecked")
 	private ArrayList<String> getRecents() {
+	  Log.i("H ERROR", "10");
   	Object stored = FileStuff.readObjectFile(_view.getContext(), "recentQuote", false);
   	
   	if (stored == null) {
