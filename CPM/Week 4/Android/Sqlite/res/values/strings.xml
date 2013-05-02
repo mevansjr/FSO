@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MdTA</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="button">Go</string>
+    <string name="hint">Filter Database..</string>
+    <string name="menu_search">Search</string>
+    <string name="search_hint">Find a Recipe</string>
+    <string name="menu_showAll">Show All</string>
+    <string name="menu_add">Add</string>
+    <string name="menu_clear">Clear</string>
+    <string name="call">CALL</string>
+    <string name="tag">TAG</string>
+    <string name="vin">VIN</string>
+    <string-array name="spinner_array">
+        <item>CALL NUMBER</item>
+        <item>TAG NUMBER</item>
+        <item>VIN NUMBER</item>
+    </string-array>
+        <string name="calltext">Call</string>
+        <string name="vehtitle">Vehicle Details</string>
+        <string name="updatebtn">Update</string>
+        <string name="deletebtn">Delete</string>
+        <string name="showall">Show All</string>
+        <string name="closebtn">Close</string>
+        <string name="addVehicle">Add Vehicle</string>
+        <string name="clear">Clear</string>
+        <string name="submit">Submit</string>
+        <string name="taghint">Tag</string>
+        <string name="vinhint">Vin</string>
+        <string name="rp">Property Tag</string>
+        <string name="rs">Radio Serial</string>
+        <string name="installdate">Install Date</string>
+
+</resources>
