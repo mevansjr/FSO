@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Intermediate</key>
+	<array>
+		<dict>
+			<key>Question</key>
+			<string>(18 x 10) / 2 =</string>
+			<key>Answer</key>
+			<string>60</string>
+		</dict>
+		<dict>
+			<key>Question</key>
+			<string>((13 + 17) x 2) / 30 =</string>
+			<key>Answer</key>
+			<string>2</string>
+		</dict>
+		<dict>
+			<key>Question</key>
+			<string>156 + 6 =</string>
+			<key>Answer</key>
+			<string>162</string>
+		</dict>
+		<dict>
+			<key>Question</key>
+			<string>(30 x .5) + 5 =</string>
+			<key>Answer</key>
+			<string>20</string>
+		</dict>
+		<dict>
+			<key>Question</key>
+			<string>100 x .25 =</string>
+			<key>Answer</key>
+			<string>25</string>
+		</dict>
+	</array>
+</dict>
+</plist>

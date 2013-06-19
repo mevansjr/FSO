@@ -109,6 +109,7 @@
 		5DAF8B79159CA00600175367 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAF8B77159CA00600175367 /* SecondViewController.xib */; };
 		5DAF8B81159CA06C00175367 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DAF8B7F159CA06C00175367 /* default.png */; };
 		5DAF8B82159CA06C00175367 /* default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DAF8B80159CA06C00175367 /* default@2x.png */; };
+		5DE91DDA174BF8ED002C8CC9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE91DD9174BF8ED002C8CC9 /* Default-568h@2x.png */; };
 		5DEB5C7E15A37513008DF89E /* big-card.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DEB5C7D15A37513008DF89E /* big-card.png */; };
 		5DEB5C8115A5D67D008DF89E /* loc.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DEB5C8015A5D67D008DF89E /* loc.png */; };
 		5DEB5C8315A5D8F5008DF89E /* TabHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEB5C8215A5D8F5008DF89E /* TabHistoryView.xib */; };
@@ -251,6 +252,7 @@
 		5DAF8B78159CA00600175367 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController.xib; sourceTree = "<group>"; };
 		5DAF8B7F159CA06C00175367 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		5DAF8B80159CA06C00175367 /* default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default@2x.png"; sourceTree = "<group>"; };
+		5DE91DD9174BF8ED002C8CC9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5DEB5C7D15A37513008DF89E /* big-card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "big-card.png"; sourceTree = "<group>"; };
 		5DEB5C8015A5D67D008DF89E /* loc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loc.png; sourceTree = "<group>"; };
 		5DEB5C8215A5D8F5008DF89E /* TabHistoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabHistoryView.xib; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 		5DAF8B45159CA00400175367 = {
 			isa = PBXGroup;
 			children = (
+				5DE91DD9174BF8ED002C8CC9 /* Default-568h@2x.png */,
 				5DAF8B5A159CA00500175367 /* Tab'd */,
 				5DAF8B53159CA00500175367 /* Frameworks */,
 				5DAF8B51159CA00500175367 /* Products */,
@@ -615,6 +618,7 @@
 				5DABC91515B641C600F5BA5F /* tabd-bg.png in Resources */,
 				5DABC91615B641C600F5BA5F /* tabd-bg@2x.png in Resources */,
 				5D798F6315B8D86900AFA547 /* FriendToGiftViewController.xib in Resources */,
+				5DE91DDA174BF8ED002C8CC9 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

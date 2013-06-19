@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Advanced</key>
+	<array>
+		<dict>
+			<key>Question</key>
+			<string>Five plus twenty =</string>
+			<key>Answer</key>
+			<string>25</string>
+		</dict>
+		<dict>
+			<key>Question</key>
+			<string>Thirty divided by five plus four =</string>
+			<key>Answer</key>
+			<string>10</string>
+		</dict>
+		<dict>
+			<key>Question</key>
+			<string>Eighty times two plus two =</string>
+			<key>Answer</key>
+			<string>162</string>
+		</dict>
+		<dict>
+			<key>Question</key>
+			<string>One hundred times five divided by ten =</string>
+			<key>Answer</key>
+			<string>50</string>
+		</dict>
+		<dict>
+			<key>Question</key>
+			<string>Fourty-two plus eight divided by 10 =</string>
+			<key>Answer</key>
+			<string>5</string>
+		</dict>
+	</array>
+</dict>
+</plist>

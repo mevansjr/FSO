@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+<key>Beginner</key>
+<array>
+	<dict>
+		<key>Question</key>
+		<string>10 + 12 = </string>
+		<key>Answer</key>
+		<string>22</string>
+	</dict>
+	<dict>
+		<key>Question</key>
+		<string>(13 + 7) x 2 =</string>
+		<key>Answer</key>
+		<string>40</string>
+	</dict>
+	<dict>
+		<key>Question</key>
+		<string>4 + 4 =</string>
+		<key>Answer</key>
+		<string>8</string>
+	</dict>
+	<dict>
+		<key>Question</key>
+		<string>32 x 10 =</string>
+		<key>Answer</key>
+		<string>320</string>
+	</dict>
+	<dict>
+		<key>Question</key>
+		<string>4 x 8 = </string>
+		<key>Answer</key>
+		<string>32</string>
+	</dict>
+</array>
+</dict>
+</plist>
